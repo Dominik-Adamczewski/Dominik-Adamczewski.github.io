@@ -1,0 +1,27 @@
+html {
+    font-family: 'Arial', sans-serif;
+}
+
+div.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+div.projects-list a {
+    width: 50%;
+    display: block;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(17, 129, 235);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+div.projects-list a:hover {
+    background-color: rgb(5, 83, 156);
+}
