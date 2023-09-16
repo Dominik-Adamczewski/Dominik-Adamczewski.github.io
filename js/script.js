@@ -1,5 +1,5 @@
 const projects = [
-    { projectName: '#1-qr-code-component', projectUrl: 'https://dominik-adamczewski.github.io/#1-qr-code-component/' },
+    { projectName: '1-qr-code-component', projectUrl: 'https://dominik-adamczewski.github.io/1-qr-code-component/' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
