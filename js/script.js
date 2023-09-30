@@ -3,6 +3,7 @@ const projects = [
     { projectName: '2-order-summary-component', projectUrl: 'https://dominik-adamczewski.github.io/2-order-summary-component/' },
     { projectName: '3-three-column-component', projectUrl: 'https://dominik-adamczewski.github.io/3-three-column-component/' },
     { projectName: '4-single-price-grid-component', projectUrl: 'https://dominik-adamczewski.github.io/4-single-price-grid-component/' },
+    { projectName: '5-Component-with-sign-up-form', projectUrl: 'https://dominik-adamczewski.github.io/5-Component-with-sign-up-form/' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
