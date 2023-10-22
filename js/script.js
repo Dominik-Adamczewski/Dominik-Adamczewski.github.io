@@ -5,6 +5,7 @@ const projects = [
     { projectName: '4-single-price-grid-component', projectUrl: 'https://dominik-adamczewski.github.io/4-single-price-grid-component/' },
     { projectName: '5-Component-with-sign-up-form', projectUrl: 'https://dominik-adamczewski.github.io/5-Component-with-sign-up-form/' },
     { projectName: '6-Interactive-rating-component', projectUrl: 'https://dominik-adamczewski.github.io/6-Interactive-rating-component/' },
+    { projectName: '7-faq-accordion-card-component', projectUrl: 'https://dominik-adamczewski.github.io/7-faq-accordion-card-component' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
