@@ -7,6 +7,7 @@ const projects = [
     { projectName: '6-Interactive-rating-component', projectUrl: 'https://dominik-adamczewski.github.io/6-Interactive-rating-component/' },
     { projectName: '7-faq-accordion-card-component', projectUrl: 'https://dominik-adamczewski.github.io/7-faq-accordion-card-component' },
     { projectName: '8-base-apparel-coming-soon-component', projectUrl: 'https://dominik-adamczewski.github.io/8-base-apparel-coming-soon-component' },
+    { projectName: '9-article-preview-component', projectUrl: 'https://dominik-adamczewski.github.io/9-article-preview-component' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
