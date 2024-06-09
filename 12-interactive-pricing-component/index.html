@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive pricing component</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="info">
+      <h1 class="info__title">Simple, traffic based pricing</h1>
+      <div class="info__text">
+        Sign-up for our 30-day trial.<br>
+        No credit card required.
+      </div>
+    </div>
+    <div class="pricing-component">
+      <span class="pricing-component__social-proof">100k pageviews</span>
+      <div class="pricing-component__slider">
+        <input type="range" min="1" max="50">
+        <span class="pricing-component__price-info">
+          <span class="pricing-component__price">0</span> / month
+        </span>
+      </div>
+      <div class="pricing-component__billing-settings">
+        <span>monthly billing</span>
+        <label class="pricing-component__switch">
+          <input type="checkbox">
+          <span class="pricing-component__slider"></span>
+        </label>
+        <span>yearly billing</span>
+        <span class="pricing-component__yearly-pricing-badge">-25%</span>
+      </div>
+      <div class="pricing-component__what-you-get">
+        <p class="prcing-component__what-you-get-item">Unlimited websites</p>
+        <p class="prcing-component__what-you-get-item">100% data ownership</p>
+        <p class="prcing-component__what-you-get-item">Email reports</p>
+      </div>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/Dominik-Adamczewski/FrontEndLearning">Dominik Adamczewski</a>.
+  </div>
+</body>
+</html>

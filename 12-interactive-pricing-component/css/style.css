@@ -1,0 +1,58 @@
+html {
+  font-size: 10px;
+  font-family: "Manrope", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5rem;
+  background-color: hsl(230, 100%, 99%);
+}
+
+.wrapper {
+  height: 100%;
+  min-height: 80vh;
+  width: 100%;
+  padding: 25px;
+}
+
+.info {
+  height: 30%;
+  margin-bottom: 40px;
+  text-align: center;
+  background-image: url("../images/pattern-circles.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.info__title {
+  color: hsl(227, 35%, 25%);
+}
+.info__text {
+  color: hsl(225, 20%, 60%);
+  line-height: 2;
+}
+
+.pricing-component {
+  height: 70%;
+}
+
+.attribution {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}/*# sourceMappingURL=style.css.map */
