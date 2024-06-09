@@ -8,6 +8,8 @@ const projects = [
     { projectName: '7-faq-accordion-card-component', projectUrl: 'https://dominik-adamczewski.github.io/7-faq-accordion-card-component' },
     { projectName: '8-base-apparel-coming-soon-component', projectUrl: 'https://dominik-adamczewski.github.io/8-base-apparel-coming-soon-component' },
     { projectName: '9-article-preview-component', projectUrl: 'https://dominik-adamczewski.github.io/9-article-preview-component' },
+    { projectName: '10-advice-generator-app', projectUrl: 'https://dominik-adamczewski.github.io/10-advice-generator-app' },
+    { projectName: '11-fylo-landing-page-project', projectUrl: 'https://dominik-adamczewski.github.io/11-fylo-landing-page-project' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
