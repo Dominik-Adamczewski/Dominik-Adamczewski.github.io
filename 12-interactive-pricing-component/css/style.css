@@ -27,6 +27,7 @@ body {
   min-height: 80vh;
   width: 100%;
   padding: 25px;
+  max-width: 375px;
 }
 
 .info {
@@ -47,6 +48,53 @@ body {
 
 .pricing-component {
   height: 70%;
+  text-align: center;
+  background-color: lightgrey;
+  padding: 20px;
+}
+.pricing-component__social-proof {
+  display: block;
+  text-transform: uppercase;
+  color: hsl(225, 20%, 60%);
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 10px 0 20px 0;
+}
+.pricing-component__slider-container {
+  margin: 35px 0;
+}
+.pricing-component__slider {
+  display: block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+}
+.pricing-component__slider::-webkit-slider-runnable-track {
+  height: 1rem;
+  background-color: hsl(174, 77%, 80%);
+  border-radius: 10px;
+}
+.pricing-component__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  background-color: hsl(174, 86%, 45%);
+  border-radius: 50%;
+  margin-top: calc(0.5rem - 20px);
+  background-image: url("../images/icon-slider.svg");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.pricing-component__price-info {
+  display: block;
+  margin-top: 20px;
 }
 
 .attribution {
