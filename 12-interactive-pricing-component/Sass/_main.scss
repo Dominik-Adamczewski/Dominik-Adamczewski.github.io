@@ -75,7 +75,76 @@
   }
 
   &__price-info {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
+  }
+
+  &__price {
+    margin-right: 5px;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  &__billing-settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    margin: 0 15px;
+
+    & input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:checked+.pricing-component__toggle-slider {
+        background-color: $strong-cyan;
+      }
+
+      &:checked+.pricing-component__toggle-slider:before {
+        transform: translateX(30px);
+      }
+    }
+  }
+
+  &__toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 2px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 24px;
+    transition: .4s;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      border-radius: 50%;
+      background-color: white;
+      transition: .4s;
+    }
+  }
+
+  &__yearly-pricing-badge {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: $light-grayish-red;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 }
