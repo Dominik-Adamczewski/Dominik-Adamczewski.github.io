@@ -1,18 +1,18 @@
 .wrapper {
   height: 100%;
   min-height: 80vh;
-  width: 100%;
-  padding: 25px;
-  max-width: 375px;
+  width: 95%;
+  background-color: white;
 }
 
 .info {
   height: 30%;
-  margin-bottom: 40px;
   text-align: center;
   background-image: url('../images/pattern-circles.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-color: $very-phale-blue;
+  padding: 25px;
 
   &__title {
     color: $dark-desaturated-blue;
@@ -27,8 +27,14 @@
 .pricing-component {
   height: 70%;
   text-align: center;
-  background-color: lightgrey;
-  padding: 20px;
+
+  &__upper-section {
+    padding: 20px;
+
+    @media (min-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
 
   &__social-proof {
     display: block;
@@ -70,6 +76,7 @@
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
+      box-shadow: 0 5px 20px 5px $soft-cyan;
       cursor: pointer;
     }
   }
@@ -78,7 +85,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 35px;
   }
 
   &__price {
@@ -91,6 +98,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 25px;
   }
 
   &__switch {
@@ -144,7 +152,46 @@
     padding: 5px;
     border-radius: 15px;
     background-color: $light-grayish-red;
+    color: $light-red;
     font-size: 1.2rem;
     font-weight: bold;
+  }
+
+  &__what-you-get {
+    border-top: 1px solid lightgrey;
+    padding-top: 15px;
+
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      font-size: 1.6rem;
+    }
+  }
+
+  &__what-you-get-item {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: url('../images/icon-check.svg');
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+
+  &__cta-button {
+    padding: 10px;
+    margin: 20px 0;
+    width: 50%;
+    border-radius: 10px;
+    background-color: $dark-desaturated-blue;
+    border: none;
+    color: white;
+    cursor: pointer;
   }
 }
