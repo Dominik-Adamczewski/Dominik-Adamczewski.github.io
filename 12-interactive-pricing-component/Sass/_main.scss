@@ -3,6 +3,10 @@
   min-height: 80vh;
   width: 95%;
   background-color: white;
+
+  @media (min-width: 1024px) {
+    max-width: 800px;
+  }
 }
 
 .info {
@@ -30,9 +34,21 @@
 
   &__upper-section {
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     @media (min-width: 768px) {
       font-size: 1.6rem;
+    }
+
+    @media (min-width: 1024px) {
+      max-width: 1024px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding: 40px;
     }
   }
 
@@ -43,10 +59,23 @@
     font-weight: bold;
     letter-spacing: 2px;
     margin: 10px 0 20px 0;
+    order: 1;
+
+    @media (min-width: 1024px) {
+      width: 50%;
+      margin: 0;
+    }
   }
 
   &__slider-container {
-    margin: 35px 0;
+    width: 100%;
+    margin: 25px 0 35px 0;
+    order: 2;
+
+    @media (min-width: 1024px) {
+      width: 80%;
+      margin: 35px auto;
+    }
   }
 
   &__slider {
@@ -85,13 +114,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 35px;
+    margin-bottom: 35px;
+    order: 3;
+
+    @media (min-width: 1024px) {
+      order: 2;
+      width: 50%;
+      margin-bottom: 0;
+    }
   }
 
   &__price {
     margin-right: 5px;
     font-size: 3rem;
     font-weight: bold;
+
+    @media (min-width: 1024px) {
+      font-size: 4rem;
+    }
   }
 
   &__billing-settings {
@@ -99,6 +139,12 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
+    order: 4;
+
+    @media (min-width: 1024px) {
+      margin-top: 30px;
+      margin-right: 50px;
+    }
   }
 
   &__switch {
@@ -169,18 +215,30 @@
       min-height: 300px;
       font-size: 1.6rem;
     }
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  }
+
+  &__what-you-get-item-wrapper {
+    @media (min-width: 1024px) {
+      text-align: left;
+    }
   }
 
   &__what-you-get-item {
     margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &::before {
       content: url('../images/icon-check.svg');
       display: inline-block;
       margin-right: 10px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 250px;
     }
   }
 
@@ -193,5 +251,10 @@
     border: none;
     color: white;
     cursor: pointer;
+
+    @media (min-width: 1024px) {
+      max-width: 200px;
+      height: 50px;
+    }
   }
 }

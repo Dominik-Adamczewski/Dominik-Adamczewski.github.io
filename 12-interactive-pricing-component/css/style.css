@@ -25,6 +25,11 @@ body {
   width: 95%;
   background-color: white;
 }
+@media (min-width: 1024px) {
+  .wrapper {
+    max-width: 800px;
+  }
+}
 
 .info {
   height: 30%;
@@ -49,10 +54,38 @@ body {
 }
 .pricing-component__upper-section {
   padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 @media (min-width: 768px) {
   .pricing-component__upper-section {
     font-size: 1.6rem;
+  }
+}
+@media (min-width: 1024px) {
+  .pricing-component__upper-section {
+    max-width: 1024px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 40px;
   }
 }
 .pricing-component__social-proof {
@@ -62,9 +95,28 @@ body {
   font-weight: bold;
   letter-spacing: 2px;
   margin: 10px 0 20px 0;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+@media (min-width: 1024px) {
+  .pricing-component__social-proof {
+    width: 50%;
+    margin: 0;
+  }
 }
 .pricing-component__slider-container {
-  margin: 35px 0;
+  width: 100%;
+  margin: 25px 0 35px 0;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+@media (min-width: 1024px) {
+  .pricing-component__slider-container {
+    width: 80%;
+    margin: 35px auto;
+  }
 }
 .pricing-component__slider {
   display: block;
@@ -107,12 +159,29 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 35px;
+  margin-bottom: 35px;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+@media (min-width: 1024px) {
+  .pricing-component__price-info {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    width: 50%;
+    margin-bottom: 0;
+  }
 }
 .pricing-component__price {
   margin-right: 5px;
   font-size: 3rem;
   font-weight: bold;
+}
+@media (min-width: 1024px) {
+  .pricing-component__price {
+    font-size: 4rem;
+  }
 }
 .pricing-component__billing-settings {
   display: -webkit-box;
@@ -125,6 +194,15 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 25px;
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+}
+@media (min-width: 1024px) {
+  .pricing-component__billing-settings {
+    margin-top: 30px;
+    margin-right: 50px;
+  }
 }
 .pricing-component__switch {
   position: relative;
@@ -201,22 +279,33 @@ body {
     font-size: 1.6rem;
   }
 }
+@media (min-width: 1024px) {
+  .pricing-component__what-you-get {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+@media (min-width: 1024px) {
+  .pricing-component__what-you-get-item-wrapper {
+    text-align: left;
+  }
+}
 .pricing-component__what-you-get-item {
   margin: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 .pricing-component__what-you-get-item::before {
   content: url("../images/icon-check.svg");
   display: inline-block;
   margin-right: 10px;
+}
+@media (min-width: 1024px) {
+  .pricing-component__what-you-get-item {
+    width: 250px;
+  }
 }
 .pricing-component__cta-button {
   padding: 10px;
@@ -227,6 +316,12 @@ body {
   border: none;
   color: white;
   cursor: pointer;
+}
+@media (min-width: 1024px) {
+  .pricing-component__cta-button {
+    max-width: 200px;
+    height: 50px;
+  }
 }
 
 .attribution {
