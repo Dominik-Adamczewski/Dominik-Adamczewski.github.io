@@ -10,6 +10,7 @@ const projects = [
     { projectName: '9-article-preview-component', projectUrl: 'https://dominik-adamczewski.github.io/9-article-preview-component' },
     { projectName: '10-advice-generator-app', projectUrl: 'https://dominik-adamczewski.github.io/10-advice-generator-app' },
     { projectName: '11-fylo-landing-page-project', projectUrl: 'https://dominik-adamczewski.github.io/11-fylo-landing-page-project' },
+    { projectName: '12-interactive-pricing-component', projectUrl: 'https://dominik-adamczewski.github.io/12-interactive-pricing-component' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
