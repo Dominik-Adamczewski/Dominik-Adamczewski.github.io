@@ -7,19 +7,19 @@ const pricingType = document.querySelector('.pricing-component__pricing-type');
 const monthlyPricingTypeInfoLabel = document.querySelector('.pricing-component__pricing-type-info--monthly');
 const yearlyPricingTypeInfoLabel = document.querySelector('.pricing-component__pricing-type-info--yearly');
 
-let currentWindowWidth = window.innerWidth;
 let isYearlyBillingSet = false;
 
-function updatePrice(sliderPrice) {
+const maxPricePerMonth = 32;
+const fullYearMonths = 12;
+const discountForYearlyPrice = 0.1;
+const sliderYearlyPricingSteps = 6;
+
+const updatePrice = (sliderPrice) => {
   price.innerHTML = '';
-  if (isYearlyBillingSet) {
-    price.innerHTML = `$${price.innerHTML}${sliderPrice}`;
-  } else {
-    price.innerHTML = `$${price.innerHTML}${sliderPrice}.00`;
-  }
+  price.innerHTML = `$${price.innerHTML}${sliderPrice}.00`;
 }
 
-function highlightChosenPricing() {
+const highlightChosenPricing = () => {
   if (isYearlyBillingSet) {
     monthlyPricingTypeInfoLabel.classList.remove('chosen');
     yearlyPricingTypeInfoLabel.classList.add('chosen');
@@ -29,33 +29,16 @@ function highlightChosenPricing() {
   }
 }
 
-function updateWindowWidth() {
-  currentWindowWidth = window.innerWidth;
-}
-
-function getYearlyPricingBadge() {
-  if (currentWindowWidth >= 1024) {
-    return '25% discount';
-  } else {
-    return '-25%';
-  }
-}
-
-function toggleYearlyPricing() {
+const toggleYearlyPricing = () => {
   isYearlyBillingSet = !isYearlyBillingSet;
 }
 
-function getDiscountedYearlyPricing() {
-  const yearlyPricing = 32 * 12;
-  return yearlyPricing * 0.9;  // 10% discount when buying yearly
-}
-
-function changePricingType() {
-  const yearlyPricing = getDiscountedYearlyPricing();
+const changePricingType = () => {
+  const yearlyPricing = (maxPricePerMonth * fullYearMonths) * (1 - discountForYearlyPrice);
 
   if (isYearlyBillingSet) {
     pricingType.textContent = '/ year';
-    sliderInput.setAttribute('max', `${yearlyPricing * 6}`);
+    sliderInput.setAttribute('max', `${yearlyPricing * sliderYearlyPricingSteps}`);
     sliderInput.setAttribute('min', yearlyPricing);
     sliderInput.setAttribute('value', yearlyPricing);
     sliderInput.setAttribute('step', yearlyPricing);
@@ -75,25 +58,16 @@ function changePricingType() {
 changePricingType();
 updatePrice(sliderInput.value);
 
-window.addEventListener('load', () => {
-  yearlyPricingBadge.textContent = getYearlyPricingBadge();
-});
-
-window.addEventListener('resize', () => {
-  updateWindowWidth();
-  yearlyPricingBadge.textContent = getYearlyPricingBadge();
-});
-
-sliderInput.addEventListener('input', function () {
+sliderInput.addEventListener('input', () => {
   updatePrice(sliderInput.value);
 });
 
-ctaButton.addEventListener('click', function () {
+ctaButton.addEventListener('click', () => {
   alert('Thanks for choosing our product! Page will reload now...');
   location.reload();
 });
 
-billingTypeCheckbox.addEventListener('click', function () {
+billingTypeCheckbox.addEventListener('click', () => {
   toggleYearlyPricing();
   changePricingType();
 });
