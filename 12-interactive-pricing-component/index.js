@@ -7,93 +7,85 @@ const pricingType = document.querySelector('.pricing-component__pricing-type');
 const monthlyPricingTypeInfoLabel = document.querySelector('.pricing-component__pricing-type-info--monthly');
 const yearlyPricingTypeInfoLabel = document.querySelector('.pricing-component__pricing-type-info--yearly');
 
-let currentWindowWidth = window.innerWidth;
 let isYearlyBillingSet = false;
 
-function updatePrice(sliderPrice) {
+const maxPricePerMonth = 32;
+const fullYearMonths = 12;
+const discountForYearlyPrice = 0.1;
+const sliderYearlyPricingSteps = 6;
+
+const yearlyPricing = (maxPricePerMonth * fullYearMonths) * (1 - discountForYearlyPrice);
+
+const yearlySliderConfig = {
+  max: `${yearlyPricing * sliderYearlyPricingSteps}`,
+  min: yearlyPricing,
+  value: yearlyPricing,
+  step: yearlyPricing,
+  display: '/ year',
+};
+
+const defaultSliderConfig = {
+  max: '32',
+  min: '1',
+  value: '1',
+  step: '1',
+  display: '/ month',
+};
+
+const updateSliderPrice = (sliderPrice) => {
+  const formattedPrice = Number(sliderPrice).toFixed(2);
   price.innerHTML = '';
-  if (isYearlyBillingSet) {
-    price.innerHTML = `$${price.innerHTML}${sliderPrice}`;
-  } else {
-    price.innerHTML = `$${price.innerHTML}${sliderPrice}.00`;
-  }
+  price.innerHTML = `$${formattedPrice}`;
 }
 
-function highlightChosenPricing() {
-  if (isYearlyBillingSet) {
-    monthlyPricingTypeInfoLabel.classList.remove('chosen');
-    yearlyPricingTypeInfoLabel.classList.add('chosen');
-  } else {
-    yearlyPricingTypeInfoLabel.classList.remove('chosen');
-    monthlyPricingTypeInfoLabel.classList.add('chosen');
-  }
+const highlightYearlyPricing = () => {
+  monthlyPricingTypeInfoLabel.classList.remove('active');
+  yearlyPricingTypeInfoLabel.classList.add('active');
 }
 
-function updateWindowWidth() {
-  currentWindowWidth = window.innerWidth;
+const highLightMonthlyPricing = () => {
+  monthlyPricingTypeInfoLabel.classList.add('active');
+  yearlyPricingTypeInfoLabel.classList.remove('active');
 }
 
-function getYearlyPricingBadge() {
-  if (currentWindowWidth >= 1024) {
-    return '25% discount';
-  } else {
-    return '-25%';
-  }
-}
-
-function toggleYearlyPricing() {
+const toggleYearlyPricing = () => {
   isYearlyBillingSet = !isYearlyBillingSet;
 }
 
-function getDiscountedYearlyPricing() {
-  const yearlyPricing = 32 * 12;
-  return yearlyPricing * 0.9;  // 10% discount when buying yearly
-}
-
-function changePricingType() {
-  const yearlyPricing = getDiscountedYearlyPricing();
-
-  if (isYearlyBillingSet) {
-    pricingType.textContent = '/ year';
-    sliderInput.setAttribute('max', `${yearlyPricing * 6}`);
-    sliderInput.setAttribute('min', yearlyPricing);
-    sliderInput.setAttribute('value', yearlyPricing);
-    sliderInput.setAttribute('step', yearlyPricing);
-    updatePrice(yearlyPricing);
-    highlightChosenPricing();
-  } else {
-    pricingType.textContent = '/ month';
-    sliderInput.setAttribute('max', '32');
-    sliderInput.setAttribute('min', '1');
-    sliderInput.setAttribute('value', '1');
-    sliderInput.setAttribute('step', '1');
-    updatePrice('1');
-    highlightChosenPricing();
+const setPricintType = (configObj) => {
+  pricingType.textContent = configObj.display;
+  for (const property in configObj) {
+    if (property === 'display') {
+      pricingType.textContent = configObj[property];
+    }
+    sliderInput.setAttribute(property, configObj[property]);
   }
 }
 
-changePricingType();
-updatePrice(sliderInput.value);
+const loadAppDefaultState = () => {
+  setPricintType(defaultSliderConfig);
+  updateSliderPrice(sliderInput.value);
+  highLightMonthlyPricing();
+}
 
-window.addEventListener('load', () => {
-  yearlyPricingBadge.textContent = getYearlyPricingBadge();
+const loadAppYearlyState = () => {
+  setPricintType(yearlySliderConfig);
+  updateSliderPrice(yearlyPricing);
+  highlightYearlyPricing();
+};
+
+loadAppDefaultState();
+
+sliderInput.addEventListener('input', () => {
+  updateSliderPrice(sliderInput.value);
 });
 
-window.addEventListener('resize', () => {
-  updateWindowWidth();
-  yearlyPricingBadge.textContent = getYearlyPricingBadge();
-});
-
-sliderInput.addEventListener('input', function () {
-  updatePrice(sliderInput.value);
-});
-
-ctaButton.addEventListener('click', function () {
+ctaButton.addEventListener('click', () => {
   alert('Thanks for choosing our product! Page will reload now...');
   location.reload();
 });
 
-billingTypeCheckbox.addEventListener('click', function () {
+billingTypeCheckbox.addEventListener('click', () => {
   toggleYearlyPricing();
-  changePricingType();
+  isYearlyBillingSet ? loadAppYearlyState() : loadAppDefaultState();
 });
