@@ -214,6 +214,11 @@ body {
   }
 }
 
+.pricing-component__pricing-type-info--monthly.active,
+.pricing-component__pricing-type-info--yearly.active {
+  font-weight: bold;
+}
+
 .pricing-component__switch {
   position: relative;
   display: inline-block;

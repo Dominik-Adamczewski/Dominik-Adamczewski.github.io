@@ -14,52 +14,70 @@ const fullYearMonths = 12;
 const discountForYearlyPrice = 0.1;
 const sliderYearlyPricingSteps = 6;
 
-const updatePrice = (sliderPrice) => {
+const yearlyPricing = (maxPricePerMonth * fullYearMonths) * (1 - discountForYearlyPrice);
+
+const yearlySliderConfig = {
+  max: `${yearlyPricing * sliderYearlyPricingSteps}`,
+  min: yearlyPricing,
+  value: yearlyPricing,
+  step: yearlyPricing,
+  display: '/ year',
+};
+
+const defaultSliderConfig = {
+  max: '32',
+  min: '1',
+  value: '1',
+  step: '1',
+  display: '/ month',
+};
+
+const updateSliderPrice = (sliderPrice) => {
+  const formattedPrice = Number(sliderPrice).toFixed(2);
   price.innerHTML = '';
-  price.innerHTML = `$${price.innerHTML}${sliderPrice}.00`;
+  price.innerHTML = `$${formattedPrice}`;
 }
 
-const highlightChosenPricing = () => {
-  if (isYearlyBillingSet) {
-    monthlyPricingTypeInfoLabel.classList.remove('chosen');
-    yearlyPricingTypeInfoLabel.classList.add('chosen');
-  } else {
-    yearlyPricingTypeInfoLabel.classList.remove('chosen');
-    monthlyPricingTypeInfoLabel.classList.add('chosen');
-  }
+const highlightYearlyPricing = () => {
+  monthlyPricingTypeInfoLabel.classList.remove('active');
+  yearlyPricingTypeInfoLabel.classList.add('active');
+}
+
+const highLightMonthlyPricing = () => {
+  monthlyPricingTypeInfoLabel.classList.add('active');
+  yearlyPricingTypeInfoLabel.classList.remove('active');
 }
 
 const toggleYearlyPricing = () => {
   isYearlyBillingSet = !isYearlyBillingSet;
 }
 
-const changePricingType = () => {
-  const yearlyPricing = (maxPricePerMonth * fullYearMonths) * (1 - discountForYearlyPrice);
-
-  if (isYearlyBillingSet) {
-    pricingType.textContent = '/ year';
-    sliderInput.setAttribute('max', `${yearlyPricing * sliderYearlyPricingSteps}`);
-    sliderInput.setAttribute('min', yearlyPricing);
-    sliderInput.setAttribute('value', yearlyPricing);
-    sliderInput.setAttribute('step', yearlyPricing);
-    updatePrice(yearlyPricing);
-    highlightChosenPricing();
-  } else {
-    pricingType.textContent = '/ month';
-    sliderInput.setAttribute('max', '32');
-    sliderInput.setAttribute('min', '1');
-    sliderInput.setAttribute('value', '1');
-    sliderInput.setAttribute('step', '1');
-    updatePrice('1');
-    highlightChosenPricing();
+const setPricintType = (configObj) => {
+  pricingType.textContent = configObj.display;
+  for (const property in configObj) {
+    if (property === 'display') {
+      pricingType.textContent = configObj[property];
+    }
+    sliderInput.setAttribute(property, configObj[property]);
   }
 }
 
-changePricingType();
-updatePrice(sliderInput.value);
+const loadAppDefaultState = () => {
+  setPricintType(defaultSliderConfig);
+  updateSliderPrice(sliderInput.value);
+  highLightMonthlyPricing();
+}
+
+const loadAppYearlyState = () => {
+  setPricintType(yearlySliderConfig);
+  updateSliderPrice(yearlyPricing);
+  highlightYearlyPricing();
+};
+
+loadAppDefaultState();
 
 sliderInput.addEventListener('input', () => {
-  updatePrice(sliderInput.value);
+  updateSliderPrice(sliderInput.value);
 });
 
 ctaButton.addEventListener('click', () => {
@@ -69,5 +87,5 @@ ctaButton.addEventListener('click', () => {
 
 billingTypeCheckbox.addEventListener('click', () => {
   toggleYearlyPricing();
-  changePricingType();
+  isYearlyBillingSet ? loadAppYearlyState() : loadAppDefaultState();
 });
