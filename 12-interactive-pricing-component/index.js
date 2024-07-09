@@ -34,7 +34,6 @@ const defaultSliderConfig = {
 
 const updateSliderPrice = (sliderPrice) => {
   const formattedPrice = Number(sliderPrice).toFixed(2);
-  price.innerHTML = '';
   price.innerHTML = `$${formattedPrice}`;
 }
 
@@ -55,9 +54,6 @@ const toggleYearlyPricing = () => {
 const setPricintType = (configObj) => {
   pricingType.textContent = configObj.display;
   for (const property in configObj) {
-    if (property === 'display') {
-      pricingType.textContent = configObj[property];
-    }
     sliderInput.setAttribute(property, configObj[property]);
   }
 }
