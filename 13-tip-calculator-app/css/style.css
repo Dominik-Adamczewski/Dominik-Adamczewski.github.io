@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 input::-webkit-outer-spin-button,
@@ -16,7 +16,7 @@ input::-webkit-inner-spin-button {
 
 .wrapper {
   height: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   background-color: lightgray;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -30,6 +30,9 @@ input::-webkit-inner-spin-button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .app-name {
@@ -45,6 +48,7 @@ input::-webkit-inner-spin-button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 25px;
 }
 
 .app-name__heading {
@@ -58,8 +62,7 @@ input::-webkit-inner-spin-button {
   width: 100%;
   padding: 25px;
   background-color: hsl(0, 0%, 100%);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 10px 10px 0 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -82,7 +85,6 @@ input::-webkit-inner-spin-button {
   .calc-container__calculation,
   .calc-container__result {
     width: 48%;
-    height: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -117,7 +119,6 @@ input::-webkit-inner-spin-button {
   border: none;
   background-color: hsl(189, 41%, 97%);
   text-align: right;
-  direction: rtl;
   padding-right: 10px;
   outline: none;
   border-radius: 5px;
@@ -126,7 +127,7 @@ input::-webkit-inner-spin-button {
   outline: 2px solid hsl(172, 67%, 45%);
 }
 .input-component input.input-error {
-  border: 2px solid red;
+  outline: 2px solid red;
 }
 
 .input-component__error-msg {
@@ -187,7 +188,11 @@ input::-webkit-inner-spin-button {
   font-weight: bold;
 }
 
-.percentage-grid__grid-element.active {
+.percentage-grid__grid-wrapper input[type=radio] {
+  display: none;
+}
+
+.percentage-grid__grid-wrapper input[type=radio]:checked + label {
   background-color: hsl(172, 67%, 45%);
   color: hsl(183, 100%, 15%);
 }
@@ -209,7 +214,6 @@ input::-webkit-inner-spin-button {
   border: 1px solid hsl(172, 67%, 45%);
   border-radius: 5px;
   text-align: right;
-  direction: rtl;
   padding-right: 10px;
 }
 .percentage-grid__custom-input-field.active:focus {
