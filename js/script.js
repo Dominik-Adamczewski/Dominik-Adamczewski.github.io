@@ -12,6 +12,7 @@ const projects = [
     { projectName: '11-fylo-landing-page-project', projectUrl: 'https://dominik-adamczewski.github.io/11-fylo-landing-page-project' },
     { projectName: '12-interactive-pricing-component', projectUrl: 'https://dominik-adamczewski.github.io/12-interactive-pricing-component' },
     { projectName: '13-tip-calculator-app', projectUrl: 'https://dominik-adamczewski.github.io/13-tip-calculator-app' },
+    { projectName: '14-time-tracking-dashboard', projectUrl: 'https://dominik-adamczewski.github.io/14-time-tracking-dashboard' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
