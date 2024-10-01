@@ -1,0 +1,69 @@
+.dashboard-container {
+  background-color: hsl(226, 43%, 10%);
+}
+
+.dashboard-item {
+  background-color: hsl(235, 46%, 20%);
+}
+
+.dashboard-item__switch.active {
+  color: white;
+  font-weight: 500;
+}
+
+.dashboard-item__user-section {
+  background-color: hsl(264, 64%, 52%);
+}
+
+.dashboard-item__work .img-container {
+  background-color: hsl(15, 100%, 70%);
+}
+
+.dashboard-item__play .img-container {
+  background-color: hsl(195, 74%, 62%);
+}
+
+.dashboard-item__study .img-container {
+  background-color: hsl(348, 100%, 68%);
+}
+
+.dashboard-item__exercise .img-container {
+  background-color: hsl(145, 58%, 55%);
+}
+
+.dashboard-item__social .img-container {
+  background-color: hsl(264, 64%, 52%);
+}
+
+.dashboard-item__self-care .img-container {
+  background-color: hsl(43, 84%, 65%);
+}
+
+.dashboard-item__data-section {
+  background-color: hsl(235, 46%, 20%);
+  -webkit-box-shadow: 0 -10px 0 0 hsl(235, 46%, 20%);
+          box-shadow: 0 -10px 0 0 hsl(235, 46%, 20%);
+}
+.dashboard-item__data-section:hover {
+  background-color: hsl(235, 45%, 61%);
+  -webkit-box-shadow: 0 -10px 0 0 hsl(235, 45%, 61%);
+          box-shadow: 0 -10px 0 0 hsl(235, 45%, 61%);
+  cursor: pointer;
+}
+
+.dashboard-item__work,
+.dashboard-item__play,
+.dashboard-item__study,
+.dashboard-item__exercise,
+.dashboard-item__social,
+.dashboard-item__self-care {
+  visibility: hidden;
+}
+
+.ellipsis-icon {
+  fill: #BBC0FF;
+}
+
+.ellipsis-icon:hover {
+  fill: white;
+}/*# sourceMappingURL=style.css.map */
