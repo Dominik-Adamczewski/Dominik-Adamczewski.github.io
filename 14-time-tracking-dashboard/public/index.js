@@ -1,8 +1,6 @@
 const $dataTypeSwitches = $('.dashboard-item__switch');
 const $data = $.getJSON('../data/data.json');
 
-let $parsedData = null;
-
 
 const $activityTypes = [
   { title: 'Work', element: $('.dashboard-item__work') },
@@ -14,7 +12,7 @@ const $activityTypes = [
 ];
 
 function getActiveDataSwitch() {
-  return $('.dashboard-item__switch.active').text().toLowerCase().trim();
+  return $dataTypeSwitches.filter('.active').text().toLowerCase().trim();
 }
 
 function getLabelForPreviousTime(currentlyActiveSwitch) {
@@ -42,17 +40,17 @@ function displayData(jsonArray) {
 
 $dataTypeSwitches.first().addClass('active');  // by default choose Daily
 
-$dataTypeSwitches.on('click', function () {
-  $dataTypeSwitches.removeClass('active');
-  $(this).addClass('active');
-  displayData($parsedData);
-});
-
 $data.done(function(response) {
+  const $parsedData = response;
   displayData(response);
-  $parsedData = response;
   $activityTypes.forEach(activity => {
-    activity.element.css('visibility', 'visible');
+    activity.element.show();
+  });
+  // allow user to change displayed data
+  $dataTypeSwitches.on('click', function () {
+    $dataTypeSwitches.removeClass('active');
+    $(this).addClass('active');
+    displayData($parsedData);
   });
 }).fail(function(textStatus, error) {
   console.error("Request Failed: " + textStatus + ", " + error);

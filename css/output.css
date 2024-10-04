@@ -614,8 +614,28 @@ video {
   height: 11rem;
 }
 
+.h-2\/4 {
+  height: 50%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-1\/2 {
+  height: 50%;
+}
+
 .min-h-48 {
   min-height: 12rem;
+}
+
+.min-h-44 {
+  min-height: 11rem;
+}
+
+.min-h-96 {
+  min-height: 24rem;
 }
 
 .w-20 {
@@ -735,6 +755,10 @@ video {
   color: rgb(226 232 240 / var(--tw-text-opacity));
 }
 
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 html {
   font-family: 'Arial', sans-serif;
 }
@@ -774,6 +798,10 @@ div.projects-list a:hover {
 
   .lg\:h-full {
     height: 100%;
+  }
+
+  .lg\:h-1\/2 {
+    height: 50%;
   }
 
   .lg\:min-h-screen {
