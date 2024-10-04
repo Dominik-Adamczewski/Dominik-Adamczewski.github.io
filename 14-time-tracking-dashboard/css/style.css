@@ -57,13 +57,23 @@
 .dashboard-item__exercise,
 .dashboard-item__social,
 .dashboard-item__self-care {
-  visibility: hidden;
+  display: none;
 }
 
 .ellipsis-icon {
-  fill: #BBC0FF;
+  display: block;
+  width: 24px;
+  height: 24px;
+  mask-image: url("../images/icon-ellipsis.svg");
+  -webkit-mask-image: url("../images/icon-ellipsis.svg");
+  -webkit-mask-size: 100%;
+          mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  background-color: #9ca3af;
 }
-
 .ellipsis-icon:hover {
-  fill: white;
+  background-color: white;
 }/*# sourceMappingURL=style.css.map */

@@ -41,11 +41,11 @@
 
 .dashboard-item__data-section {
   background-color: $dashboard-item-background;
-  box-shadow: 0 -10px 0 0 hsl(235, 46%, 20%);
+  box-shadow: 0 -10px 0 0 $dashboard-item-background;
 
   &:hover {
-    background-color: hsl(235, 45%, 61%);
-    box-shadow: 0 -10px 0 0 hsl(235, 45%, 61%);
+    background-color: $dashboard-item-hover;
+    box-shadow: 0 -10px 0 0 $dashboard-item-hover;
     cursor: pointer;
   }
 }
@@ -56,13 +56,21 @@
 .dashboard-item__exercise,
 .dashboard-item__social,
 .dashboard-item__self-care {
-  visibility: hidden;
+  display: none;
 }
 
 .ellipsis-icon {
-  fill: #BBC0FF;
-}
+  display: block;
+  width: 24px;
+  height: 24px;
+  mask-image: url('../images/icon-ellipsis.svg');
+  -webkit-mask-image: url('../images/icon-ellipsis.svg');
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: $tailwind-gray-400;
 
-.ellipsis-icon:hover {
-  fill: white;
+  &:hover {
+    background-color: white;
+  }
 }
