@@ -2,15 +2,15 @@
   <div class="mt-6">
     <label class="block mb-2">{{ label }}</label>
     <div class="lg:flex lg:items-center lg:justify-between">
-      <div
+      <label
         v-for="(option, index) in options"
         :key="index"
-        class="radio-container my-2 p-4 bg-white rounded-lg w-full"
+        class="my-2 p-4 bg-white rounded-lg w-full cursor-pointer border border-proj-15-green-600 border-solid"
         :class="{ 'mr-4': index === 0 }"
       >
         <input type="radio" :value="option" name="query-type" v-model="selectedOption" @click="handleRadioButtonClick"  />
-        {{ option }}
-      </div>
+        <span class="ml-2">{{ option }}</span>
+      </label>
     </div>
      <span v-if="isMissingField && !selectedOption" class="error-msg">
       {{ errorMessage }}
@@ -56,9 +56,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.radio-container {
-  border: 1px solid hsl(169, 82%, 27%);
-}
-</style>

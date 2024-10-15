@@ -43,7 +43,7 @@
       @clearMissingField="removeMissingFieldErrorState"
     />
     <CheckboxInputField label="I consent to being contacted by the team" value="consent-info-true" @dataOk="collectData" :missingFields="missingFields" />   
-    <BaseButton btnText="Submit" />
+    <BaseButton>Submit</BaseButton>
   </form>
 </template>
 
