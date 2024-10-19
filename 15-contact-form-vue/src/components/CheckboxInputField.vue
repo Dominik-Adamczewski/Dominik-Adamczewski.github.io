@@ -4,7 +4,7 @@
     <span class="ml-2 cursor-pointer">{{ label }}</span>
     <span class="text-proj-15-green-600">*</span>
   </label>
-  <span v-if="errors && errors.length > 0" class="error-msg">
+  <span v-if="errors && errors.length > 0" class="text-error italic text-sm">
     {{ errors[0] }}
   </span>
 </template>

@@ -3,7 +3,7 @@
     {{ label }}
     <textarea
       :rows="rows"
-      class="message-box w-full p-2 rounded-lg resize-none"
+      class="w-full p-2 rounded-lg resize-none border border-solid border-proj-15-green-600 focus:outline-proj-15-green-700 focus:outline-1"
       :placeholder="placeholder"
       @focus="$emit('focus')"
       :class="{ 'error-active': errors && errors.length > 0 }"
@@ -11,8 +11,8 @@
       @input="handleInput"
     ></textarea>
   </label>
-  <span v-if="errors && errors.length > 0" class="error-msg">
-      {{ errorMessage }}
+  <span v-if="errors && errors.length > 0" class="text-error italic text-sm">
+      {{ errors[0] }}
   </span>
 </template>
 
@@ -42,13 +42,6 @@ export default {
       required: true,
     }
   },
-   data() {
-    return {
-      isInputValid: true,
-      inputValue: "",
-      errorMessage: "This field is required"
-    };
-  },
   methods: {
     handleInput(event) {
       this.$emit('update:modelValue', event.target.value);
@@ -58,18 +51,7 @@ export default {
 </script>
 
 <style>
-.message-box {
-  border: 1px solid hsl(169, 82%, 27%);
-}
-.message-box:focus {
-  outline: 1px solid hsl(169, 83%, 16%);
-}
 .error-active {
   border: 1px solid red;
-}
-.error-msg {
-  color: red;
-  font-style: italic;
-  font-size: 14px;
 }
 </style>

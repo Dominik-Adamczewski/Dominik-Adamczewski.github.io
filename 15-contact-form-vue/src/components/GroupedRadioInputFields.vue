@@ -1,6 +1,6 @@
 <template>
   <div class="mt-6">
-    <label class="block mb-2">{{ label }}</label>
+    <label class="block">{{ label }}</label>
     <div class="block lg:flex lg:items-center lg:justify-between">
       <label
         v-for="(option, index) in options"
@@ -12,7 +12,7 @@
         <span class="ml-2">{{ option }}</span>
       </label>
     </div>
-    <span v-if="errors && errors.length > 0" class="error-msg">
+    <span v-if="errors && errors.length > 0" class="text-error italic text-sm">
       {{ errors[0] }}
     </span>
   </div>
@@ -38,12 +38,6 @@ export default {
     modelValue: {
       type: String,
       required: false,
-    }
-  },
-  data() {
-    return {
-      selectedOption: null,
-      errorMessage: 'Please select a query type',
     }
   },
   computed: {

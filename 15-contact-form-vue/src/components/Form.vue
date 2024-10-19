@@ -42,14 +42,16 @@
       :errors="errors.chosenQuery"
       @click="clearErrorState('chosenQuery')"
     />
-    <MessageBox
-      label="Message"
-      rows="6"
-      placeholder="How can we assist you? Please provide as much detail as possible."
-      v-model="userMessage"
-      :errors="errors.userMessage"
-      @focus="clearErrorState('userMessage')"
-    />
+    <div class="mt-6">
+      <MessageBox
+        label="Message"
+        rows="6"
+        placeholder="How can we assist you? Please provide as much detail as possible."
+        v-model="userMessage"
+        :errors="errors.userMessage"
+        @focus="clearErrorState('userMessage')"
+      />
+    </div>
     <div class="mt-6">
       <CheckboxInputField 
         label="I consent to being contacted by the team" 

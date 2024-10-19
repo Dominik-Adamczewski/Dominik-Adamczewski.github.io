@@ -10,7 +10,7 @@
     :value="modelValue"
     @input="handleInput"
   />
-  <span v-if="errors && errors.length > 0" class="error-msg">
+  <span v-if="errors && errors.length > 0" class="text-error italic text-sm">
     {{ errors[0] }}
   </span>
 </template>
@@ -41,11 +41,6 @@ export default {
     }
   },
   emits: ['update:modelValue'],
-  data() {
-    return {
-      inputValue: "",
-    };
-  },
   methods: {
     handleInput(event) {
       this.$emit('update:modelValue', event.target.value);
