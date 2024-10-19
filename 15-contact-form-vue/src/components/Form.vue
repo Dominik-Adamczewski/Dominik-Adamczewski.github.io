@@ -1,48 +1,65 @@
 <template>
   <form class="p-4 lg:p-8 w-full lg:w-4/6 max-w-4xl bg-white rounded-lg" @submit.prevent="submitForm" novalidate>
     <h1 class="text-2xl lg:text-3xl font-bold">Contact us</h1>
-    <div class="lg:flex lg:items-center lg:justify-between">
+    <div class="lg:flex lg:items-start lg:justify-between">
+      <div class="mt-4 w-full lg:w-[48%]">
+        <SingleInputField
+          label="First Name"
+          inputType="text"
+          class="mr-4"
+          placeholder="e.g. John"
+          v-model="firstName"
+          :errors="errors.firstName"
+          @focus="clearErrorState('firstName')"
+        />
+      </div>
+      <div class="mt-4 w-full lg:w-[48%]">
+        <SingleInputField
+          label="Last Name"
+          inputType="text"
+          placeholder="e.g. Sunderland"
+          v-model="lastName"
+          :errors="errors.lastName"
+          @focus="clearErrorState('lastName')"
+        />
+      </div>
+    </div>
+    <div class="mt-4 w-full">
       <SingleInputField
-        label="First Name"
-        inputType="text"
-        class="mr-4"
-        placeholder="e.g. John"
+        label="Email address"
+        inputType="email"
+        placeholder="e.g. j.sunderland@gmail.com"
         @dataOk="collectData"
-        :missingFields="missingFields"
-        @clearMissingField="removeMissingFieldErrorState"
-      />
-      <SingleInputField
-        label="Last Name"
-        inputType="text"
-        placeholder="e.g. Sunderland"
-        @dataOk="collectData"
-        :missingFields="missingFields"
-        @clearMissingField="removeMissingFieldErrorState"
+        :errors="errors.email"
+        v-model="email"
+        @focus="clearErrorState('email')"
       />
     </div>
-    <SingleInputField
-      label="Email address"
-      inputType="email"
-      placeholder="e.g. j.sunderland@gmail.com"
-      @dataOk="collectData"
-      :missingFields="missingFields"
-      @clearMissingField="removeMissingFieldErrorState"
-    />
     <GroupedRadioInputFields
       label="Query Type"
       :options="radioInputOptions"
-      @dataOk="collectData"
-      :missingFields="missingFields"
+      v-model="chosenQuery"
+      :errors="errors.chosenQuery"
+      @click="clearErrorState('chosenQuery')"
     />
-    <MessageBox
-      label="Message"
-      rows="6"
-      placeholder="How can we assist you? Please provide as much detail as possible."
-      @dataOk="collectData"
-      :missingFields="missingFields"
-      @clearMissingField="removeMissingFieldErrorState"
-    />
-    <CheckboxInputField label="I consent to being contacted by the team" value="consent-info-true" @dataOk="collectData" :missingFields="missingFields" />   
+    <div class="mt-6">
+      <MessageBox
+        label="Message"
+        rows="6"
+        placeholder="How can we assist you? Please provide as much detail as possible."
+        v-model="userMessage"
+        :errors="errors.userMessage"
+        @focus="clearErrorState('userMessage')"
+      />
+    </div>
+    <div class="mt-6">
+      <CheckboxInputField 
+        label="I consent to being contacted by the team" 
+        v-model="consentChecked" 
+        :errors="errors.consentChecked" 
+        @change="clearErrorState('consentChecked')"
+      />  
+    </div> 
     <BaseButton>Submit</BaseButton>
   </form>
 </template>
@@ -63,39 +80,88 @@ export default {
   },
   data() {
     return {
+      firstName: '',
+      lastName: '',
+      email: '',
+      chosenQuery: '',
+      userMessage: '',
+      consentChecked: false,
+      errors: {
+        firstName: [],
+        lastName: [],
+        email: [],
+        chosenQuery: [],
+        userMessage: [],
+        consentChecked: [],
+      },
+      errorMessages: {
+        firstName: 'First name field is required!',
+        lastName: 'Last name field is required!',
+        email: 'Email field is required!',
+        emailInvalid: 'Please, provide a valid email address!',
+        chosenQuery: 'Please choose Query Type!',
+        userMessage: 'Message is required!',
+        consentChecked: 'To submit this form, please consent to being contacted',
+      },
       radioInputOptions: ['General Enquiry', 'Support Request'],
-      requiredDataTypes: ['First Name', 'Last Name', 'Email address', 'Query Type', 'Message', 'contact-consent'],
-      inputsData: [],
-      missingFields: [],
     }
   },
   methods: {
-    collectData(data) {
-      if (this.inputsData.some(inputData => inputData.inputLabel === data.inputLabel)) {
-        const dataObjIndex = this.inputsData.findIndex(inputData => inputData.inputLabel === data.inputLabel);
-        this.inputsData[dataObjIndex] = data;
-      } else {
-        this.inputsData.push(data);
-      }
-    },
-    getMissingFields() {
-      return this.requiredDataTypes.filter(requiredField => {
-        return !this.inputsData.some(inputData => inputData.inputLabel === requiredField);
+    validateForm() {
+      const rules = {
+        firstName: {
+          required: true,
+        },
+        lastName: {
+          required: true,
+        },
+        email: {
+          required: true,
+          pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        },
+        chosenQuery: {
+          required: true,
+        },
+        userMessage: {
+          required: true,
+        },
+        consentChecked: {
+          required: true,
+        },
+      };
+
+      let isValid = true;
+
+      Object.keys(rules).forEach((field) => {
+        const value = this[field];
+        const fieldRules = rules[field];
+        this.errors[field] = [];
+
+        if (fieldRules.required && !value) {
+          this.errors[field].push(this.errorMessages[field]);
+          isValid = false;
+        }
+
+        if (field === 'email' && value && !fieldRules.pattern.test(value)) {
+          this.errors[field].push(this.errorMessages.emailInvalid);
+          isValid = false;
+        }
       });
+
+      return isValid;
     },
-    removeMissingFieldErrorState(fieldLabel) {
-      this.missingFields = this.missingFields.filter(field => field !== fieldLabel);
+    clearErrorState(field) {
+      this.errors[field] = [];
     },
     submitForm(e) {
       e.preventDefault();
-      this.missingFields = this.getMissingFields();
-      console.log(this.missingFields);
-      if (!this.missingFields.length) {
-        alert('Success!')
+
+      if (this.validateForm()) {
+        alert('Form submitted successfully!');
         location.reload();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

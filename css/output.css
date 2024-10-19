@@ -1898,14 +1898,14 @@ video {
   border-style: none;
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .border-proj-15-green-600 {
   --tw-border-opacity: 1;
   border-color: hsl(169 82% 27% / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
@@ -2149,6 +2149,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -2234,9 +2239,19 @@ video {
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
+.text-error {
+  --tw-text-opacity: 1;
+  color: rgb(255 0 0 / var(--tw-text-opacity));
+}
+
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.text-proj-15-green-600 {
+  --tw-text-opacity: 1;
+  color: hsl(169 82% 27% / var(--tw-text-opacity));
 }
 
 .text-slate-200 {
@@ -2247,16 +2262,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.text-proj-15-green-600 {
-  --tw-text-opacity: 1;
-  color: hsl(169 82% 27% / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2689,6 +2694,10 @@ div.projects-list a:hover {
   }
 }
 
+.hover\:bg-proj-15-green-400:hover {
+  background-color: hsla(169, 82%, 40%, 0.7);
+}
+
 .hover\:font-bold:hover {
   font-weight: 700;
 }
@@ -2703,12 +2712,25 @@ div.projects-list a:hover {
   text-align: center;
 }
 
+.focus\:outline-1:focus {
+  outline-width: 1px;
+}
+
+.focus\:outline-proj-15-green-700:focus {
+  outline-color: hsl(169, 83%, 16%);;
+}
+
 .focus\:hover\:text-center:hover:focus {
   text-align: center;
 }
 
 .hover\:focus\:text-center:focus:hover {
   text-align: center;
+}
+
+.peer:checked ~ .peer-checked\:bg-proj-15-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(169 82% 27% / var(--tw-bg-opacity));
 }
 
 @media (min-width: 640px) {
@@ -2742,6 +2764,10 @@ div.projects-list a:hover {
     width: 66.666667%;
   }
 
+  .lg\:w-\[48\%\] {
+    width: 48%;
+  }
+
   .lg\:w-full {
     width: 100%;
   }
@@ -2752,6 +2778,10 @@ div.projects-list a:hover {
 
   .lg\:grid-rows-2 {
     grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:items-start {
+    align-items: flex-start;
   }
 
   .lg\:items-center {

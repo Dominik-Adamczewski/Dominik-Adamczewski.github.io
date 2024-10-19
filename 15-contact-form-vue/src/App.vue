@@ -22,7 +22,7 @@ export default {
 .main {
   background-color: hsl(148, 38%, 91%);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   font-family: "Karla", sans-serif;
 }
 </style>

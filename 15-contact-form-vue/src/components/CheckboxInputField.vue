@@ -1,18 +1,17 @@
 <template>
-  <div class="mt-6">
-    <label class="flex items-center">
-      <input type="checkbox" :value="value" v-model="isChecked" @change="handleCheckboxClick" class="consent-checkbox cursor-pointer" />
-      <span class="ml-2">{{ label }}</span>
-      <span class="text-proj-15-green-600">*</span>
-    </label>
-  </div>
-    <span v-if="isMissingField && !isChecked" class="error-msg">
-      {{ errorMessage }}
-    </span>
+  <label class="flex items-center">
+    <input type="checkbox" :value="value" :checked="modelValue" @change="updateValue" class="consent-checkbox cursor-pointer" />
+    <span class="ml-2 cursor-pointer">{{ label }}</span>
+    <span class="text-proj-15-green-600">*</span>
+  </label>
+  <span v-if="errors && errors.length > 0" class="text-error italic text-sm">
+    {{ errors[0] }}
+  </span>
 </template>
 
 <script>
 export default {
+  emits: ['update:modelValue', 'change'],
   props: {
     label: {
       type: String,
@@ -22,33 +21,20 @@ export default {
       type: String,
       required: true,
     },
-    missingFields: {
+    errors: {
       type: Array,
-      default: () => [],
-    }
-  },
-  data() {
-    return {
-      isChecked: false,
-      errorMessage: 'To submit this form, please consent to being contacted',
-    }
-  },
-  computed: {
-    isMissingField() {
-      if (this.missingFields.length) {
-        return this.missingFields.includes('contact-consent');
-      }
-    }
+      required: false,
+      default: [],
+    },
+    modelValue: {
+      type: Boolean,
+      required: false,
+    },
   },
   methods: {
-    handleCheckboxClick() {
-      if (this.isChecked) {
-        this.$emit("dataOk", {
-        inputType: 'checkbox',
-        inputValue: this.isChecked,
-        inputLabel: 'contact-consent',
-      });
-      }
+    updateValue(event) {
+      this.$emit('update:modelValue', event.target.checked);
+      this.$emit('change');
     }
   }
 }

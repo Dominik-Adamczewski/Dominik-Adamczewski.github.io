@@ -3,21 +3,22 @@
     {{ label }}
     <textarea
       :rows="rows"
-      class="message-box w-full p-2 rounded-lg"
+      class="w-full p-2 rounded-lg resize-none border border-solid border-proj-15-green-600 focus:outline-proj-15-green-700 focus:outline-1"
       :placeholder="placeholder"
-      @focus="clearErrorState"
-      @blur="handleTextInput"
-      :class="{ 'error-active': !isInputValid || isMissingField }"
-      v-model="inputValue"
+      @focus="$emit('focus')"
+      :class="{ 'error-active': errors && errors.length > 0 }"
+      :value="modelValue"
+      @input="handleInput"
     ></textarea>
   </label>
-  <span v-if="!isInputValid || isMissingField" class="error-msg">
-      {{ errorMessage }}
+  <span v-if="errors && errors.length > 0" class="text-error italic text-sm">
+      {{ errors[0] }}
   </span>
 </template>
 
 <script>
 export default {
+  emits: ['update:modelValue'],
   props: {
     label: {
       type: String,
@@ -31,62 +32,26 @@ export default {
       type: String,
       required: false,
     },
-    missingFields: {
+    errors: {
       type: Array,
-      default: () => [],
-    }
-  },
-   data() {
-    return {
-      isInputValid: true,
-      inputValue: "",
-      errorMessage: "This field is required"
-    };
-  },
-  computed: {
-    isMissingField() {
-      if (this.missingFields.length) {
-        return this.missingFields.includes(this.label);
-      }
+      required: false,
+      default: [],
+    },
+    modelValue: {
+      type: String,
+      required: true,
     }
   },
   methods: {
-    clearErrorState() {
-      this.isInputValid = true;
-      this.$emit('clearMissingField', this.label);
-    },
-    validateTextInput() {
-      if (this.inputValue === "") {
-        this.isInputValid = false;
-      } else {
-        this.isInputValid = true;
-      }
-    },
-    handleTextInput() {
-      this.validateTextInput();
-      if (this.isInputValid) {
-        this.$emit("dataOk", {
-          inputLabel: this.label,
-        });
-      }
+    handleInput(event) {
+      this.$emit('update:modelValue', event.target.value);
     },
   }  
 };
 </script>
 
 <style>
-.message-box {
-  border: 1px solid hsl(169, 82%, 27%);
-}
-.message-box:focus {
-  outline: 1px solid hsl(169, 83%, 16%);
-}
 .error-active {
   border: 1px solid red;
-}
-.error-msg {
-  color: red;
-  font-style: italic;
-  font-size: 14px;
 }
 </style>

@@ -1,25 +1,26 @@
 <template>
   <div class="mt-6">
-    <label class="block mb-2">{{ label }}</label>
-    <div class="lg:flex lg:items-center lg:justify-between">
+    <label class="block">{{ label }}</label>
+    <div class="block lg:flex lg:items-center lg:justify-between">
       <label
         v-for="(option, index) in options"
         :key="index"
-        class="my-2 p-4 bg-white rounded-lg w-full cursor-pointer border border-proj-15-green-600 border-solid"
+        class="my-2 p-4 bg-white rounded-lg w-full block cursor-pointer border border-proj-15-green-600 border-solid hover:bg-proj-15-green-400"
         :class="{ 'mr-4': index === 0 }"
       >
-        <input type="radio" :value="option" name="query-type" v-model="selectedOption" @click="handleRadioButtonClick"  />
+        <input type="radio" :value="option" :checked="modelValue === option" name="query-type" @change="updateValue(option)" class="peer-checked:bg-proj-15-green-600"  />
         <span class="ml-2">{{ option }}</span>
       </label>
     </div>
-     <span v-if="isMissingField && !selectedOption" class="error-msg">
-      {{ errorMessage }}
+    <span v-if="errors && errors.length > 0" class="text-error italic text-sm">
+      {{ errors[0] }}
     </span>
   </div>
 </template>
 
 <script>
 export default {
+  emits: ['update:modelValue'],
   props: {
     label: {
       type: String,
@@ -29,15 +30,14 @@ export default {
       type: Array,
       required: true,
     },
-    missingFields: {
+    errors: {
       type: Array,
-      default: () => [],
-    }
-  },
-  data() {
-    return {
-      selectedOption: null,
-      errorMessage: 'Please select a query type',
+      required: false,
+      default: [],
+    },
+    modelValue: {
+      type: String,
+      required: false,
     }
   },
   computed: {
@@ -48,10 +48,8 @@ export default {
     }
   },
   methods: {
-    handleRadioButtonClick() {
-      this.$emit("dataOk", {
-        inputLabel: this.label,
-      });
+    updateValue(value) {
+      this.$emit('update:modelValue', value);
     }
   }
 };
