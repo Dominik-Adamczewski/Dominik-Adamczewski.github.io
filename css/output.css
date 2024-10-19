@@ -744,6 +744,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -903,8 +907,28 @@ video {
   width: 100%;
 }
 
+.w-2\/5 {
+  width: 40%;
+}
+
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
 .max-w-4xl {
   max-width: 56rem;
+}
+
+.max-w-96 {
+  max-width: 24rem;
+}
+
+.max-w-\[380px\] {
+  max-width: 380px;
 }
 
 .flex-shrink {
@@ -1898,14 +1922,14 @@ video {
   border-style: none;
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .border-proj-15-green-600 {
   --tw-border-opacity: 1;
   border-color: hsl(169 82% 27% / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
@@ -2239,6 +2263,11 @@ video {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+.text-proj-15-green-600 {
+  --tw-text-opacity: 1;
+  color: hsl(169 82% 27% / var(--tw-text-opacity));
+}
+
 .text-slate-200 {
   --tw-text-opacity: 1;
   color: rgb(226 232 240 / var(--tw-text-opacity));
@@ -2247,16 +2276,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.text-proj-15-green-600 {
-  --tw-text-opacity: 1;
-  color: hsl(169 82% 27% / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2689,6 +2708,15 @@ div.projects-list a:hover {
   }
 }
 
+.checked\:bg-proj-15-green-600:checked {
+  --tw-bg-opacity: 1;
+  background-color: hsl(169 82% 27% / var(--tw-bg-opacity));
+}
+
+.hover\:bg-proj-15-green-400:hover {
+  background-color: hsla(169, 82%, 40%, 0.7);
+}
+
 .hover\:font-bold:hover {
   font-weight: 700;
 }
@@ -2709,6 +2737,11 @@ div.projects-list a:hover {
 
 .hover\:focus\:text-center:focus:hover {
   text-align: center;
+}
+
+.peer:checked ~ .peer-checked\:bg-proj-15-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(169 82% 27% / var(--tw-bg-opacity));
 }
 
 @media (min-width: 640px) {
@@ -2746,12 +2779,24 @@ div.projects-list a:hover {
     width: 100%;
   }
 
+  .lg\:w-4\/5 {
+    width: 80%;
+  }
+
+  .lg\:w-\[48\%\] {
+    width: 48%;
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .lg\:grid-rows-2 {
     grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:items-start {
+    align-items: flex-start;
   }
 
   .lg\:items-center {

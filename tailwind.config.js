@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'proj-15-green-600': 'hsl(169, 82%, 27%)',
+        'proj-15-green-400': 'hsla(169, 82%, 40%, 0.7)'
       }
     },
   },

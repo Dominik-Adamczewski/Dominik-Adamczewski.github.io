@@ -1,19 +1,18 @@
 <template>
-  <div class="mt-4 w-full">
-    <label>{{ label }}</label>
-    <input
-      :type="inputType"
-      class="single-input block w-full h-10 rounded-lg pl-2"
-      :class="{ 'error-active': !isInputValid || isMissingField }"
-      :placeholder="placeholder"
-      @focus="clearErrorState"
-      @change="handleTextInput"
-      v-model="inputValue"
-    />
-    <span v-if="!isInputValid || isMissingField" class="error-msg">
-      {{ errorMessage }}
-    </span>
-  </div>
+  <label>{{ label }}</label>
+  <input
+    :type="inputType"
+    class="single-input block w-full h-10 rounded-lg pl-2"
+    :class="{ 'error-active': errors && errors.length > 0 }"
+    :placeholder="placeholder"
+    @focus="$emit('focus')"
+    @change="handleTextInput"
+    :value="modelValue"
+    @input="handleInput"
+  />
+  <span v-if="errors && errors.length > 0" class="error-msg">
+    {{ errors[0] }}
+  </span>
 </template>
 
 <script>
@@ -31,52 +30,26 @@ export default {
       type: String,
       required: false,
     },
-    missingFields: {
+    errors: {
       type: Array,
-      default: () => [],
+      required: false,
+      default: [],
+    },
+    modelValue: {
+      type: String,
+      required: true,
     }
   },
+  emits: ['update:modelValue'],
   data() {
     return {
-      isInputValid: true,
       inputValue: "",
-      errorMessage:
-        this.inputType === "email"
-          ? "Please enter a valid email address"
-          : "This field is required",
-      emailRegexPattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     };
   },
-  computed: {
-    isMissingField() {
-      if (this.missingFields.length) {
-        return this.missingFields.includes(this.label);
-      }
-    }
-  },
   methods: {
-    clearErrorState() {
-      this.isInputValid = true;
-      this.$emit('clearMissingField', this.label);
-    },
-    validateTextInput() {
-      if (this.inputValue === "") {
-        this.isInputValid = false;
-      } else if (
-        this.inputType === "email" &&
-        !this.emailRegexPattern.test(this.inputValue)
-      ) {
-        this.isInputValid = false;
-      }
-    },
-    handleTextInput() {
-      this.validateTextInput();
-      if (this.isInputValid) {
-        this.$emit("dataOk", {
-          inputLabel: this.label,
-        });
-      }
-    },
+    handleInput(event) {
+      this.$emit('update:modelValue', event.target.value);
+    }
   },
 };
 </script>
