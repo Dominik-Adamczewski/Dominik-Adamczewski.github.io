@@ -14,6 +14,7 @@ const projects = [
     { projectName: '13-tip-calculator-app', projectUrl: 'https://dominik-adamczewski.github.io/13-tip-calculator-app' },
     { projectName: '14-time-tracking-dashboard', projectUrl: 'https://dominik-adamczewski.github.io/14-time-tracking-dashboard/public' },
     { projectName: '15-contact-form-vue', projectUrl: 'https://dominik-adamczewski.github.io/15-contact-form-vue/public' },
+    { projectName: '16-tip-calculator-vue', projectUrl: 'https://dominik-adamczewski.github.io/15-contact-form-vue/public' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
