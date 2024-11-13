@@ -13,8 +13,8 @@ const projects = [
     { projectName: '12-interactive-pricing-component', projectUrl: 'https://dominik-adamczewski.github.io/12-interactive-pricing-component' },
     { projectName: '13-tip-calculator-app', projectUrl: 'https://dominik-adamczewski.github.io/13-tip-calculator-app' },
     { projectName: '14-time-tracking-dashboard', projectUrl: 'https://dominik-adamczewski.github.io/14-time-tracking-dashboard/public' },
-    { projectName: '15-contact-form-vue', projectUrl: 'https://dominik-adamczewski.github.io/15-contact-form-vue/public' },
-    { projectName: '16-tip-calculator-vue', projectUrl: 'https://dominik-adamczewski.github.io/15-contact-form-vue/public' },
+    { projectName: '15-contact-form-vue', projectUrl: 'https://15-contact-form-vue.surge.sh/' },
+    { projectName: '16-tip-calculator-vue', projectUrl: 'https://16-tip-calculator-app-vue.surge.sh/' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
