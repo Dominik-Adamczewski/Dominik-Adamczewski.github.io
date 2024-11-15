@@ -13,11 +13,11 @@
     >
     <label 
       for="customTipPercentage" 
-      class="w-full h-full flex items-center justify-center cursor-pointer" 
-      :class="{ 'flex': isLabelVisible, 'hidden': !isLabelVisible }" 
+      class="w-full h-full flex items-center justify-center cursor-pointer text-white font-bold text-xl" 
+      :class="{ 'flex': !isActive, 'hidden': isActive }" 
       @click="toggleIsActive"
     >
-      <span class="text-white font-bold text-xl">Custom</span>
+      Custom
     </label>
   </div>
 </template>
@@ -28,20 +28,17 @@ export default {
   data() {
     return {
       isActive: false,
-      isLabelVisible: true,
     }
   },
   methods: {
     toggleIsActive() {
       this.isActive = !this.isActive;
-      this.isLabelVisible = !this.isLabelVisible
     },
     updateInputValue(e) {
       this.$emit('update:modelValue', e.target.value);
     },
     resetInput() {
       this.isActive = false;
-      this.isLabelVisible = true;
     }
   }
 }

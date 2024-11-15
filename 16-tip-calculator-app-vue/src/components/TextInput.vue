@@ -1,6 +1,6 @@
 <template>
   <label class="mb-4 block">
-    <span class="font-bold">{{ label }}</span><br>
+    <div class="font-bold">{{ label }}</div>
     <div class="relative">
       <input 
         :type="inputType" 
@@ -11,7 +11,9 @@
       >
       <img :src="iconPath" class="w-5 h-5 absolute top-2/4 left-2 -translate-y-2/4	">
     </div>
-    <ErrorMsg v-if="errors && errors.length" :msg="errors[0]" />
+    <ErrorMsg v-if="errors?.length">
+      {{ errors[0] }}
+    </ErrorMsg>
   </label>
 </template>
 

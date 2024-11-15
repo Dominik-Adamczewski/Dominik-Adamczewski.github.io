@@ -1,52 +1,48 @@
 <template>
-  <div class="h-full w-full p-6 lg:flex lg:justify-between">
-    <div class="w-full lg:w-6/12">
-      <TypeInput 
+  <div class="p-6 lg:flex lg:justify-between">
+    <div class="lg:w-6/12">
+      <TextInput
         inputType="number" 
         placeholder="0" 
         label="Bill" 
         :iconPath="iconPaths.dollarIcon" 
-        v-model="values.billValue" 
+        v-model="values.bill" 
         :errors="allErrors.bill" 
       />
-      <TipPercentageGrid @update:selectedOption="updateSelectedPercentage" ref="tipPercentageGrid" :errors="allErrors.selectedPercentage">
+      <TipPercentageGrid @update:selectedOption="setPercentage" ref="tipPercentageGrid" :errors="allErrors.percentage" class="mb-4">
         <span>Select Tip %</span>
       </TipPercentageGrid>
-      <TypeInput 
+      <TextInput
         inputType="number" 
         placeholder="0" 
         label="Number of people" 
         :iconPath="iconPaths.peopleIcon" 
-        v-model="values.numberOfPeopleValue" 
-        :errors="allErrors.numberOfPeople" 
+        v-model="values.people" 
+        :errors="allErrors.people" 
       />
     </div>
-    <div class="w-full lg:w-5/12">
-      <SummaryBox :tipAmount="calculatedValuesPerPerson.tipAmount" :totalAmount="calculatedValuesPerPerson.totalAmount">
-        <div class="text-center px-4 pb-4 font-bold text-proj-16-very-dark-cyan">
-          <button class="bg-proj-16-strong-cyan w-full h-10 rounded-md tracking-wider" @click="resetCalculator">RESET</button>
-        </div>
-      </SummaryBox>
+    <div class="lg:w-5/12">
+      <SummaryBox :tipAmount="calculatedValuesPerPerson.tipAmount" :totalAmount="calculatedValuesPerPerson.totalAmount" @reset="resetCalculator" />
     </div>
   </div>
 </template>
 
 <script>
 import TipPercentageGrid from './TipPercentageGrid.vue';
-import TypeInput from './TypeInput.vue';
+import TextInput from './TextInput.vue';
 import SummaryBox from './SummaryBox.vue';
 export default {
   components: {
-    TypeInput,
+    TextInput,
     TipPercentageGrid,
     SummaryBox
   },
   data() {
     return {
       values: {
-        billValue: null,
-        numberOfPeopleValue: null,
-        selectedPercentage: null,
+        bill: null,
+        people: null,
+        percentage: null,
       },
       calculatedValuesPerPerson: {
         tipAmount: null,
@@ -56,89 +52,93 @@ export default {
         dollarIcon: require('@/assets/images/icon-dollar.svg'),
         peopleIcon: require('@/assets/images/icon-person.svg'),
       },
-      haveUserInteractedWithForm: false,
+      isDirty: false,
       errors: {
         bill: [],
-        numberOfPeople: [],
-        selectedPercentage: [],
+        people: [],
+        percentage: [],
       },
       errorMessages: {
-        typeInputEmpty: "Can't be zero!",
-        typeInputInvalid: "Input must be an integer!",
+        textInputEmpty: "Can't be zero!",
+        textInputInvalid: "Input must be an integer!",
         percentageEmpty: "Please, choose a tip percentage!",
       },
       numbersRegexPattern: /^\d+$/,
     }
   },
   methods: {
-    updateSelectedPercentage(value) {
-      this.values.selectedPercentage = value;
+    setPercentage(value) {
+      this.values.percentage = value;
     },
     updateInteractionFlag() {
-      this.haveUserInteractedWithForm = true;
+      this.isDirty = true;
     },
     calculateAmounts() {
-      if (this.values.billValue || this.values.numberOfPeopleValue || this.values.selectedPercentage) {
+      if (this.values.bill || this.values.people || this.values.percentage) {
         this.updateInteractionFlag();
       }
-      if (this.values.billValue && this.values.numberOfPeopleValue && this.values.selectedPercentage) {
-        const tipAmount = this.values.billValue * (this.values.selectedPercentage / 100);
-        const tipAmountPerPerson = tipAmount / this.values.numberOfPeopleValue;
-        const totalAmount = this.values.billValue + tipAmount;
-        const totalAmountPerPerson = totalAmount / this.values.numberOfPeopleValue;
+      if (this.values.bill && this.values.people && this.values.percentage) {
+        const tipAmount = this.values.bill * (this.values.percentage / 100);
+        const tipAmountPerPerson = tipAmount / this.values.people;
+        const totalAmount = this.values.bill + tipAmount;
+        const totalAmountPerPerson = totalAmount / this.values.people;
 
-        this.calculatedValuesPerPerson.tipAmount = tipAmountPerPerson.toFixed(2);
-        this.calculatedValuesPerPerson.totalAmount = totalAmountPerPerson.toFixed(2);
+        this.calculatedValuesPerPerson.tipAmount = tipAmountPerPerson;
+        this.calculatedValuesPerPerson.totalAmount = totalAmountPerPerson;
       }
     },
     resetCalculator() {
-      this.values.billValue = null;
-      this.values.numberOfPeopleValue = null;
-      this.values.selectedPercentage = null;
+      this.values.bill = null;
+      this.values.people = null;
+      this.values.percentage = null;
       this.$refs.tipPercentageGrid.resetPercentage(); // w ten sposób można wywoływać metody childów z parenta
       this.calculatedValuesPerPerson.tipAmount = null;
       this.calculatedValuesPerPerson.totalAmount = null;
-      this.haveUserInteractedWithForm = false;
+      this.isDirty = false;
     },
+    isInteger(value) {
+      const regexPattern = /^\d+$/;
+      return regexPattern.test(value);
+    }
   },
   watch: {
-    'values.billValue': 'calculateAmounts',
-    'values.numberOfPeopleValue': 'calculateAmounts',
-    'values.selectedPercentage': 'calculateAmounts'
+    'values.bill': 'calculateAmounts',
+    'values.people': 'calculateAmounts',
+    'values.percentage': 'calculateAmounts'
   },
   computed: {
     billError() {
-      if (!this.haveUserInteractedWithForm) return [];
-      if (!this.values.billValue || this.values.billValue === 0) {
-        return [this.errorMessages.typeInputEmpty];
-      } else if (!this.numbersRegexPattern.test(this.values.billValue)) {
-        return [this.errorMessages.typeInputInvalid];
+      if (!this.isDirty) return [];
+      if (!this.values.bill) {
+        return [this.errorMessages.textInputEmpty];
       }
-      return [];
+      if (!this.isInteger(this.values.bill)) {
+        return [this.errorMessages.textInputInvalid];
+      }
     },
     peopleError() {
-      if (!this.haveUserInteractedWithForm) return [];
-      if (!this.values.numberOfPeopleValue || this.values.numberOfPeopleValue === 0) {
-        return [this.errorMessages.typeInputEmpty];
-      } else if (!this.numbersRegexPattern.test(this.values.numberOfPeopleValue)) {
-        return [this.errorMessages.typeInputInvalid];
+      if (!this.isDirty) return [];
+      if (!this.values.people) {
+        return [this.errorMessages.textInputEmpty];
       }
-      return [];
+      if (!this.isInteger(this.values.people)) {
+        return [this.errorMessages.textInputInvalid];
+      }
     },
-    selectedPercentageError() {
-      if (!this.haveUserInteractedWithForm) return [];
-      if (!this.values.selectedPercentage || this.values.selectedPercentage === 0) {
+    percentageError() {
+      if (!this.isDirty) return [];
+      if (!this.values.percentage) {
         return [this.errorMessages.percentageEmpty];
-      } else if (!this.numbersRegexPattern.test(this.values.selectedPercentage)) {
-        return [this.errorMessages.typeInputInvalid];
       }
-      return [];
+      if (!this.isInteger(this.values.percentage)) {
+        return [this.errorMessages.textInputInvalid];
+      }
     },
     allErrors() {
       return {
         bill: this.billError,
-        numberOfPeople: this.peopleError,
-        selectedPercentage: this.selectedPercentageError
+        people: this.peopleError,
+        percentage: this.percentageError
       };
     }
 }
