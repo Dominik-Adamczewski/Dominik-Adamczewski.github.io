@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
-  #app {
+  .app-container {
     height: 100%;
     margin: 0;
     font-family: 'Space Mono', monospace, sans-serif;

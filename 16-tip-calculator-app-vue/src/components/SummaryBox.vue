@@ -1,10 +1,12 @@
 <template>
-  <div class="w-full h-full bg-proj-16-very-dark-cyan min-h-60 rounded-md flex flex-col justify-between">
+  <div class="h-full bg-proj-16-very-dark-cyan min-h-60 rounded-md flex flex-col justify-between">
     <div class="pt-4 px-4">
-      <Amount firstLineText="Tip Amount" secondLineText="/ person" :value="tipAmount"/>
-      <Amount firstLineText="Total" secondLineText="/ person" class="mt-8" :value="totalAmount"/>
+      <Amount label="Tip Amount" type="person" :value="tipAmount"/>
+      <Amount label="Total" type="person" class="mt-8" :value="totalAmount"/>
     </div>
-    <slot></slot>
+    <div class="text-center px-4 pb-4 font-bold text-proj-16-very-dark-cyan">
+      <button class="bg-proj-16-strong-cyan w-full h-10 rounded-md tracking-wider" @click="reset">RESET</button>
+    </div>
   </div>
 </template>
 
@@ -20,6 +22,11 @@ export default {
     totalAmount: {
       type: Number,
       required: false,
+    }
+  },
+  methods: {
+    reset() {
+      this.$emit('reset');
     }
   }
 }

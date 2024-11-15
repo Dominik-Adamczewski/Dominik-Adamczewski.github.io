@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4">
+  <div>
     <slot></slot>
     <div class="flex flex-wrap items-center justify-around">
       <TipPercentageItemFixed 
@@ -12,7 +12,9 @@
       />
       <TipPercentageItemCustom @click="resetSelectedOption" @update:modelValue="updateSelected" ref="customPercentageInput" />
     </div>
-    <ErrorMsg v-if="errors && errors.length" :msg="errors[0]" />
+    <ErrorMsg v-if="errors?.length">
+      {{ errors[0] }}
+    </ErrorMsg>
   </div>
 </template>
 
@@ -30,7 +32,7 @@ export default {
   },
   data() {
     return {
-      fixedTipPercentages: ['5', '10', '15', '25', '50'],
+      fixedTipPercentages: [5, 10, 15, 25, 50],
       selectedOption: null,
     }
   },

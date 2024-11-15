@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full h-10 flex items-center justify-between">
+  <div class="h-10 flex items-center justify-between">
     <div>
-      <span class="text-white">{{  firstLineText  }}</span><br>
-      <span class="text-gray-400">{{ secondLineText }}</span>
+      <div class="text-white">{{  label  }}</div>
+      <div class="text-gray-400">/ {{ type }}</div>
     </div>
     <div class="text-proj-16-strong-cyan text-3xl">
-      {{ value ? value : '0.00' }}$
+      {{ value ? value.toFixed(2) :  '0.00' }}$
     </div>
   </div>
 </template>
@@ -13,18 +13,17 @@
 <script>
 export default {
   props: {
-    firstLineText: {
+    label: {
       type: String,
       required: true,
     },
-    secondLineText: {
+    type: {
       type: String,
       required: true,
     },
     value: {
-      type: String,
+      type: Number,
       required: false,
-      default: '0.00'
     }
   }
 }
