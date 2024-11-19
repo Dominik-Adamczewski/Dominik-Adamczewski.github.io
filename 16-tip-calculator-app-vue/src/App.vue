@@ -16,17 +16,3 @@ export default {
   components: { TipCalculator }
 }
 </script>
-
-<style>
-  .app-container {
-    height: 100%;
-    margin: 0;
-    font-family: 'Space Mono', monospace, sans-serif;
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-</style>

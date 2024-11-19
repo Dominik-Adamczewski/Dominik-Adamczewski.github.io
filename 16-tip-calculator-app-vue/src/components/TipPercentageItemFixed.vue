@@ -18,14 +18,9 @@ export default {
       type: String,
       required: false,
     },
-    selectedOption: {
-      type: String,
-      required: true,
-    }
-  },
-  computed: {
-    isSelected() {
-      return this.selectedOption === this.percentageValue;
+    isSelected: {
+      type: Boolean,
+      default: false,
     }
   },
   methods: {
