@@ -7,9 +7,16 @@
         label="Bill" 
         :iconPath="iconPaths.dollarIcon" 
         v-model="values.bill" 
-        :errors="allErrors.bill" 
+        :errors="validateField(values.bill, 'bill')"
+        @update:modelValue="updateIsDirty()"
       />
-      <TipPercentageGrid @update:selectedOption="setPercentage" ref="tipPercentageGrid" :errors="allErrors.percentage" class="mb-4">
+      <TipPercentageGrid 
+        v-model="values.percentage"
+        ref="tipPercentageGrid"
+        :errors="validateField(values.percentage, 'percentage')"
+        @update:modelValue="updateIsDirty"
+        class="mb-4"
+      >
         <span>Select Tip %</span>
       </TipPercentageGrid>
       <TextInput
@@ -18,11 +25,12 @@
         label="Number of people" 
         :iconPath="iconPaths.peopleIcon" 
         v-model="values.people" 
-        :errors="allErrors.people" 
+        :errors="validateField(values.people, 'people')"  
+        @update:modelValue="updateIsDirty()"
       />
     </div>
     <div class="lg:w-5/12">
-      <SummaryBox :tipAmount="calculatedValuesPerPerson.tipAmount" :totalAmount="calculatedValuesPerPerson.totalAmount" @reset="resetCalculator" />
+      <SummaryBox :tipAmount="calculatedValues.tipAmountPerPerson" :totalAmount="calculatedValues.totalAmountPerPerson" @reset="resetCalculator" />
     </div>
   </div>
 </template>
@@ -44,10 +52,6 @@ export default {
         people: null,
         percentage: null,
       },
-      calculatedValuesPerPerson: {
-        tipAmount: null,
-        totalAmount: null,
-      },
       iconPaths: {
         dollarIcon: require('@/assets/images/icon-dollar.svg'),
         peopleIcon: require('@/assets/images/icon-person.svg'),
@@ -58,90 +62,69 @@ export default {
         people: [],
         percentage: [],
       },
-      errorMessages: {
-        textInputEmpty: "Can't be zero!",
-        textInputInvalid: "Input must be an integer!",
-        percentageEmpty: "Please, choose a tip percentage!",
+      ERROR_MESSAGES: {
+        INPUT_EMPTY: "Can't be zero!",
+        INVALID_INPUT: "Input must be an integer!",
+        PERCENTAGE_EMPTY: "Please, choose a tip percentage!",
       },
-      numbersRegexPattern: /^\d+$/,
     }
   },
   methods: {
     setPercentage(value) {
       this.values.percentage = value;
     },
-    updateInteractionFlag() {
+    updateIsDirty() {
       this.isDirty = true;
-    },
-    calculateAmounts() {
-      if (this.values.bill || this.values.people || this.values.percentage) {
-        this.updateInteractionFlag();
-      }
-      if (this.values.bill && this.values.people && this.values.percentage) {
-        const tipAmount = this.values.bill * (this.values.percentage / 100);
-        const tipAmountPerPerson = tipAmount / this.values.people;
-        const totalAmount = this.values.bill + tipAmount;
-        const totalAmountPerPerson = totalAmount / this.values.people;
-
-        this.calculatedValuesPerPerson.tipAmount = tipAmountPerPerson;
-        this.calculatedValuesPerPerson.totalAmount = totalAmountPerPerson;
-      }
     },
     resetCalculator() {
       this.values.bill = null;
       this.values.people = null;
       this.values.percentage = null;
-      this.$refs.tipPercentageGrid.resetPercentage(); // w ten sposób można wywoływać metody childów z parenta
-      this.calculatedValuesPerPerson.tipAmount = null;
-      this.calculatedValuesPerPerson.totalAmount = null;
+      this.$refs.tipPercentageGrid.resetPercentage();
       this.isDirty = false;
     },
     isInteger(value) {
       const regexPattern = /^\d+$/;
       return regexPattern.test(value);
-    }
-  },
-  watch: {
-    'values.bill': 'calculateAmounts',
-    'values.people': 'calculateAmounts',
-    'values.percentage': 'calculateAmounts'
+    },
+    validateField(value, field) {
+      if (!this.isDirty) return [];
+      
+      if (value === null || value === '') {
+        return field === 'percentage' 
+          ? [this.ERROR_MESSAGES.PERCENTAGE_EMPTY] 
+          : [this.ERROR_MESSAGES.INPUT_EMPTY];
+      }
+
+      if (!this.isInteger(value)) {
+        return [this.ERROR_MESSAGES.INVALID_INPUT];
+      }
+      
+      return [];
+    },
   },
   computed: {
-    billError() {
-      if (!this.isDirty) return [];
-      if (!this.values.bill) {
-        return [this.errorMessages.textInputEmpty];
+    calculatedValues() {
+      let tipAmountPerPerson = null;
+      let totalAmountPerPerson = null;
+      if (this.values.bill && this.values.people && this.values.percentage) {
+        const tipAmount = this.values.bill * (this.values.percentage / 100);
+        tipAmountPerPerson = tipAmount / this.values.people;
+        const totalAmount = this.values.bill + tipAmount;
+        totalAmountPerPerson = totalAmount / this.values.people;
+
+        return {
+          tipAmountPerPerson,
+          totalAmountPerPerson
+        }
       }
-      if (!this.isInteger(this.values.bill)) {
-        return [this.errorMessages.textInputInvalid];
-      }
-    },
-    peopleError() {
-      if (!this.isDirty) return [];
-      if (!this.values.people) {
-        return [this.errorMessages.textInputEmpty];
-      }
-      if (!this.isInteger(this.values.people)) {
-        return [this.errorMessages.textInputInvalid];
-      }
-    },
-    percentageError() {
-      if (!this.isDirty) return [];
-      if (!this.values.percentage) {
-        return [this.errorMessages.percentageEmpty];
-      }
-      if (!this.isInteger(this.values.percentage)) {
-        return [this.errorMessages.textInputInvalid];
-      }
-    },
-    allErrors() {
+
       return {
-        bill: this.billError,
-        people: this.peopleError,
-        percentage: this.percentageError
-      };
-    }
-}
+        tipAmountPerPerson: 0,
+        totalAmountPerPerson: 0
+      }
+    },
+  },
 }
 </script>
 

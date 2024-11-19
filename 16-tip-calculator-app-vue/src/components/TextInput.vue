@@ -7,7 +7,7 @@
         :placeholder="placeholder" 
         class="w-full h-10 text-right px-2 rounded-md bg-proj-16-very-light-grayish-cyan focus:outline-proj-16-strong-cyan"
         :value="modelValue"
-        @blur="updateInputValue"
+        @input="updateInputValue"
       >
       <img :src="iconPath" class="w-5 h-5 absolute top-2/4 left-2 -translate-y-2/4	">
     </div>

@@ -8,7 +8,7 @@
         :key="percentage" 
         class="mt-4"
         @update:selectedOption="updateSelected"
-        :selectedOption="selectedOption"
+        :isSelected="selectedOption === percentage"
       />
       <TipPercentageItemCustom @click="resetSelectedOption" @update:modelValue="updateSelected" ref="customPercentageInput" />
     </div>
@@ -25,6 +25,10 @@ import ErrorMsg from './ErrorMsg.vue';
 export default {
   components: { TipPercentageItemFixed, TipPercentageItemCustom, ErrorMsg },
   props: {
+    modelValue: {
+      type: Number,
+      default: null,
+    },
     errors: {
       type: Array,
       required: false,
@@ -33,13 +37,13 @@ export default {
   data() {
     return {
       fixedTipPercentages: [5, 10, 15, 25, 50],
-      selectedOption: null,
+      selectedOption: this.modelValue || null,
     }
   },
   methods: {
     updateSelected(value) {
       this.selectedOption = value;
-      this.$emit('update:selectedOption', value);
+      this.$emit('update:modelValue', value);
     },
     resetPercentage() {
       this.selectedOption = null;
