@@ -7,14 +7,14 @@
         label="Bill" 
         :iconPath="iconPaths.dollarIcon" 
         v-model="values.bill" 
-        :errors="validateField(values.bill, 'bill')"
-        @update:modelValue="updateIsDirty()"
+        :errors="validateField('bill')"
+        @update:modelValue="setDirty()"
       />
       <TipPercentageGrid 
         v-model="values.percentage"
         ref="tipPercentageGrid"
-        :errors="validateField(values.percentage, 'percentage')"
-        @update:modelValue="updateIsDirty"
+        :errors="validateField('percentage')"
+        @update:modelValue="setDirty()"
         class="mb-4"
       >
         <span>Select Tip %</span>
@@ -25,8 +25,8 @@
         label="Number of people" 
         :iconPath="iconPaths.peopleIcon" 
         v-model="values.people" 
-        :errors="validateField(values.people, 'people')"  
-        @update:modelValue="updateIsDirty()"
+        :errors="validateField('people')"  
+        @update:modelValue="setDirty()"
       />
     </div>
     <div class="lg:w-5/12">
@@ -73,7 +73,7 @@ export default {
     setPercentage(value) {
       this.values.percentage = value;
     },
-    updateIsDirty() {
+    setDirty() {
       this.isDirty = true;
     },
     resetCalculator() {
@@ -87,16 +87,16 @@ export default {
       const regexPattern = /^\d+$/;
       return regexPattern.test(value);
     },
-    validateField(value, field) {
+    validateField(field) {
       if (!this.isDirty) return [];
       
-      if (value === null || value === '') {
+      if (this.values[field] === null || this.values[field] === '') {
         return field === 'percentage' 
           ? [this.ERROR_MESSAGES.PERCENTAGE_EMPTY] 
           : [this.ERROR_MESSAGES.INPUT_EMPTY];
       }
 
-      if (!this.isInteger(value)) {
+      if (!this.isInteger(this.values[field])) {
         return [this.ERROR_MESSAGES.INVALID_INPUT];
       }
       
