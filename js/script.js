@@ -15,6 +15,7 @@ const projects = [
     { projectName: '14-time-tracking-dashboard', projectUrl: 'https://dominik-adamczewski.github.io/14-time-tracking-dashboard/public' },
     { projectName: '15-contact-form-vue', projectUrl: 'https://15-contact-form-vue.surge.sh/' },
     { projectName: '16-tip-calculator-vue', projectUrl: 'https://16-tip-calculator-app-vue.surge.sh/' },
+    { projectName: '17-product-list-with-cart-app-vue', projectUrl: 'https://17-product-list-with-cart-app-vue.surge.sh/' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
