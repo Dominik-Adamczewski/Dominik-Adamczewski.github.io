@@ -3,10 +3,10 @@
     <div class="lg:flex lg:items-start lg:max-w-full gap-4">
       <div class="lg:flex lg:flex-col lg:basis-2/3 xl:basis-3/4">
         <h1 class="text-3xl font-bold">Desserts</h1>
-        <ProductsList :productsData="products" />
+        <ProductsList :productsData="productsStore.products" />
       </div>
       <div class="lg:basis-1/3">
-        <CartView :productsDetailedInformation="{ productsChanges, allProductsAmount }" />
+        <CartView />
       </div>
     </div>
   </div>
@@ -16,18 +16,16 @@
 import ProductsList from "./components/ProductsList.vue";
 import CartView from "./components/CartView.vue";
 import { useProductsStore } from "@/stores/ProductsStore";
-import { mapActions, mapState } from 'pinia'; 
 export default {
   name: "App",
   components: { ProductsList, CartView },
-  methods: {
-    ...mapActions(useProductsStore, ['getPossibleProducts']),
-  },
-  computed: {
-    ...mapState(useProductsStore, ['products', 'cartProducts', 'selectedProducts']),
+  data() {
+    return {
+      productsStore: useProductsStore(),
+    }
   },
   mounted() {
-    this.getPossibleProducts();
+    this.productsStore.getPossibleProducts();
   }
 };
 </script>
