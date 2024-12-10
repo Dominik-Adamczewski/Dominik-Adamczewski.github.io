@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { useProductsStore } from "@/stores/ProductsStore";
+import { useProductsStore } from '@/stores/ProductsStore';
 import CartProduct from './CartProduct.vue';
 export default {
   components: { CartProduct }, 

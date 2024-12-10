@@ -8,11 +8,11 @@
       <span>Add to cart</span>
     </div>
     <div 
-      class="h-full w-full flex items-center justify-between px-2"
+      class="h-full w-full flex items-center justify-between"
       :class="{ 'block': isActive, 'hidden': !isActive }"
     >
     <button
-      class="w-6 h-6 flex items-center justify-center text-white"
+      class="w-8 h-14 flex items-center justify-center pl-2 text-white"
       @click.stop="decrementAmount"
       type="button"
     >
@@ -25,7 +25,7 @@
         readonly
       >
       <button
-        class="w-6 h-6 flex items-center justify-center text-white"
+        class="w-8 h-14 flex items-center justify-center pr-2 text-white"
         @click.stop="incrementAmount"
         type="button"
       >

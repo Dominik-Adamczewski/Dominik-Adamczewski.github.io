@@ -10,8 +10,8 @@ export const useProductsStore = defineStore('productsStore', {
     getTotalNumberOfProductsInCart() {
       return this.cartProducts.length;
     },
-    isProductInTheCart: (state) => (productShortName) => {
-      return state.cartProducts.some(product => product.shortName === productShortName);
+    isProductInTheCart: (state) => (productId) => {
+      return state.cartProducts.some(product => product.id === productId);
     },
     getFinalOrderPrice() {
       return this.cartProducts.reduce((totalPrice, cartProduct) => {
@@ -27,7 +27,7 @@ export const useProductsStore = defineStore('productsStore', {
     },
     addProductToCart(productData) {
       const existingProduct = this.cartProducts.find(product => {
-        return product.shortName === productData.shortName;
+        return product.id === productData.id;
       });
 
       if (existingProduct) {
@@ -37,9 +37,8 @@ export const useProductsStore = defineStore('productsStore', {
       this.cartProducts.push(productData);
     },
     removeProductFromCart(productData) {
-      console.log('init')
       const existingProduct = this.cartProducts.find(product => {
-        return product.shortName === productData.shortName;
+        return product.id === productData.id;
       });
 
       const existingProductIndex = this.cartProducts.indexOf(existingProduct);

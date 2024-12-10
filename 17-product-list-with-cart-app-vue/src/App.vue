@@ -5,7 +5,7 @@
         <h1 class="text-3xl font-bold">Desserts</h1>
         <ProductsList :productsData="productsStore.products" />
       </div>
-      <div class="lg:basis-1/3">
+      <div class="lg:basis-1/3 lg:sticky lg:top-4">
         <CartView />
       </div>
     </div>
