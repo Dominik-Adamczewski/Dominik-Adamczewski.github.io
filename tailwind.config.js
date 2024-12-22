@@ -10,6 +10,9 @@ module.exports = {
       width: {
         '30p': '30%',
       },
+      boxShadow: {
+        'proj-18': '0 6px 12px -2px rgb(0 0 0 / 0.05), 0 10px 10px -14px rgb(0 0 0 / 0.05)',
+      },
       colors: {
         'proj-15-green-700': 'hsl(169, 83%, 16%);',
         'proj-15-green-600': 'hsl(169, 82%, 27%)',
@@ -27,9 +30,18 @@ module.exports = {
         'proj-17-rose-300': 'hsl(14, 25%, 72%)',
         'proj-17-rose-400': 'hsl(7, 20%, 60%)',
         'proj-17-rose-500': 'hsl(12, 20%, 44%)',
-        'proj-17-rose-900': 'hsl(14, 65%, 9%)'
+        'proj-17-rose-900': 'hsl(14, 65%, 9%)',
+        'proj-18-desaturated-dark-cyan': 'hsl(180, 29%, 50%)',
+        'proj-18-light-grayish-cyan-bg': 'hsl(180, 52%, 96%)',
+        'proj-18-light-grayish-cyan-filter': 'hsl(180, 31%, 95%)',
+        'proj-18-dark-grayish-cyan': 'hsl(180, 8%, 52%)',
+        'proj-18-very-dark-grayish-cyan': 'hsl(180, 14%, 20%)',
       }
     },
   },
   plugins: [],
+  safelist: [
+    "bg-[url('../18-static-job-listings-vue/public/images/bg-header-mobile.svg')]",
+    "bg-[url('../18-static-job-listings-vue/public/images/bg-header-desktop.svg')]", 
+  ],
 }
