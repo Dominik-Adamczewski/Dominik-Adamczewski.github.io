@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-stretch">
-    <span 
+    <button 
       class="
         bg-proj-18-light-grayish-cyan-filter 
         text-proj-18-desaturated-dark-cyan 
@@ -15,14 +15,14 @@
       @click="addFilter"
     >
       {{ label }}
-    </span>
-    <span 
+  </button>
+    <button 
       v-if="isRemovable" 
       class="bg-proj-18-desaturated-dark-cyan flex items-center px-2 rounded-r-md cursor-pointer hover:bg-proj-18-very-dark-grayish-cyan" 
       @click="removeFilter"
     >
       <img class="h-4 w-4" src="/images/icon-remove.svg" alt="Remove icon">
-    </span>
+    </button>
   </div>
 </template>
 

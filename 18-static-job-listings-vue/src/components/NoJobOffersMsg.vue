@@ -6,12 +6,12 @@
         </span>
         <span class="mt-4 text-xl">
           We're sorry but there are no job offers matching your current filters. Please, change your filter rules, or 
-          <span 
+          <button 
             class="hover:underline cursor-pointer font-semibold text-proj-18-desaturated-dark-cyan hover:text-proj-18-dark-grayish-cyan" 
             @click="clearAllFilters"
             >
               clear all filters
-          </span>
+        </button>
            to start over.
         </span>
       </div>

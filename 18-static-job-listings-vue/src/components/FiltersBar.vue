@@ -1,13 +1,13 @@
 <template>
   <div 
     class="lg:max-w-7xl lg:mx-auto lg:flex lg:items-center mt-4 lg:min-h-20 border-2 bg-white rounded-md px-4"
-    :class="!getFilters.length > 0 ? 'lg:justify-end' : 'lg:justify-between'"
+    :class="!$store.state.currentFilters.length > 0 ? 'lg:justify-end' : 'lg:justify-between'"
   >
-    <div class="lg:w-1/2 flex items-center flex-wrap mb-10 mt-4 lg:m-0" v-if="getFilters.length > 0">
-      <JobTypeChip v-for="(filter, index) in getFilters" :key="index" :label="filter" :isRemovable="true" class="mr-4 mt-2" /> 
+    <div class="lg:w-1/2 flex items-center flex-wrap mb-10 mt-4 lg:m-0" v-if="$store.state.currentFilters.length > 0">
+      <JobTypeChip v-for="(filter, index) in $store.state.currentFilters" :key="index" :label="filter" :isRemovable="true" class="mr-4 mt-2" /> 
     </div>
     <div class="lg:flex lg:items-center lg:justify-end">
-      <BaseButton class="lg:mr-2 my-4 lg:my-0" @click="isFiltersModalVisible = true">
+      <BaseButton class="lg:mr-2 my-4 lg:my-0" @click="openFiltersModal">
         Filters
       </BaseButton>
       <BaseButton class="mb-4 lg:mb-0" @click="handleClearAllFilters">
@@ -15,7 +15,7 @@
       </BaseButton>
     </div>
   </div>
-  <FiltersModal v-if="isFiltersModalVisible" @close="isFiltersModalVisible = false" />
+  <FiltersModal v-if="isFiltersModalVisible" ref="filtersModal" @modal-opened="$emit('modal-opened')" @modal-closed="$emit('modal-closed')" />
 </template>
 
 <script>
@@ -34,10 +34,17 @@ export default {
     ...mapActions(['clearAllFilters']),
     handleClearAllFilters() {
       this.clearAllFilters();
+    },
+    openFiltersModal() {
+      this.isFiltersModalVisible = true;
+      // wait for DOM update
+      this.$nextTick(() => {
+        this.$refs.filtersModal.showModal();
+      });
     }
   },
   computed: {
-    ...mapGetters(['getAllAvailableLanguagesForFiltering', 'getAvailableToolsForFiltering', 'getFilters', 'allFilteredOffers']),
+    ...mapGetters(['allAvailableLanguagesForFiltering', 'allAvailableToolsForFiltering']),
   },
 }
 </script>
