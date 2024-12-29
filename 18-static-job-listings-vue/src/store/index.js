@@ -9,16 +9,7 @@ export default createStore({
     isListFiltered: false,
   },
   getters: {
-    allJobOffers(state) {
-      return state.jobOffers;
-    },
-    allFilteredOffers(state) {
-      return state.filteredOffers;
-    },
-    getFilters(state) {
-      return state.currentFilters;
-    },
-    getAllAvailableLanguagesForFiltering(state) {
+    allAvailableLanguagesForFiltering(state) {
       const languages = [];
       state.jobOffers.forEach(jobOffer => {
         jobOffer.languages.forEach(language => {
@@ -29,7 +20,7 @@ export default createStore({
       });
       return languages;
     },
-    getAvailableToolsForFiltering(state) {
+    allAvailableToolsForFiltering(state) {
       const tools = [];
       state.jobOffers.forEach(jobOffer => {
         jobOffer.tools.forEach(tool => {
@@ -40,7 +31,7 @@ export default createStore({
       });
       return tools;
     },
-    getAvailableSeniorityLevelsForFiltering(state) {
+    allAvailableSeniorityLevelsForFiltering(state) {
       const seniorityLvls = [];
       state.jobOffers.forEach(jobOffer => {
         if (!seniorityLvls.includes(jobOffer.level)) {
@@ -60,7 +51,6 @@ export default createStore({
         )
       );
       state.isListFiltered = true;
-      console.log(state.filteredOffers);
     },
     applyFiltersFromModal(state) {
       state.currentModalFilters.forEach(modalFilter => {
@@ -111,13 +101,16 @@ export default createStore({
       state.filteredOffers = state.jobOffers;
       state.isListFiltered = false;
     },
+    clearModalFilters(state) {
+      state.currentModalFilters = [];
+    },
     filterOffers(state) {
       state.isListFiltered = true;
       this.commit('applyFilters');
     },
   },
   actions: {
-    async getAbailableJobOffers({ commit }) {
+    async getAvailableJobOffers({ commit }) {
       // fake 1 second loading to simulate loading job offers from server, and display spinner
       setTimeout(async () => {
         const data = await fetch('/data/data.json');
@@ -134,10 +127,13 @@ export default createStore({
     clearAllFilters({ commit }) {
       commit('clearAllFilters');
     },
+    clearAllModalFilters({ commit }) {
+      commit('clearModalFilters');
+    },
     filterOutJobOffers({ commit }) {
       commit('filterOffers');
     },
-    applyFiltersFromModa({ commit }) {
+    applyFiltersFromModal({ commit }) {
       commit('applyFiltersFromModal');
     }
   },

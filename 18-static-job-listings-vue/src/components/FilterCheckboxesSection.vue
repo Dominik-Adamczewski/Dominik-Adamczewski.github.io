@@ -1,8 +1,8 @@
 <template>
   <div class="mt-4">
-    <h3 class="font-medium text-xl mb-3">{{ sectionName }}</h3>
+    <h3 class="font-medium text-xl mb-3">{{ name }}</h3>
     <div class="flex items-center flex-wrap">
-      <div v-for="(filter, index) in filtersArray" :key="index" class="mr-4 my-1 flex items-center">
+      <div v-for="(filter, index) in filters" :key="index" class="mr-4 my-1 flex items-center">
         <label class="relative flex items-center select-none cursor-pointer">
           <input 
             type="checkbox" 
@@ -25,11 +25,11 @@
 <script>
 export default {
   props: {
-    sectionName: {
+    name: {
       type: String,
       required: true,
     },
-    filtersArray: {
+    filters: {
       type: Array,
       required: true,
     }

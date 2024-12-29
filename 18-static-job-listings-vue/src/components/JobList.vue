@@ -1,24 +1,10 @@
 <template>
   <div class="px-6 pb-8 lg:max-w-7xl lg:mx-auto">
-    <LoadingSpinner v-if="!allFilteredOffers.length > 0 && !$store.state.isListFiltered" text="Loading job offers. Please wait..." />
+    <LoadingSpinner v-if="(!$store.state.filteredOffers.length) > 0 && !$store.state.isListFiltered" text="Loading job offers. Please wait..." />
     <div v-else>
-      <div v-if="allFilteredOffers.length > 0">
+      <div v-if="$store.state.filteredOffers.length > 0">
         <JobOffer 
-          v-for="jobOffer in allFilteredOffers"
-          :key="jobOffer.id"
-          :company="jobOffer.company"
-          :logoUrl="jobOffer.logo"
-          :isNew="jobOffer.isNew"
-          :isFeatured="jobOffer.isFeatured"
-          :position="jobOffer.position"
-          :role="jobOffer.role"
-          :level="jobOffer.level"
-          :postedAt="jobOffer.postedAt"
-          :contract="jobOffer.contract"
-          :location="jobOffer.location"
-          :languages="jobOffer.languages"
-          :tools="jobOffer.tools"
-        />
+          v-for="jobOffer in $store.state.filteredOffers" :key="jobOffer.id" :info="jobOffer" />
       </div>
       <NoJobOffersMsg v-else />
     </div>
@@ -29,17 +15,14 @@
 import JobOffer from './JobOffer.vue';
 import NoJobOffersMsg from './NoJobOffersMsg.vue';
 import LoadingSpinner from './LoadingSpinner.vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   components: { JobOffer, NoJobOffersMsg, LoadingSpinner },
   methods: {
-    ...mapActions(['getAbailableJobOffers']),
-  },
-  computed: {
-    ...mapGetters(['allJobOffers', 'allFilteredOffers']),
+    ...mapActions(['getAvailableJobOffers']),
   },
   mounted() {
-    this.getAbailableJobOffers();
+    this.getAvailableJobOffers();
   }
 }
 </script>
