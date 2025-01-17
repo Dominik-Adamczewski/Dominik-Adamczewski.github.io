@@ -1,5 +1,5 @@
 <template>
-  <form class="mx-6 z-10">
+  <form class="mx-6 z-10 w-full">
     <BaseUpload 
       label="Upload avatar" 
       @upload="handleFileUpload"
@@ -83,7 +83,7 @@ function validateForm() {
   validateEmailInputField();
   validateGithubInputField();
   if (errors.value.fullName.length < 1 && errors.value.email.length < 1 && errors.value.github.length < 1) {
-    emit('submit', { fullName: fullName.value, github: github.value, avatarUrl: avatarUrl.value });
+    emit('submit', { fullName: fullName.value, github: github.value, avatarUrl: avatarUrl.value, email: email.value });
   }
 }
 </script>

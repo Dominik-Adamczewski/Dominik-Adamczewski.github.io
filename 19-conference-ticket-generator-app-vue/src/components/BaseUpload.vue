@@ -5,8 +5,8 @@
     {{ label }}
   </label>
   <div 
-    class="border-2 border-dashed rounded-md p-4 text-white mt-2 cursor-pointer" 
-    :class="{ 'bg-gray-800': isDragging }"
+    class="border-2 border-dashed rounded-md p-4 text-white mt-2" 
+    :class="{ 'bg-gray-800': isDragging, 'hover:bg-proj-19-neutral-500 cursor-pointer': !imagePreview }"
     @click="triggerFileInput"
     @dragover.prevent="handleDragOver"
     @dragleave="handleDragLeave"
@@ -22,7 +22,7 @@
           alt="Avatar image preview"
           class="w-14 h-14 rounded-md border border-white mb-4"
         >
-        <div class="flex items-center justify-around w-full">
+        <div class="flex flex-wrap items-center justify-around w-full">
           <BaseButton 
             text="Remove image"
             background-color="lightGray"
@@ -30,6 +30,7 @@
             button-height="small"
             button-width="initial"
             class="px-2 text-xs font-light"
+            :class="{ 'mt-2': imagePreview }"
             @click.stop="removeUploadedImage"
           />
           <BaseButton 
@@ -39,6 +40,7 @@
             button-height="small"
             button-width="initial"
             class="px-2 text-xs font-light"
+            :class="{ 'mt-2': imagePreview }"
             @click.stop="changeUploadedImage"
           />
         </div>
