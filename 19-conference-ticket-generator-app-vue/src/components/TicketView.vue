@@ -1,5 +1,5 @@
 <template>
-  <div class="image-container relative">
+  <div class="ticket-container relative z-10 w-full">
     <div class="absolute top-4 left-8">
       <div class="text-white flex items-start text-xl">
         <img 
@@ -43,6 +43,7 @@
 
 <script setup>
 import { ref, onMounted, defineProps } from 'vue';
+import { getRandomTicketId } from '@/composables/random';
 
 defineProps({
   avatarUrl: {
@@ -61,15 +62,6 @@ defineProps({
 
 const randomTicketId = ref(null);
 
-function getRandomTicketId(length) {
-  const randomId = [];
-  for(let i = 0; i < length; i++) {
-    const randomDigit = Math.floor(Math.random() * 10);
-    randomId.push(randomDigit);
-  }
-  return `#${randomId.join('')}`;
-}
-
 onMounted(() => {
   randomTicketId.value = getRandomTicketId(5);
 });
@@ -77,8 +69,9 @@ onMounted(() => {
 </script>
 
 <style>
-  .image-container {
+  .ticket-container {
     min-height: 160px;
+    max-width: 360px;
     background-image: url('../../public/images/pattern-ticket.svg');
     background-repeat: no-repeat;
     background-size: calc(100% - 32px) auto;
