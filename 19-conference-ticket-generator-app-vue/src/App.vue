@@ -7,7 +7,7 @@
       bg-center 
       min-h-screen
       pb-10"
-  >
+  >hejka
     <header class="p-4 flex items-center justify-center flex-col text-white relative w-full">
       <img 
         src="/images/pattern-squiggly-line-top.svg" 
