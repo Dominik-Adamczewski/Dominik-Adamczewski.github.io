@@ -11,21 +11,15 @@
       @input="$emit('input')"
     >
   </label>
-  <div 
-    v-if="errors && errors.length > 0"
-    class="text-red-700 flex items-center mt-1"
-  >
-    <img 
-      src="/images/icon-info-error.svg" 
-      alt="Info icon"
-      class="mr-1"
-    >
-    <span class="mt-0.5">{{ errors[0] }}</span>
-  </div>
+  <ErrorMessage 
+    v-if="errors?.length > 0"
+    :errors="errors"
+  />
 </template>
 
 <script setup>
 import { defineProps, defineEmits, defineModel } from 'vue';
+import ErrorMessage from './ErrorMessage.vue';
 
 const model = defineModel();
 

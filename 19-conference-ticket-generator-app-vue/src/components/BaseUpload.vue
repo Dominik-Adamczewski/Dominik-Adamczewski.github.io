@@ -23,26 +23,20 @@
           class="w-14 h-14 rounded-md border border-white mb-4"
         >
         <div class="flex flex-wrap items-center justify-around w-full">
-          <BaseButton 
-            text="Remove image"
-            background-color="lightGray"
-            text-color="white"
-            button-height="small"
-            button-width="initial"
+          <AvatarUploadButton
             class="px-2 text-xs font-light"
             :class="{ 'mt-2': imagePreview }"
             @click.stop="removeUploadedImage"
-          />
-          <BaseButton 
-            text="Change image"
-            background-color="lightGray"
-            text-color="white"
-            button-height="small"
-            button-width="initial"
+          >
+            Remove image
+          </AvatarUploadButton>
+          <AvatarUploadButton 
             class="px-2 text-xs font-light"
             :class="{ 'mt-2': imagePreview }"
             @click.stop="changeUploadedImage"
-          />
+          >
+            Change image
+          </AvatarUploadButton>
         </div>
       </div>
       <div 
@@ -68,17 +62,10 @@
       @change="handleFileUpload"
     >
   </div>
-  <div 
-    v-if="errors && errors.length > 0"
-    class="text-red-700 flex mt-1"
-  >
-    <img 
-      src="/images/icon-info-error.svg" 
-      alt="Info icon"
-      class="mr-1 self-start mt-1"
-    >
-    <span>{{ errors[0] }}</span>
-  </div>
+  <ErrorMessage 
+    v-if="errors?.length > 0"
+    :errors="errors"
+  />
   <div 
     v-if="!imagePreview && !errors.length"
     class="flex items-center text-xs font-extralight mt-4 text-white"
@@ -94,7 +81,9 @@
 
 <script setup>
 import { defineProps, ref, defineEmits } from 'vue';
-import BaseButton from './BaseButton.vue';
+import { validateUploadedFile } from '../composables/validate.js';
+import AvatarUploadButton from './AvatarUploadButton.vue';
+import ErrorMessage from './ErrorMessage.vue';
 
 const emit = defineEmits(['upload']);
 
@@ -110,22 +99,17 @@ const errors = ref([]);
 function triggerFileInput() {
   fileInput.value.click();
 }
-
 function processFile(file) {
-  if (file && file.type.startsWith('image/')) {
-    errors.value = [];
-    if (file.size < 500000) { // 500kB
-      const reader = new FileReader();
-      reader.onload = () => {
-        imagePreview.value = reader.result;
-        emit('upload', { imagePreview: reader.result });
-      };
-      reader.readAsDataURL(file);
-    } else {
-      errors.value = ['File too large. Please upload a photo under 500kB!'];
-    }
-  } else {
-    errors.value = ['Uploaded file must be an image!'];
+  errors.value = validateUploadedFile(file);
+  const areThereAnyErrors = errors.value.length > 0;
+
+  if (!areThereAnyErrors) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      imagePreview.value = reader.result;
+      emit('upload', { imagePreview: reader.result });
+    };
+    reader.readAsDataURL(file);
   }
 }
 
