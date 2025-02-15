@@ -18,5 +18,6 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "vue/script-setup-uses-vars": "error", // Fixes unused vars in <script setup>
     "vue/require-default-prop": "off",
+    "vue/html-self-closing": "off"
   },
 };

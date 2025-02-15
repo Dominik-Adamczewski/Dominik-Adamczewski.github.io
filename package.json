@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/connect": "^3.4.38",
     "tailwindcss": "^3.4.7"
   },
   "name": "dominik-adamczewski.github.io",
@@ -92,6 +93,7 @@
     "to-regex-range": "^5.0.1",
     "ts-interface-checker": "^0.1.13",
     "util-deprecate": "^1.0.2",
+    "vue": "^3.5.13",
     "which": "^2.0.2",
     "wrap-ansi": "^8.1.0",
     "wrap-ansi-cjs": "^7.0.0",

@@ -26,13 +26,23 @@
           alt="Coding conf logo" 
           class="mb-10"
         >
-        <h1 class="text-3xl text-center mb-6">
-          <span v-if="isTicketReady">Congrats, {{ fullName }} Your ticket is ready.</span>
-          <span v-else>Your Journey to Coding Conf 2025 Starts Here!</span>
+        <h1 
+          v-if="isTicketReady" 
+          class="text-3xl text-center mb-6"
+        >
+          Congrats, {{ fullName }} Your ticket is ready.
         </h1>
-        <p class="text-lg text-center text-proj-19-neutral-300">
-          <span v-if="isTicketReady">We've emailed your ticket to <span class="text-proj-19-orange-700">{{ email }}</span> and will send updates in the run up to the event.</span>
-          <span v-else>Secure your spot at next year's biggest coding conference.</span>
+        <h1 v-else>
+          Your Journey to Coding Conf 2025 Starts Here!
+        </h1>
+        <p 
+          v-if="isTicketReady" 
+          class="text-lg text-center text-proj-19-neutral-300"
+        >
+          We've emailed your ticket to <span class="text-proj-19-orange-700">{{ email }}</span> and will send updates in the run up to the event.
+        </p>
+        <p v-else>
+          Secure your spot at next year's biggest coding conference.
         </p>
       </div>
     </header>
@@ -42,6 +52,7 @@
         :full-name="fullName"
         :github="github"
         :avatar-url="avatarUrl"
+        :random-ticket-id="randomTicketId"
         class="mt-12"
       />
       <TicketForm 
@@ -54,28 +65,76 @@
         class="absolute bottom-0 -left-8 z-0 h-80 w-80 pointer-events-none"
       >
     </div>
+    <div class="text-center mt-10">
+      <CtaButton 
+        v-if="isTicketReady" 
+        class="font-semibold"
+        button-width="half"
+        @click="clearExistingTicket"
+      >
+        Generate new ticket
+      </CtaButton>
+    </div>
   </div>
 </template>
 
 <script setup>
 import TicketForm from './components/TicketForm.vue';
 import TicketView from './components/TicketView.vue';
-import { ref } from 'vue';
+import CtaButton from './components/CtaButton.vue';
+import { ref, onMounted } from 'vue';
 
 const isTicketReady = ref(false);
 const fullName = ref(null);
 const github = ref(null);
 const avatarUrl = ref(null);
 const email = ref(null);
+const randomTicketId = ref(null);
 
-function handleTicketFormSubmit(data) {
+function createTicket(data) {
   isTicketReady.value = true;
   fullName.value = data.fullName;
   email.value = data.email;
   github.value = data.github;
   avatarUrl.value = data.avatarUrl;
-  console.log(avatarUrl.value);
+  randomTicketId.value = data.randomTicketId;
 }
+
+function saveTicketInLocalStorage(ticketObj) {
+  localStorage.setItem('ticketData', JSON.stringify(ticketObj));
+}
+
+function handleTicketFormSubmit(data) {
+  createTicket(data);
+
+  const ticketData = {
+    fullName: data.fullName,
+    email: data.email,
+    github: data.github,
+    avatarUrl: data.avatarUrl,
+    randomTicketId: data.randomTicketId,
+  };
+
+  saveTicketInLocalStorage(ticketData);
+}
+
+function loadExistingTicket() {
+  const ticketObject = localStorage.getItem('ticketData');
+  if (ticketObject) {
+    const parsedTicketObject = JSON.parse(ticketObject);
+    isTicketReady.value = true;
+    createTicket(parsedTicketObject);
+  }
+}
+
+function clearExistingTicket() {
+  localStorage.removeItem('ticketData');
+  isTicketReady.value = false;
+}
+
+onMounted(() => {
+  loadExistingTicket();
+});
 
 </script>
 
