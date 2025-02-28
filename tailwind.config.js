@@ -45,12 +45,24 @@ module.exports = {
         'proj-19-orange-700': 'hsl(7, 71%, 60%)',
         'proj-19-gradient-red': 'hsl(7, 86%, 67%)',
         'proj-19-gradient-white': 'hsl(0, 0%, 100%)',
+        'proj-20-very-light-gray': 'hsl(0, 0%, 98%)',
+        'proj-20-very-light-grayish-blue': 'hsl(236, 33%, 92%)',
+        'proj-20-light-grayish-blue': 'hsl(234, 39%, 85%)',
+        'proj-20-dark-grayish-blue': 'hsl(236, 9%, 61%)',
+        'proj-20-dark-grayish-blue': 'hsl(235, 19%, 35%)',
+        'proj-20-dark-blue': 'hsl(235, 21%, 11%)',
+        'proj-20-blue': '#33b2ff',
+        'proj-20-very-dark-desaturated-blue': 'hsl(235, 24%, 19%)',
+        'proj-20-dark-theme-light-grayish-blue': 'hsl(234, 39%, 85%)',
+        'proj-20-dark-theme-light-grayish-blue-hover': 'hsl(236, 33%, 92%)',
+        'proj-20-dark-theme-dark-grayish-blue': 'hsl(234, 11%, 52%)',
+        'proj-20-dark-theme-very-dark-grayish-blue': 'hsl(233, 14%, 35%)'
       }
     },
   },
   plugins: [],
   safelist: [
     "bg-[url('../18-static-job-listings-vue/public/images/bg-header-mobile.svg')]",
-    "bg-[url('../18-static-job-listings-vue/public/images/bg-header-desktop.svg')]", 
+    "bg-[url('../18-static-job-listings-vue/public/images/bg-header-desktop.svg')]",
   ],
 }
