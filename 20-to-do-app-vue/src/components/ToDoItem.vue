@@ -1,23 +1,44 @@
 <template>
-  <div class="flex items-center justify-between cursor-pointer">
-    <div class="flex items-center" @click="markToDoAsDone">
+  <div
+    class="flex items-center justify-between"
+    @click="markToDoAsDone"
+    draggable="true"
+    @dragstart="onDragStart"
+    @dragover.prevent
+    @drop="onDrop"
+    :class="{ 
+      'hover:bg-proj-20-very-light-gray cursor-pointer': !isDone,
+      'hover:rounded-tr-md hover:rounded-tl-md': !isDone && index === 0,
+      'hover:bg-proj-20-dark-theme-dark-grayish-blue': !isDone && isDarkThemeEnabled
+    }"
+    @keydown.enter="markToDoAsDone"
+    @keydown.space.prevent="markToDoAsDone"
+    tabindex="0"
+  >
+    <div class="flex items-center">
+      <span class="drag-handle cursor-grab mr-2 mt-1" :class="{ 'text-white': isDarkThemeEnabled }">⠿</span>
       <img
         v-if="!isDone"
         src="/images/icon-circle.svg"
         alt="Circle icon"
         class="w-5 h-5"
       />
-      <div
+      <img
         v-else
-        class="check-icon w-4 h-4 rounded-full flex items-center justify-center"
+        src="/images/icon-check.svg"
+        alt="Check icon"
+        class="w-4 h-4 p-0.5 check-icon rounded-full flex items-center justify-center"
+      />
+      <span
+        class="ml-2"
+        :class="{ 'line-through': isDone, 'text-slate-300': isDarkThemeEnabled, 'text-black': !isDarkThemeEnabled }"
       >
-        <img src="/images/icon-check.svg" alt="Check icon" class="w-2 h-2" />
-      </div>
-      <span class="ml-2" :class="{ 'line-through': isDone, 'text-slate-300': isDarkThemeEnabled, 'text-black': !isDarkThemeEnabled }">
         {{ text }}
       </span>
     </div>
-    <img src="/images/icon-cross.svg" alt="Close icon" @click="removeToDo" class="w-3 h-3" />
+    <button class="cursor-pointer p-2 rounded-md hover:bg-proj-20-light-grayish-blue" @click="removeToDo">
+      <img src="/images/icon-cross.svg" alt="Close icon" class="w-3 h-3" />
+    </button>
   </div>
 </template>
 
@@ -39,29 +60,28 @@ export default {
     isDarkThemeEnabled: {
       type: Boolean,
       required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
     }
   },
   methods: {
     markToDoAsDone() {
-      this.$emit('done', this.id);
-      let storedToDoItems = JSON.parse(localStorage.getItem("toDoList")) || [];
-      const index = storedToDoItems.findIndex(
+      const index = this.$store.state.allToDoItems.findIndex(
         (item) => item.id === this.id
       );
       if (index !== -1) {
-        storedToDoItems[index] = { id: this.id, text: this.text, isDone: true };
+        this.$store.commit('markToDoItemAsDone', this.id);
       }
-      localStorage.setItem("toDoList", JSON.stringify(storedToDoItems));
     },
     removeToDo() {
-      this.$emit("delete", this.id);
-      let storedToDoItems = JSON.parse(localStorage.getItem("toDoList")) || [];
-      const index = storedToDoItems.findIndex(
+      const index = this.$store.state.allToDoItems.findIndex(
         (item) => item.id === this.id
       );
       if (index !== -1) {
-        storedToDoItems = storedToDoItems.filter(item => item.id !== this.id);
-        localStorage.setItem("toDoList", JSON.stringify(storedToDoItems));
+        this.$store.commit('removeToDoItem', this.id);
+        localStorage.setItem("toDoList", JSON.stringify(this.$store.state.allToDoItems));
       }
     },
   },

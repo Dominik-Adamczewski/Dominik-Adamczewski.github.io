@@ -1,25 +1,25 @@
 <template>
   <form 
-    class="flex items-center px-4 rounded-lg mt-6 py-2"
-    :class="{ 'bg-proj-20-dark-theme-very-dark-grayish-blue': isDarkThemeEnabled, 'bg-white': !isDarkThemeEnabled }"
+    class="px-4 rounded-lg mt-6 flex items-center text-[20px]"
+    :class="{ 
+      'bg-proj-20-dark-theme-very-dark-grayish-blue border border-proj-20-dark-theme-very-dark-grayish-blue': isDarkThemeEnabled, 
+      'bg-white': !isDarkThemeEnabled 
+    }"
   >
-    <img
-      src="/images/icon-circle.svg"
-      alt="Circle icon"
-      class="w-6 h-6 mr-2 mb-1"
-    />
     <input
       type="text"
       v-model="inputText"
-      @input="showAddToDoButton"
       placeholder="Create a new todo..."
-      class="w-full text-gray-700 text-sm md:text-lg outline-none"
-      :class="{ 'bg-proj-20-dark-theme-very-dark-grayish-blue text-slate-200': isDarkThemeEnabled, 'bg-white text-black': !isDarkThemeEnabled }"
+      class="w-full text-gray-700 text-[20px] outline-none py-3 flex items-center placeholder:text-sm"
+      :class="{ 
+        'bg-proj-20-dark-theme-very-dark-grayish-blue text-slate-200': isDarkThemeEnabled,
+        'bg-white text-black': !isDarkThemeEnabled
+      }"
     />
     <button
-      v-if="isTextAdded"
+      v-if="inputText.length > 0"
       @click="submitNewToDo"
-      class="cursor-pointer font-semibold"
+      class="cursor-pointer font-semibold flex items-center hover:underline"
       :class="{ 'text-slate-200': isDarkThemeEnabled, 'text-black': !isDarkThemeEnabled }"
     >
       Add
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -42,21 +43,21 @@ export default {
     }
   },
   methods: {
-    showAddToDoButton() {
-      if (this.inputText) {
-        this.isTextAdded = true;
-      }
-    },
-    getIdForNewToDoItem() {
-      const currentTodos = JSON.parse(localStorage.getItem('toDoList'));
-      return currentTodos?.length ? currentTodos[currentTodos.length - 1].id + 1 : 1;
-    },
+    // getIdForNewToDoItem() {
+    //   const currentTodos = JSON.parse(localStorage.getItem('toDoList'));
+    //   const lastTodoItemId = currentTodos?.length ? currentTodos[currentTodos.length - 1].id : 0;
+    //   const nextTodoItemId = lastTodoItemId + 1;
+    //   return nextTodoItemId;
+    // },
     submitNewToDo() {
-      this.$emit("addToDo", { id: this.getIdForNewToDoItem(), text: this.inputText, isDone: false });
+      this.$store.commit('addToDoItem', { id: this.getIdForNewToDoItem, text: this.inputText, isDone: false });
       this.inputText = "";
       this.isTextAdded = false;
     },
   },
+  computed: {
+    ...mapGetters(['getIdForNewToDoItem'])
+  }
 };
 </script>
 
