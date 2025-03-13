@@ -43,12 +43,6 @@ export default {
     }
   },
   methods: {
-    // getIdForNewToDoItem() {
-    //   const currentTodos = JSON.parse(localStorage.getItem('toDoList'));
-    //   const lastTodoItemId = currentTodos?.length ? currentTodos[currentTodos.length - 1].id : 0;
-    //   const nextTodoItemId = lastTodoItemId + 1;
-    //   return nextTodoItemId;
-    // },
     submitNewToDo() {
       this.$store.commit('addToDoItem', { id: this.getIdForNewToDoItem, text: this.inputText, isDone: false });
       this.inputText = "";
