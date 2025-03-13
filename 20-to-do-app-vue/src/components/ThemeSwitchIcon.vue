@@ -2,7 +2,8 @@
   <img 
     :src="isDarkTheme ? darkThemeData.url : lightThemeData.url" 
     :alt="isDarkTheme ? darkThemeData.altAttr : lightThemeData.altAttr" 
-    class="cursor-pointer" 
+    class="cursor-pointer hover:opacity-50 transition-opacity duration-300"
+    @click="toggleDarkThemeMode"
   />
 </template>
 
@@ -21,6 +22,9 @@ export default {
     }
   },
   methods: {
+    toggleDarkThemeMode() {
+      this.$store.commit('toggleDarkTheme');
+    }
   }
 }
 </script>

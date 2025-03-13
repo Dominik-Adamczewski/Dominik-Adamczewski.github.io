@@ -1,20 +1,20 @@
 <template>
   <div class="w-4/5 max-w-lg">
-    <div v-if="toDoList.length">
+    <div v-if="currentToDoItemsList.length">
       <div
-        class="-mt-6" 
+        class="mt-3" 
         :class="{ 
-          'rounded-md': toDoList.length > 1, 
-          'rounded-tr-md rounded-tl-md': toDoList.length === 1, 
-          'bg-proj-20-dark-theme-very-dark-grayish-blue': isDarkThemeEnabled, 
+          'rounded-md': currentToDoItemsList.length > 1, 
+          'rounded-tr-md rounded-tl-md': currentToDoItemsList.length === 1, 
+          'bg-proj-20-dark-theme-very-dark-grayish-blue border border-proj-20-dark-theme-very-dark-grayish-blue': isDarkThemeEnabled, 
           'bg-white border': !isDarkThemeEnabled 
         }"
         @dragover.prevent
         @dragenter.prevent
       >
-      <transition-group name="fade" tag="div">
+      <transition-group v-if="!disableAnimation" name="fade" tag="div">
         <div 
-          v-for="(item, index) in toDoList"
+          v-for="(item, index) in currentToDoItemsList"
           :key="item.id"
           :draggable="!item.isDone"
           @dragstart="startDrag($event, index)"
@@ -26,6 +26,7 @@
             :isDone="item.isDone"
             :id="item.id"
             :is-dark-theme-enabled="isDarkThemeEnabled"
+            :index="index"
             @done="markToDoAsDone"
             @delete="deleteToDo"
             class="py-2 px-3 box-border w-full"
@@ -35,10 +36,10 @@
       </transition-group>
         <div
           class="flex items-center px-3 py-3 text-[10px] text-proj-20-dark-theme-dark-grayish-blue" 
-          :class="{ 'justify-end': !numberOfToDoItems, 'justify-between': numberOfToDoItems }"
+          :class="{ 'justify-end': !allActiveToDoItems.length, 'justify-between': allActiveToDoItems.length }"
         >
-          <span v-if="numberOfToDoItems" class="cursor-pointer">{{ numberOfToDoItems }} Items left</span>
-          <span @click="clearCompletedToDos" class="cursor-pointer">Clear completed</span>
+          <span v-if="allActiveToDoItems.length" class="cursor-pointer">{{ allActiveToDoItems.length }} Items left</span>
+          <button @click="clearCompletedToDos" class="cursor-pointer hover:underline">Clear completed</button>
         </div>
       </div>
     </div>
@@ -62,6 +63,7 @@
 <script>
 import ToDoItem from "./ToDoItem.vue";
 import FiltersBar from "./FiltersBar.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -69,10 +71,6 @@ export default {
     FiltersBar,
   },
   props: {
-    toDoList: {
-      type: Array,
-      required: true,
-    },
     isDarkThemeEnabled: {
       type: Boolean,
       required: true,
@@ -81,17 +79,12 @@ export default {
   data() {
     return {
       draggedIndex: null,
+      disableAnimation: false,
     };
   },
   methods: {
-    markToDoAsDone(data) {
-      this.$emit('done', data);
-    },
-    deleteToDo(data) {
-      this.$emit('delete', data);
-    },
     clearCompletedToDos() {
-      this.$emit('clear-completed');
+      this.$store.commit('clearCompletedToDoItems');
       if (this.$refs.filtersBar) {
         this.$refs.filtersBar.setDefaultFilter();
       }
@@ -102,27 +95,39 @@ export default {
     },
     onDrop(dropIndex) {
       if (this.draggedIndex !== null && this.draggedIndex !== dropIndex) {
-        const items = [...this.toDoList];
+        const items = [...this.currentToDoItemsList];
         const movedItem = items.splice(this.draggedIndex, 1)[0];
         items.splice(dropIndex, 0, movedItem);
 
-        this.$emit('update-list', items);
+        this.$store.commit('updateToDoItemsList', items);
       }
       this.draggedIndex = null;
     },
-    changeCurrentFilter(data) {
-      this.$emit('change-current-filter', data);
+    changeCurrentFilter() {
+      this.disableAnimation = true;
+
+      this.$nextTick(() => {
+        this.disableAnimation = false;
+      });
     }
   },
   computed: {
-    numberOfToDoItems() {
-      return this.toDoList.filter(item => !item.isDone).length;
-    },
+    ...mapGetters(['allActiveToDoItems', 'allCompletedToDoItems']),
+    currentToDoItemsList() {
+      if (this.$store.state.currentFilter === 'active') return this.allActiveToDoItems;
+      if (this.$store.state.currentFilter === 'completed') return this.allCompletedToDoItems;
+      return this.$store.state.allToDoItems;
+    }
   },
+  mounted() {
+    if (this.$store.state.allToDoItems.length) {
+      this.currentToDoItemsList = this.$store.state.allToDoItems;
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
 [draggable="true"]:active {
   cursor: grabbing;
 }
