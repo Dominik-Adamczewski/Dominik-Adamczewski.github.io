@@ -58,6 +58,7 @@ module.exports = {
         'proj-20-dark-theme-dark-grayish-blue': 'hsl(234, 11%, 52%)',
         'proj-20-dark-theme-very-dark-grayish-blue': 'hsl(233, 14%, 35%)',
         'proj-21-cyan': 'hsl(180, 66%, 49%)',
+        'proj-21-cyan-light': 'hsl(180 66% 66%)',
         'proj-21-dark-violet': 'hsl(257, 27%, 26%)',
         'proj-21-red': 'hsl(0, 87%, 67%)',
         'proj-21-gray': 'hsl(0, 0%, 75%)',
