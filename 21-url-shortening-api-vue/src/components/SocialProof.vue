@@ -3,7 +3,7 @@
     class="text-center bg-white rounded-md p-6 relative"
     :class="{
       'social-proof-container my-20': !isLast && (device === 'mobile' || device === 'tablet'),
-      'social-proof-container__desktop': !isLast && (device === 'desktop'),
+      'social-proof-container--desktop': !isLast && (device === 'desktop'),
       'lg:mt-8': id === 2,
       'lg:mt-16': id === 3
     }"
@@ -33,7 +33,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-  .social-proof-container::after {
+  .social-proof-container::after, .social-proof-container__desktop::after {
     content: '';
     display: block;
     position: absolute;
@@ -44,13 +44,9 @@ const props = defineProps({
     height: 50px;
   }
 
-  .social-proof-container__desktop::after {
-    content: '';
-    display: block;
-    position: absolute;
+  .social-proof-container--desktop::after {
     left: 100%;
     bottom: 50%;
-    background: hsl(180, 66%, 49%);
     width: 50px;
     height: 5px;
   }

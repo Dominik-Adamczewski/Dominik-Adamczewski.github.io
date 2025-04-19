@@ -88,36 +88,40 @@ export const useUrlsStore = defineStore('urlsStore', {
     clearFormErrors () {
       this.formErrors = [];
     },
+    saveShortenedLinkToLocalStorage () {
+      localStorage.setItem('shortenUrls', JSON.stringify(this.shortenUrls));
+    },
     async submitShortenUrlForm () {
       this.validateLongUrl();
-      if (!this.formErrors.length) {
-        const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
-        const apiUrl = 'https://cleanuri.com/api/v1/shorten';
-        const originalUrl = this.longUrl;
-        try {
-          const response = await fetch(`${proxyUrl}${apiUrl}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: this.getEncodedUrl
-          });
-          const json = await response.json();
-          console.log('Shortened URL:', json.result_url);
-          if (json && this.longUrl) {
-            const shortUrlObj = {
-              id: this.shortenUrls.length + 1,
-              originalUrl,
-              shortUrl: json.result_url
-            };
-            this.shortenUrls.push(shortUrlObj);
-            localStorage.setItem('shortenUrls', JSON.stringify(this.shortenUrls));
-          }
-          this.longUrl = '';
-        } catch (error) {
-          console.error('Fetch error:', error.message);
-          this.formErrors.push('Something went wrong while shortening the URL. Please try again later.');
-        }
+
+      if (this.formErrors.length) return;
+
+      const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
+      const apiUrl = 'https://cleanuri.com/api/v1/shorten';
+      const originalUrl = this.longUrl;
+      try {
+        const response = await fetch(`${proxyUrl}${apiUrl}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: this.getEncodedUrl
+        });
+        const json = await response.json();
+
+        if (!json || !this.longUrl) return;
+
+        const shortUrlObj = {
+          id: this.shortenUrls.length + 1,
+          originalUrl,
+          shortUrl: json.result_url
+        };
+        this.shortenUrls.push(shortUrlObj);
+        this.saveShortenedLinkToLocalStorage();
+        this.longUrl = '';
+      } catch (error) {
+        console.error('Fetch error:', error.message);
+        this.formErrors.push('Something went wrong while shortening the URL. Please try again later.');
       }
     },
     setShortenLinksWithDataFromLocalStorage () {

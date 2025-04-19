@@ -1,4 +1,5 @@
 import { ref, onMounted, onUnmounted } from 'vue';
+import throttle from 'lodash/throttle';
 
 export function useDevice () {
   const device = ref(getDeviceByWidth());
@@ -16,11 +17,11 @@ export function useDevice () {
 
   onMounted(() => {
     updateDevice();
-    window.addEventListener('resize', updateDevice);
+    window.addEventListener('resize', throttle(updateDevice, 200));
   });
 
   onUnmounted(() => {
-    window.removeEventListener('resize', updateDevice);
+    window.removeEventListener('resize', throttle(updateDevice, 200));
   });
 
   return { device };
