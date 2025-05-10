@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "fslightbox-vue": "^2.2.1",
     "pinia": "^3.0.2",
     "vue": "^3.2.13"
   },

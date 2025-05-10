@@ -64,7 +64,13 @@ module.exports = {
         'proj-21-gray': 'hsl(0, 0%, 75%)',
         'proj-21-grayish-violet': 'hsl(257, 7%, 63%)',
         'proj-21-very-dark-blue': 'hsl(255, 11%, 22%)',
-        'proj-21-very-dark-violet': 'hsl(260, 8%, 14%)'
+        'proj-21-very-dark-violet': 'hsl(260, 8%, 14%)',
+        'proj-22-very-dark-blue': 'hsl(220, 13%, 13%)',
+        'proj-22-dark-grayish-blue': 'hsl(219, 9%, 45%)',
+        'proj-22-grayish-blue': 'hsl(220, 14%, 75%)',
+        'proj-22-light-grayish-blue': 'hsl(223, 64%, 98%)',
+        'proj-22-orange': 'hsl(16 100% 46%)',
+        'proj-22-orange-hover': 'hsl(16 100% 62%)',
       }
     },
   },
