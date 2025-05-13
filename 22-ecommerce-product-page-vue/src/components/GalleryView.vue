@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full lg:w-2/5">
-    <div class="lg:aspect-square lg:min-h-72 w-full">
+    <div class="lg:aspect-square min-h-[375px] lg:min-h-72 w-full">
       <transition name="fade" mode="out-in">
         <img 
           :key="store.currentImg" 
@@ -8,6 +8,8 @@
           alt="Product image" 
           class="min-h-72 max-h-[600px] object-cover w-full h-full lg:rounded-md lg:cursor-pointer" 
           @click="toggler = !toggler"
+          width="410"
+          height="410"
         />
       </transition>
     </div>

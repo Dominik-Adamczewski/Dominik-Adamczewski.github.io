@@ -48,8 +48,8 @@ export const eCommerceStore = defineStore('eCommerceStore', {
     getImagesArrayLengthForProduct: (state) => () => {
       return state.products[0].productImages.length;
     },
-    getProductPrice(state) {
-      return Number.parseFloat(state.products[0].productPrice).toFixed(2);
+    getProductPriceFormatted(state) {
+      return `$${Number.parseFloat(state.products[0].productPrice).toFixed(2)}`;
     },
     hasDiscount(state) {
       return new Boolean(state.products[0].discount);
@@ -84,10 +84,10 @@ export const eCommerceStore = defineStore('eCommerceStore', {
         productThumbnailImage,
       };
     
-      const index = this.cartItems.findIndex((cartItem) => cartItem.id === item.id);
+      const existingProduct = this.cartItems.find((cartItem) => cartItem.id === item.id);
     
-      if (index !== -1) {
-        this.cartItems[index].productAmount += item.productAmount;
+      if (existingProduct) {
+        existingProduct.productAmount += item.productAmount;
       } else {
         this.cartItems.push(item);
       }
@@ -95,10 +95,10 @@ export const eCommerceStore = defineStore('eCommerceStore', {
       localStorage.setItem('cartProducts', JSON.stringify(this.cartItems));
     },
     removeItemFromCart(id) {
-      const element = this.cartItems.find((element) => element.id === id);
-      const elementIndex = this.cartItems.indexOf(element);
-
-      this.cartItems.splice(elementIndex, 1);
+      const index = this.cartItems.findIndex((element) => element.id === id);
+      if (index !== -1) {
+        this.cartItems.splice(index, 1);
+      }
       localStorage.removeItem('cartProducts');
     },
     updateAmountOfProductInStock(id, newAmountInStock) {

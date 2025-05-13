@@ -1,12 +1,16 @@
 <template>
   <section class="flex items-center justify-between p-6 lg:hidden relative">
     <div class="flex items-center">
-      <img src="/images/icon-menu.svg" alt="Hamburger menu icon" class="w-5 h-5 mr-3" @click="toggleMobileNavigationMenu">
+      <button aria-label="Toggle navigation menu" class="w-5 h-5 mr-3" @click="toggleMobileNavigationMenu">
+        <img src="/images/icon-menu.svg" alt="Hamburger menu icon" width="20" height="20">
+      </button>
       <img src="/images/logo.svg" alt="Sneakers logo" class="mb-0.5">
     </div>
     <div class="flex items-center">
       <CartIcon @click="toggleCartView" />
-      <img src="/images/image-avatar.png" alt="Avatar image" class="w-8 h-8">
+      <button aria-label="Open user profile" class="w-8 h-8">
+        <img src="/images/image-avatar.png" alt="">
+      </button>
     </div>
     <BasketTooltip v-if="isCartVisible" class="absolute top-24 right-2.5 transform" @close="toggleCartView" />
   </section>

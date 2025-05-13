@@ -12,7 +12,7 @@
         class="text-xl text-proj-22-dark-grayish-blue font-semibold"
         :class="{ 'line-through': store.hasDiscount }"
       >
-        ${{ store.getProductPrice }}
+        {{ store.getProductPriceFormatted }}
       </span>
     </div>
     <div class="mt-2 text-proj-22-dark-grayish-blue">Currently in stock: {{ store.getInStockAmount }}</div>
@@ -41,19 +41,20 @@ const store = eCommerceStore();
 const productAmount = ref(0);
 
 function handleAddingProductToCart() {
-  if (productAmount.value > 0) {
-    const product = {
-      id: store.products[0].id,
-      productName: store.products[0].productName,
-      productPrice: store.getProductsDiscountedPrice,
-      productAmount: productAmount.value,
-      productThumbnailImage: store.products[0].productThumbnailImages[0]
-    };
-
-    store.addItemToCart(product);
-    store.updateAmountOfProductInStock(store.products[0].id, store.products[0].inStock - productAmount.value);
-    productAmount.value = 0;
+  if (productAmount.value <= 0) {
+    return;
   }
+  const product = {
+    id: store.products[0].id,
+    productName: store.products[0].productName,
+    productPrice: store.getProductsDiscountedPrice,
+    productAmount: productAmount.value,
+    productThumbnailImage: store.products[0].productThumbnailImages[0]
+  };
+
+  store.addItemToCart(product);
+  store.updateAmountOfProductInStock(store.products[0].id, store.products[0].inStock - productAmount.value);
+  productAmount.value = 0;
 }
 </script>
 
