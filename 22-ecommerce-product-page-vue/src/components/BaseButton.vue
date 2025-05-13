@@ -4,7 +4,7 @@
     :disabled="props.isDisabled"
   >
     <div class="flex items-center gap-2">
-      <img v-if="props.iconPath" :src="props.iconPath" alt="Button icon" class="w-4 h-4 object-contain">
+      <img v-if="props.iconPath" :src="props.iconPath" alt="Button icon" class="w-4 h-4 object-contain" width="16" height="16">
       <span class="mt-1">{{ props.text }}</span>
     </div>
   </button>

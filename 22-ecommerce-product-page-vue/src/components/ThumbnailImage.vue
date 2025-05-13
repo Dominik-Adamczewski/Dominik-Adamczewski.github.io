@@ -5,6 +5,8 @@
     class="lg:rounded-md lg:w-20 lg:h-20 lg:cursor-pointer"
     :class="{ 'border-2 border-proj-22-orange opacity-50': isActive }"
     @click="handleThumbnailClick"
+    width="80"
+    height="80"
   >
 </template>
 
