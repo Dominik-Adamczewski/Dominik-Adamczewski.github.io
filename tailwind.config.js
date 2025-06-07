@@ -12,6 +12,15 @@ module.exports = {
       },
       boxShadow: {
         'proj-18': '0 6px 12px -2px rgb(0 0 0 / 0.05), 0 10px 10px -14px rgb(0 0 0 / 0.05)',
+        'proj-23-theme-1-desaturated-dark-blue-var-2': '0px 4px hsl(224, 28%, 35%)',
+        'proj-23-theme-1-dark-red': '0px 4px hsl(6, 70%, 34%)',
+        'proj-23-theme-1-grayish-orange': '0px 4px hsl(28, 16%, 65%)',
+        'proj-23-theme-2-very-dark-cyan': '0px 4px hsl(185, 58%, 25%)',
+        'proj-23-theme-2-dark-orange': '0px 4px hsl(25, 99%, 27%)',
+        'proj-23-theme-2-dark-grayish-orange': '0px 4px hsl(35, 11%, 61%)',
+        'proj-23-theme-3-vivid-magenta': '0px 4px hsl(285, 91%, 52%)',
+        'proj-23-theme-3-soft-cyan': '0px 4px hsl(177, 92%, 70%)',
+        'proj-23-theme-3-dark-magenta': '0px 4px hsl(290, 70%, 36%)'
       },
       colors: {
         'proj-15-green-700': 'hsl(169, 83%, 16%);',
@@ -74,8 +83,8 @@ module.exports = {
         'proj-23-theme-1-very-dark-desaturated-blue-var-1': 'hsl(222, 26%, 31%)',
         'proj-23-theme-1-very-dark-desaturated-blue-var-2': 'hsl(223, 31%, 20%)',
         'proj-23-theme-1-very-dark-desaturated-blue-var-3': 'hsl(224, 36%, 15%)',
-        'proj-23-theme-1-desaturated-blue-var-1': 'hsl(225, 21%, 49%)',
-        'proj-23-theme-1-desaturated-blue-var-2': 'hsl(224, 28%, 35%)',
+        'proj-23-theme-1-desaturated-dark-blue-var-1': 'hsl(225, 21%, 49%)',
+        'proj-23-theme-1-desaturated-dark-blue-var-2': 'hsl(224, 28%, 35%)',
         'proj-23-theme-1-red': 'hsl(6, 63%, 50%)',
         'proj-23-theme-1-dark-red': 'hsl(6, 70%, 34%)',
         'proj-23-theme-1-light-grayish-orange': 'hsl(30, 25%, 89%)',
@@ -109,5 +118,46 @@ module.exports = {
   safelist: [
     "bg-[url('../18-static-job-listings-vue/public/images/bg-header-mobile.svg')]",
     "bg-[url('../18-static-job-listings-vue/public/images/bg-header-desktop.svg')]",
+      // THEME 1
+    "bg-proj-23-theme-1-very-dark-desaturated-blue-var-1",
+    "bg-proj-23-theme-1-very-dark-desaturated-blue-var-2",
+    "bg-proj-23-theme-1-very-dark-desaturated-blue-var-3",
+    "bg-proj-23-theme-1-desaturated-dark-blue-var-1",
+    "bg-proj-23-theme-1-red",
+    "bg-proj-23-theme-1-light-grayish-orange",
+
+    "text-proj-23-theme-1-very-dark-grayish-blue",
+
+    "shadow-proj-23-theme-1-desaturated-dark-blue-var-2",
+    "shadow-proj-23-theme-1-dark-red",
+    "shadow-proj-23-theme-1-grayish-orange",
+
+    // THEME 2
+    "bg-proj-23-theme-2-light-gray",
+    "bg-proj-23-theme-2-grayish-red",
+    "bg-proj-23-theme-2-very-light-gray",
+    "bg-proj-23-theme-2-dark-moderate-cyan",
+    "bg-proj-23-theme-2-orange",
+    "bg-proj-23-theme-2-light-grayish-yellow",
+
+    "text-proj-23-theme-2-very-dark-grayish-yellow",
+
+    "shadow-proj-23-theme-2-very-dark-cyan",
+    "shadow-proj-23-theme-2-dark-orange",
+    "shadow-proj-23-theme-2-dark-grayish-orange",
+
+    // THEME 3
+    "bg-proj-23-theme-3-very-dark-violet-var-1",
+    "bg-proj-23-theme-3-very-dark-violet-var-2",
+    "bg-proj-23-theme-3-dark-violet",
+    "bg-proj-23-theme-3-pure-cyan",
+    "bg-proj-23-theme-3-very-dark-violet-var-3",
+
+    "text-proj-23-theme-3-light-yellow",
+    "text-proj-23-theme-3-very-dark-blue",
+
+    "shadow-proj-23-theme-3-vivid-magenta",
+    "shadow-proj-23-theme-3-soft-cyan",
+    "shadow-proj-23-theme-3-dark-magenta",
   ],
 }
