@@ -1,18 +1,24 @@
 <template>
   <div
-    class="rounded-lg grid grid-cols-4 grid-rows-4 gap-4 p-6"
-    :class="`bg-${store.getCurrentTheme.backgroundClasses.keypadBackground}`"
+    class="rounded-lg grid gap-6 p-6"
+    :class="store.activeTheme.backgroundClasses.keypadBackground"
   >
-    <CalcKey
-      v-for="(item, index) in store.keyLabels"
+    <section 
+      v-for="(row, index) in store.activeLayout.layout"
       :key="index"
-      :key-label="item"
-      :class="{
-        'col-span-2 col-start-1': index === store.keyLabels.length - 2,
-        'col-span-2 col-start-3': index === store.keyLabels.length - 1
-      }"
-      @keyClick="store.addDigitToCurrentExpression"
-    />
+      class="flex gap-4"
+    >
+      <CalcKey
+        v-for="(calcKey, index) in row"
+        :key="index"
+        :key-object="calcKey"
+        :class="{
+          'col-span-2 col-start-1': index === row - 2,
+          'col-span-2 col-start-3': index === row - 1
+        }"
+        @keyClick="store.addDigitToCurrentExpression"
+      />
+    </section>
   </div>
 </template>
 

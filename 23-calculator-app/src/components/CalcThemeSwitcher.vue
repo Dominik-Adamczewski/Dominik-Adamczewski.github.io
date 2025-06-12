@@ -1,16 +1,16 @@
 <template>
   <div class="flex items-center cursor-pointer relative" @click="handleThemeChange">
-    <div class="uppercase mr-6 mt-2 leading-none font-bold" :class="`text-${store.getCurrentTheme.textClasses.screenText}`">theme</div>
+    <div class="uppercase mr-6 mt-2 leading-none font-bold" :class="store.activeTheme.textClasses.screenText">theme</div>
     <div 
       class="dot-container relative w-16 h-5 rounded-xl flex items-center justify-between px-2" 
-      :class="`bg-${store.getCurrentTheme.backgroundClasses.keypadBackground}`"
+      :class="store.activeTheme.backgroundClasses.keypadBackground"
     >
-      <span v-for="(item, index) in props.themes" :key="index" class="-mt-10" :class="`text-${store.getCurrentTheme.textClasses.screenText}`">
+      <span v-for="(item, index) in props.themes" :key="index" class="-mt-10" :class="store.activeTheme.textClasses.screenText">
         {{ index + 1 }}
       </span>
       <div
         class="absolute w-3 h-3 rounded-full transition-all duration-300"
-        :class="[dotPositionClass, `bg-${store.getCurrentTheme.keysClasses.mainKeyBackground}`]"
+        :class="[dotPositionClass, store.activeTheme.keysClasses.mainKeyBackground]"
       ></div>
     </div>
   </div>
@@ -27,7 +27,7 @@ const props = defineProps({
 });
 
 const handleThemeChange = () => {
-  store.changeCurrentTheme();
+  store.applyNextTheme();
 };
 
 const dotPositionClass = computed(() => {
@@ -42,7 +42,7 @@ const dotPositionClass = computed(() => {
 });
 </script>
 
-<style>
+<style scoped>
   .theme-1 {
     left: 8%;
   }
