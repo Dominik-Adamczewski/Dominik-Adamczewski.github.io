@@ -6,133 +6,233 @@ export const calcStore = defineStore('calcStore', {
   state: () => {
     return {
       currentTheme: 1,
+      currentLayout: 'standardLayout',
       expression: [],
-      screenDisplay: '',
       themes: [
         {
           id: 1,
           backgroundClasses: {
-            appBackground: 'proj-23-theme-1-very-dark-desaturated-blue-var-1',
-            keypadBackground: 'proj-23-theme-1-very-dark-desaturated-blue-var-2',
-            screenBackground: 'proj-23-theme-1-very-dark-desaturated-blue-var-3',
+            appBackground: 'bg-proj-23-theme-1-very-dark-desaturated-blue-var-1',
+            keypadBackground: 'bg-proj-23-theme-1-very-dark-desaturated-blue-var-2',
+            screenBackground: 'bg-proj-23-theme-1-very-dark-desaturated-blue-var-3',
           },
           keysClasses: {
-            actionKeysBackground: 'proj-23-theme-1-desaturated-dark-blue-var-1',
-            actionKeysShadow: 'proj-23-theme-1-desaturated-dark-blue-var-2',
-            mainKeyBackground: 'proj-23-theme-1-red',
-            mainKeyShadow: 'proj-23-theme-1-dark-red',
-            numericKeysBackground: 'proj-23-theme-1-light-grayish-orange',
-            numericKeysShadow: 'proj-23-theme-1-grayish-orange',
+            actionKeysBackground: 'bg-proj-23-theme-1-desaturated-dark-blue-var-1',
+            actionKeysShadow: 'shadow-proj-23-theme-1-desaturated-dark-blue-var-2',
+            actionKeysHover: 'hover:proj-23-theme-1-desaturated-dark-blue-var-1-hover',
+            actionKeysActive: 'active:proj-23-theme-1-desaturated-dark-blue-var-1-active',
+            mainKeyBackground: 'bg-proj-23-theme-1-red',
+            mainKeyShadow: 'shadow-proj-23-theme-1-dark-red',
+            mainKeyHover: 'hover:proj-23-theme-1-red-hover',
+            mainKeyActive: 'active:proj-23-theme-1-red-active',
+            numericKeysBackground: 'bg-proj-23-theme-1-light-grayish-orange',
+            numericKeysShadow: 'shadow-proj-23-theme-1-grayish-orange',
+            numericKeysHover: 'hover:bg-proj-23-theme-1-light-grayish-orange-hover',
+            numericKeysActive: 'active:proj-23-theme-1-light-grayish-orange-active',
           },
           textClasses: {
-            keyText: 'proj-23-theme-1-very-dark-grayish-blue',
-            screenText: 'white'
+            keyText: 'text-proj-23-theme-1-very-dark-grayish-blue',
+            screenText: 'text-white'
           }
         },
         {
           id: 2,
           backgroundClasses: {
-            appBackground: 'proj-23-theme-2-light-gray',
-            keypadBackground: 'proj-23-theme-2-grayish-red',
-            screenBackground: 'proj-23-theme-2-very-light-gray'
+            appBackground: 'bg-proj-23-theme-2-light-gray',
+            keypadBackground: 'bg-proj-23-theme-2-grayish-red',
+            screenBackground: 'bg-proj-23-theme-2-very-light-gray'
           },
           keysClasses: {
-            actionKeysBackground: 'proj-23-theme-2-dark-moderate-cyan',
-            actionKeysShadow: 'proj-23-theme-2-very-dark-cyan',
-            mainKeyBackground: 'proj-23-theme-2-orange',
-            mainKeyShadow: 'proj-23-theme-2-dark-orange',
-            numericKeysBackground: 'proj-23-theme-2-light-grayish-yellow',
-            numericKeysShadow: 'proj-23-theme-2-dark-grayish-orange',
-            text: 'proj-23-theme-2-very-dark-grayish-yellow',
+            actionKeysBackground: 'bg-proj-23-theme-2-dark-moderate-cyan',
+            actionKeysShadow: 'shadow-proj-23-theme-2-very-dark-cyan',
+            actionKeysHover: 'hover:proj-23-theme-2-dark-moderate-cyan-hover',
+            actionKeysActive: 'active:proj-23-theme-2-dark-moderate-cyan-active',
+            mainKeyBackground: 'bg-proj-23-theme-2-orange',
+            mainKeyShadow: 'shadow-proj-23-theme-2-dark-orange',
+            mainKeyHover: 'hover:proj-23-theme-2-orange-hover',
+            mainKeyActive: 'active:proj-23-theme-2-orange-active',
+            numericKeysBackground: 'bg-proj-23-theme-2-light-grayish-yellow',
+            numericKeysShadow: 'shadow-proj-23-theme-2-dark-grayish-orange',
+            numericKeysHover: 'hover:proj-23-theme-2-light-grayish-yellow-hover',
+            numericKeysActive: 'active:proj-23-theme-2-light-grayish-yellow-active',
+            text: 'text-proj-23-theme-2-very-dark-grayish-yellow',
           },
           textClasses: {
-            keyText: 'proj-23-theme-2-very-dark-grayish-yellow',
-            screenText: 'proj-23-theme-2-very-dark-grayish-yellow'
+            keyText: 'text-proj-23-theme-2-very-dark-grayish-yellow',
+            screenText: 'text-proj-23-theme-2-very-dark-grayish-yellow'
           }
         },
         {
           id: 3,
           backgroundClasses: {
-            appBackground: 'proj-23-theme-3-very-dark-violet-var-1',
-            keypadBackground: 'proj-23-theme-3-very-dark-violet-var-2',
-            screenBackground: 'proj-23-theme-3-very-dark-violet-var-2'
+            appBackground: 'bg-proj-23-theme-3-very-dark-violet-var-1',
+            keypadBackground: 'bg-proj-23-theme-3-very-dark-violet-var-2',
+            screenBackground: 'bg-proj-23-theme-3-very-dark-violet-var-2'
           },
           keysClasses: {
-            actionKeysBackground: 'proj-23-theme-3-dark-violet',
-            actionKeysShadow: 'proj-23-theme-3-vivid-magenta',
-            mainKeyBackground: 'proj-23-theme-3-pure-cyan',
-            mainKeyShadow: 'proj-23-theme-3-soft-cyan',
-            numericKeysBackground: 'proj-23-theme-3-very-dark-violet-var-3',
-            numericKeysShadow: 'proj-23-theme-3-dark-magenta',
+            actionKeysBackground: 'bg-proj-23-theme-3-dark-violet',
+            actionKeysShadow: 'shadow-proj-23-theme-3-vivid-magenta',
+            actionKeysHover: 'hover:proj-23-theme-3-dark-violet-hover',
+            actionKeysActive: 'active:proj-23-theme-3-dark-violet-active',
+            mainKeyBackground: 'bg-proj-23-theme-3-pure-cyan',
+            mainKeyShadow: 'shadow-proj-23-theme-3-soft-cyan',
+            mainKeyHover: 'hover:proj-23-theme-3-pure-cyan-hover',
+            mainKeyActive: 'active:proj-23-theme-3-pure-cyan-active',
+            numericKeysBackground: 'bg-proj-23-theme-3-very-dark-violet-var-3',
+            numericKeysShadow: 'shadow-proj-23-theme-3-dark-magenta',
+            numericKeysHover: 'hover:proj-23-theme-3-very-dark-violet-var-3-hover',
+            numericKeyActive: 'active:proj-23-theme-3-very-dark-violet-var-3-active',
           },
           textClasses: {
-            keyText: 'proj-23-theme-3-light-yellow',
-            textSecondary: 'proj-23-theme-3-very-dark-blue',
-            screenText: 'proj-23-theme-3-light-yellow'
+            keyText: 'text-proj-23-theme-3-light-yellow',
+            textSecondary: 'text-proj-23-theme-3-very-dark-blue',
+            screenText: 'text-proj-23-theme-3-light-yellow'
           }
         },
       ],
-      keyLabels: ['7', '8', '9', 'DEL', '4', '5', '6', '+', '1', '2', '3', '-', '.', '0', '/', 'x', 'RESET', '='],
+      calculatorLayouts: [
+        {
+          name: 'standardLayout',
+          label: 'Standard',
+          layout: [
+            [
+              { label: '7', type: 'digit' },
+              { label: '8', type: 'digit' },
+              { label: '9', type: 'digit' },
+              { label: 'DEL', type: 'delete' }
+            ],
+            [
+              { label: '4', type: 'digit' },
+              { label: '5', type: 'digit' },
+              { label: '6', type: 'digit' },
+              { label: '+', type: 'operator' }
+            ],
+            [
+              { label: '1', type: 'digit' },
+              { label: '2', type: 'digit' },
+              { label: '3', type: 'digit' },
+              { label: '-', type: 'operator' }
+            ],
+            [
+              { label: '.', type: 'decimal' },
+              { label: '0', type: 'digit' },
+              { label: '/', type: 'operator' },
+              { label: 'x', type: 'operator' }
+            ],
+            [
+              { label: 'RESET', type: 'reset' },
+              { label: '=', type: 'equals' }
+            ]
+          ]
+        },
+        {
+          name: 'reversedLayout',
+          label: 'Reversed',
+          layout: [
+            [
+              { label: 'RESET', type: 'reset' },
+              { label: '=', type: 'equals' }
+            ],
+            [
+              { label: '1', type: 'digit' },
+              { label: '2', type: 'digit' },
+              { label: '3', type: 'digit' },
+              { label: '-', type: 'operator' }
+            ],
+            [
+              { label: '4', type: 'digit' },
+              { label: '5', type: 'digit' },
+              { label: '6', type: 'digit' },
+              { label: '+', type: 'operator' }
+            ],
+            [
+              { label: '7', type: 'digit' },
+              { label: '8', type: 'digit' },
+              { label: '9', type: 'digit' },
+              { label: 'x', type: 'operator' }
+            ],
+            [
+              { label: '.', type: 'decimal' },
+              { label: '0', type: 'digit' },
+              { label: '/', type: 'operator' },
+              { label: 'DEL', type: 'delete' }
+            ]
+          ]
+        }
+      ]
     }
   },
   getters: {
-    getCurrentTheme() {
+    activeTheme() {
       return this.themes.find(item => item.id === this.currentTheme);
     },
+    activeLayout() {
+      return this.calculatorLayouts.find(layout => layout.name === this.currentLayout);
+    },
+    screenDisplay() {
+      return this.expression.join(' ');
+    },
+    isCalcScreenPureText() {
+      return /^[a-zA-Z\s]+$/.test(this.expression);
+    }
   },
   actions: {
-    changeCurrentTheme() {
+    applyNextTheme() {
       if (this.currentTheme === this.themes.length) {
         return this.currentTheme = 1;
       }
 
       this.currentTheme += 1;
     },
-    addDigitToCurrentExpression(digit) {
-      if (isOperator(digit) && !this.expression.length) {  // do not allow to type operator as first character
+    applyLayout(layout) {
+      this.currentLayout = layout;
+    },
+    addDigitToCurrentExpression(keyObject) {
+      if (keyObject.type === 'operator' && !this.expression.length) {  // do not allow to type operator as first character
         return;
       }
 
-      if (digit === 'RESET' || digit === 'DEL' || digit === '=') {
+      if (keyObject.type === 'reset' || keyObject.type === 'delete' || keyObject.type === 'equals') {
         return;
       }
 
       if (this.expression.length > 0) {
         const lastItem = this.expression[this.expression.length - 1];
 
-        if (isOperator(digit)) {
+        if (keyObject.type === 'operator') {
           // do not allow two operators in a row
           if (isOperator(lastItem)) return;
 
-          this.expression.push(digit);
-          this.screenDisplay = this.expression.join(' ');
+          this.expression.push(keyObject.label);
           console.log(this.expression);
           return;
         }
 
         if (isOperator(lastItem)) {
-          this.expression.push(digit);  // push number as new element if last item is operator
+          this.expression.push(keyObject.label);  // push number as new element if last item is operator
         } else {
-          this.expression[this.expression.length - 1] += digit; // only clicking an operator should add new item to array
+          console.log(keyObject.type)
+          if (keyObject.type === 'decimal' && lastItem.includes(keyObject.label)) {  // do not add . 2nd time if it was already added to the digit
+            console.log('wlazłem')
+            return;
+          }
+
+          this.expression[this.expression.length - 1] += keyObject.label; // only clicking an operator should add new item to array
         }
 
-        this.screenDisplay = this.expression.join(' ');
         console.log(this.expression);
         return;
       }
 
       // First item, push digit directly
-      this.expression.push(digit);
-      this.screenDisplay = this.expression.join(' ');
+      this.expression.push(keyObject.label);
     },
     calculateExpression() {
       this.evaluateOperators(['x', '/']);
       this.evaluateOperators(['+', '-']);
-      this.screenDisplay = this.expression.join(' ');
     },
     resetCalculator() {
       this.expression = [];
-      this.screenDisplay = '';
     },
     handleDelKey() {
       if (this.expression.length === 0) return;
@@ -144,8 +244,6 @@ export const calcStore = defineStore('calcStore', {
       } else {
         this.expression[this.expression.length - 1] = lastItem.slice(0, -1);
       }
-
-      this.screenDisplay = this.expression.join(' ');
     },
     add(num1, num2) {
       return num1 + num2;
@@ -173,6 +271,9 @@ export const calcStore = defineStore('calcStore', {
             result = this.multiply(num1, num2);
             break;
           case '/':
+            if (num2 === 0) {
+              return this.expression = ["It is not allowed to divide by zero"];
+            }
             result = this.divide(num1, num2);
             break;
           case '+':

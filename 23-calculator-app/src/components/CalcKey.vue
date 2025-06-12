@@ -1,13 +1,12 @@
 <template>
-  <div 
-    class="w-full h-16 rounded-md flex items-center justify-center text-2xl font-semibold custom-shadow"
+  <button 
+    class="w-full h-16 rounded-md flex items-center justify-center text-2xl font-semibold custom-shadow cursor-pointer"
     :class="keyClass"
     @click="handleKeyClick"
   >
-    <input type="number" class="hidden" :value="props.keyLabel">
-    {{ props.keyLabel }}
-  </div>
-</template>
+    {{ props.keyObject.label }}
+  </button>
+</template> 
 
 <script setup>
 import { defineProps, computed, defineEmits } from 'vue';
@@ -18,45 +17,51 @@ const store = calcStore();
 const emit = defineEmits(['keyClick']);
 
 const props = defineProps({
-  keyLabel: String,
+  keyObject: Object,
 });
 
 const handleKeyClick = () => {
-  if (props.keyLabel === 'RESET') {
+  if (props.keyObject.type === 'reset') {
     store.resetCalculator();
   }
 
-  if (props.keyLabel === 'DEL') {
+  if (props.keyObject.type === 'delete') {
     store.handleDelKey();
   }
 
-  if (props.keyLabel === '=') {
+  if (props.keyObject.type === 'equals') {
     store.calculateExpression();
   }
 
-  return emit('keyClick', props.keyLabel);
+  return emit('keyClick', props.keyObject);
 }
 
 const keyClass = computed(() => {
-  const theme = store.getCurrentTheme;
+  const theme = store.activeTheme;
 
-  if (props.keyLabel === 'RESET' || props.keyLabel === 'DEL') {
+  if (props.keyObject.type === 'reset' || props.keyObject.type === 'delete') {
     return [
-      `bg-${theme.keysClasses.actionKeysBackground}`,
-      `shadow-${theme.keysClasses.actionKeysShadow}`,
-      `text-${theme.textClasses.keyText}`,
+      theme.keysClasses.actionKeysBackground,
+      theme.keysClasses.actionKeysShadow,
+      theme.keysClasses.actionKeysHover,
+      theme.keysClasses.actionKeysActive,
+      theme.textClasses.keyText,
     ];
-  } else if (props.keyLabel === '=') {
+  } else if (props.keyObject.type === 'equals') {
     return [
-      `bg-${theme.keysClasses.mainKeyBackground}`,
-      `shadow-${theme.keysClasses.mainKeyShadow}`,
-      `text-${theme.textClasses.keyText}`,
+      theme.keysClasses.mainKeyBackground,
+      theme.keysClasses.mainKeyShadow,
+      theme.keysClasses.mainKeyHover,
+      theme.keysClasses.mainKeyActive,
+      theme.textClasses.keyText,
     ];
   } else {
     return [
-      `bg-${theme.keysClasses.numericKeysBackground}`,
-      `shadow-${theme.keysClasses.numericKeysShadow}`,
-      `text-${theme.textClasses.keyText}`,
+      theme.keysClasses.numericKeysBackground,
+      theme.keysClasses.numericKeysHover,
+      theme.keysClasses.numericKeysActive,
+      theme.keysClasses.numericKeysShadow,
+      theme.textClasses.keyText,
     ];
   }
 });
