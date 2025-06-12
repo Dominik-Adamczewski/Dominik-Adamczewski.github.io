@@ -1,9 +1,9 @@
 <template>
   <div class="flex items-center justify-between w-full">
     <span class="text-3xl font-bold" :class="store.activeTheme.textClasses.screenText">calc</span>
-    <div class="flex items-center">
-      <CalcLayoutSwitcher class="mr-10" />
-      <CalcThemeSwitcher :themes="store.themes" />
+    <div class="flex flex-col-reverse md:flex-row items-center">
+      <CalcLayoutSwitcher class="mr-0 md:mr-10" />
+      <CalcThemeSwitcher class="mb-2 md:mb-0" :themes="store.themes" />
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center cursor-pointer relative" @click="handleThemeChange">
+  <div class="flex items-center cursor-pointer justify-end relative w-full" @click="handleThemeChange">
     <div class="uppercase mr-6 mt-2 leading-none font-bold" :class="store.activeTheme.textClasses.screenText">theme</div>
     <div 
       class="dot-container relative w-16 h-5 rounded-xl flex items-center justify-between px-2" 

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-30">
+  <div class="w-30 md:flex md:items-center" :class="store.activeTheme.textClasses.screenText">
     <label class="mr-2 text-white font-semibold" for="calc-layout">Layout:</label>
     <select 
       v-model="store.currentLayout"
