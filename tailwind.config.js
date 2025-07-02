@@ -147,6 +147,8 @@ module.exports = {
         'proj-23-theme-3-pure-cyan-active': 'hsl(176, 100%, 39%)',
         'proj-23-theme-3-soft-cyan-hover': 'hsl(177, 92%, 75%)',
         'proj-23-theme-3-soft-cyan-active': 'hsl(177, 92%, 65%)',
+        'proj-24-very-dark-gray': 'hsl(0, 0%, 17%)',
+        'proj-24-dark-gray': 'hsl(0, 0%, 59%)'
       }
     },
   },
