@@ -22,6 +22,7 @@ const projects = [
     { projectName: '21-url-shortening-api-vue', projectUrl: 'https://21-url-shortening-api-vue.surge.sh/' },
     { projectName: '22-ecommerce-product-page', projectUrl: 'https://22-ecommerce-product-page.surge.sh/' },
     { projectName: '23-calculator-app', projectUrl: 'https://23-calculator-app.surge.sh/' },
+    { projectName: '24-ip-tracker-app', projectUrl: 'https://24-ip-tracker-vue.surge.sh/' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
