@@ -1,0 +1,55 @@
+<template>
+  <div class="w-full md:max-w-lg md:mx-auto relative">
+    <input
+      ref="ipInput"
+      v-model="store.ipInputData"
+      @focus="store.clearErrors"
+      @keydown="preventInvalidIpCharacters"
+      type="text"
+      class="w-full h-12 rounded-md pl-4 pr-14"
+      placeholder="Search for any IP Address"
+    >
+    <SubmitButton @click="store.submitIpAddress" :is-loading="store.isLoading" />
+    <span class="text-red-500 font-semibold text-xs" v-if="store.errors && store.errors.length > 0">{{ store.errors[0] }}</span>
+    <div v-if="store.isIpFetchSuccessful" class="text-center mt-1">
+      <button @click="store.resetApp" class="underline text-amber-400 hover:text-white transition-all duration-300 transform hover:scale-105">
+        Want to check another IP?
+      </button>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import SubmitButton from './SubmitButton.vue';
+import { useIpTrackerStore } from '../../stores/ipTrackerStore';
+import { ref, watch } from 'vue';
+
+const store = useIpTrackerStore();
+const ipInput = ref(null);
+
+const focusInputField = () => {
+  ipInput.value?.focus();
+};
+
+const preventInvalidIpCharacters = (e) => {
+  const allowedKeys = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.',
+    'Backspace', 'ArrowLeft', 'ArrowRight', 'Delete', 'Tab'
+  ];
+
+  if (e.ctrlKey || e.metaKey) return; // Allow: Ctrl+V, Cmd+V (paste), Ctrl+C (copy), Ctrl+A (select all)
+
+  if (!allowedKeys.includes(e.key)) {
+    e.preventDefault();
+  }
+};
+
+watch(() => store.wasResetDone, (newVal) => {
+  if (newVal) {
+    focusInputField();
+    store.wasResetDone = false; // Reset flag to avoid repeated calls
+  }
+});
+</script>
+
+<style scoped></style>
