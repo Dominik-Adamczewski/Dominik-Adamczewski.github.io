@@ -35,6 +35,8 @@ export const useIpTrackerStore = defineStore('ipTrackerStore', {
     validateIpAddress () {
       this.clearErrors();
 
+      this.ipInputData = this.ipInputData.trim();
+
       if (!this.ipInputData) {
         this.addErrorMessage('Please provide a valid IP Address!');
         return false;
@@ -45,7 +47,7 @@ export const useIpTrackerStore = defineStore('ipTrackerStore', {
         return false;
       }
 
-      return this.ipInputData;
+      return true;
     },
     resetMap () {
       if (this.map) {
@@ -73,15 +75,14 @@ export const useIpTrackerStore = defineStore('ipTrackerStore', {
       }
     },
     async submitIpAddress () {
-      this.validIp = this.validateIpAddress();
-      if (!this.validIp) {
+      if (!this.validateIpAddress()) {
         return;
       }
 
       this.resetMap();
       this.isLoading = true;
 
-      this.ipInputData = this.ipInputData.trim();
+      this.validIp = this.ipInputData;
       this.clearErrors();
 
       try {
