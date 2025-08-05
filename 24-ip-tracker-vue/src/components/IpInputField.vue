@@ -3,19 +3,22 @@
     <input
       ref="ipInput"
       v-model="store.ipInputData"
-      @focus="store.clearErrors"
-      @keydown="preventInvalidIpCharacters"
       type="text"
       class="w-full h-12 rounded-md pl-4 pr-14"
       placeholder="Search for any IP Address"
+      @focus="store.clearErrors"
+      @keydown="preventInvalidIpCharacters"
     >
-    <SubmitButton @click="store.submitIpAddress" :is-loading="store.isLoading" />
-    <span class="text-red-500 font-semibold text-xs" v-if="store.errors && store.errors.length > 0">{{ store.errors[0] }}</span>
-    <div v-if="store.isIpFetchSuccessful" class="text-center mt-1">
-      <button @click="store.resetApp" class="underline text-amber-400 hover:text-white transition-all duration-300 transform hover:scale-105">
-        Want to check another IP?
-      </button>
-    </div>
+    <SubmitButton
+      :is-loading="store.isLoading"
+      @click="store.submitIpAddress"
+    />
+    <span
+      v-if="store.errors?.length"
+      class="text-red-500 font-semibold text-xs"
+    >
+      {{ store.errors[0] }}
+    </span>
   </div>
 </template>
 
