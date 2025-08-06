@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="ipDataResults?.length > 0"
-    class="border md:max-w-5xl rounded-md bg-white p-4 text-center flex flex-col md:flex-row md:items-center md:text-left gap-4"
+    class="border md:max-w-5xl min-h-32 rounded-md bg-white p-4 text-center flex flex-col md:flex-row md:items-center md:text-left gap-4"
   >
     <div class="flex flex-col md:flex-row md:items-center w-full">
       <div

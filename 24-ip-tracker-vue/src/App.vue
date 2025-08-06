@@ -16,7 +16,7 @@
       class="mt-8"
     />
     <ResultsBox
-      v-if="store.isIpFetchSuccessful"
+      v-if="store.isIpFetchSuccessful && !store.isLoading"
       :ip-data-results="store.ipData.baseDataArray"
       class="absolute z-10 top-44"
     />

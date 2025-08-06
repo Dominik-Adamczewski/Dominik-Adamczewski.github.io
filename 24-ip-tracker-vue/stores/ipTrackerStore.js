@@ -35,8 +35,6 @@ export const useIpTrackerStore = defineStore('ipTrackerStore', {
     validateIpAddress () {
       this.clearErrors();
 
-      this.ipInputData = this.ipInputData.trim();
-
       if (!this.ipInputData) {
         this.addErrorMessage('Please provide a valid IP Address!');
         return false;
@@ -63,6 +61,7 @@ export const useIpTrackerStore = defineStore('ipTrackerStore', {
       this.ipData.lng = null;
       this.resetMap();
       this.wasResetDone = true;
+      this.ipInputData = '';
     },
     initMap () {
       if (!this.map) {

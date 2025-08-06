@@ -2,12 +2,13 @@
   <div class="w-full md:max-w-lg md:mx-auto relative">
     <input
       ref="ipInput"
-      v-model="store.ipInputData"
+      v-model.trim="store.ipInputData"
       type="text"
       class="w-full h-12 rounded-md pl-4 pr-14"
       placeholder="Search for any IP Address"
       @focus="store.clearErrors"
       @keydown="preventInvalidIpCharacters"
+      @keyup.enter="store.submitIpAddress"
     >
     <SubmitButton
       :is-loading="store.isLoading"
