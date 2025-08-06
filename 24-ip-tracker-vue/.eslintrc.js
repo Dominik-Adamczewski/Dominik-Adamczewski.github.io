@@ -29,6 +29,15 @@ module.exports = {
         'CONTENT'
       ],
       alphabetical: false
+    }],
+    'vue/html-self-closing': ['warn', {
+      html: {
+        void: 'never',
+        normal: 'always',
+        component: 'always'
+      },
+      svg: 'always',
+      math: 'always'
     }]
   }
 };

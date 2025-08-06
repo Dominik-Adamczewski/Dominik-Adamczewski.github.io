@@ -1,5 +1,5 @@
 <template>
-  <button class="w-12 h-12 bg-black hover:bg-slate-700 rounded-r-md flex items-center justify-center absolute top-0 right-0">
+  <button class="w-12 h-12 bg-black hover:bg-slate-700 rounded-r-md flex items-center justify-center absolute top-0 right-0 cursor-pointer">
     <img
       v-if="!props.isLoading"
       src="../../public/images/icon-arrow.svg"
