@@ -905,6 +905,11 @@ video {
   margin-bottom: 1rem;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -1197,6 +1202,10 @@ video {
   height: 0.75rem;
 }
 
+.h-3\.5 {
+  height: 0.875rem;
+}
+
 .h-3\/4 {
   height: 75%;
 }
@@ -1227,6 +1236,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .max-h-\[600px\] {
@@ -1325,6 +1338,10 @@ video {
   width: 0.75rem;
 }
 
+.w-3\.5 {
+  width: 0.875rem;
+}
+
 .w-3\/4 {
   width: 75%;
 }
@@ -1404,6 +1421,10 @@ video {
 
 .max-w-6xl {
   max-width: 72rem;
+}
+
+.max-w-\[50\%\] {
+  max-width: 50%;
 }
 
 .max-w-\[65vw\] {
@@ -1491,6 +1512,11 @@ video {
 
 .-translate-y-20 {
   --tw-translate-y: -5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-5 {
+  --tw-translate-x: 1.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2590,6 +2616,26 @@ video {
   border-color: hsl(16 100% 46% / var(--tw-border-opacity));
 }
 
+.border-proj-25-neutral-grey-500 {
+  --tw-border-opacity: 1;
+  border-color: hsl(231 11% 63% / var(--tw-border-opacity));
+}
+
+.border-proj-25-primary-blue-300 {
+  --tw-border-opacity: 1;
+  border-color: hsl(228 100% 84% / var(--tw-border-opacity));
+}
+
+.border-proj-25-primary-blue-950 {
+  --tw-border-opacity: 1;
+  border-color: hsl(213 96% 18% / var(--tw-border-opacity));
+}
+
+.border-proj-25-primary-purple-600 {
+  --tw-border-opacity: 1;
+  border-color: hsl(243 100% 62% / var(--tw-border-opacity));
+}
+
 .border-slate-400 {
   --tw-border-opacity: 1;
   border-color: rgb(148 163 184 / var(--tw-border-opacity));
@@ -2824,9 +2870,19 @@ video {
   background-color: hsl(268 47% 21% / var(--tw-bg-opacity));
 }
 
-.bg-red-500 {
+.bg-proj-25-neutral-blue-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+  background-color: hsl(218 100% 97% / var(--tw-bg-opacity));
+}
+
+.bg-proj-25-primary-blue-300 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(228 100% 84% / var(--tw-bg-opacity));
+}
+
+.bg-proj-25-primary-blue-950 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(213 96% 18% / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
@@ -2996,6 +3052,10 @@ video {
   padding: 0.5rem;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -3055,6 +3115,11 @@ video {
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .py-14 {
@@ -3525,6 +3590,26 @@ video {
   color: hsl(198 20% 13% / var(--tw-text-opacity));
 }
 
+.text-proj-25-neutral-grey-500 {
+  --tw-text-opacity: 1;
+  color: hsl(231 11% 63% / var(--tw-text-opacity));
+}
+
+.text-proj-25-primary-blue-950 {
+  --tw-text-opacity: 1;
+  color: hsl(213 96% 18% / var(--tw-text-opacity));
+}
+
+.text-proj-25-primary-purple-600 {
+  --tw-text-opacity: 1;
+  color: hsl(243 100% 62% / var(--tw-text-opacity));
+}
+
+.text-proj-25-primary-red-500 {
+  --tw-text-opacity: 1;
+  color: hsl(354 84% 57% / var(--tw-text-opacity));
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -3604,6 +3689,10 @@ video {
 .subpixel-antialiased {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
+}
+
+.accent-proj-25-primary-purple-600 {
+  accent-color: hsl(243, 100%, 62%);
 }
 
 .opacity-0 {
@@ -3990,6 +4079,16 @@ video {
   transition-duration: 150ms;
 }
 
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -4144,6 +4243,16 @@ div.projects-list a:hover {
   background-color: hsl(180 29% 50% / var(--tw-bg-opacity));
 }
 
+.focus-within\:bg-red-900:focus-within {
+  --tw-bg-opacity: 1;
+  background-color: rgb(127 29 29 / var(--tw-bg-opacity));
+}
+
+.focus-within\:bg-proj-25-neutral-blue-100:focus-within {
+  --tw-bg-opacity: 1;
+  background-color: hsl(218 100% 97% / var(--tw-bg-opacity));
+}
+
 .hover\:rounded-tl-md:hover {
   border-top-left-radius: 0.375rem;
 }
@@ -4155,6 +4264,16 @@ div.projects-list a:hover {
 .hover\:border-proj-22-orange-hover:hover {
   --tw-border-opacity: 1;
   border-color: hsl(16 100% 62% / var(--tw-border-opacity));
+}
+
+.hover\:border-proj-25-primary-blue-950-hover:hover {
+  --tw-border-opacity: 1;
+  border-color: hsl(213 96% 28% / var(--tw-border-opacity));
+}
+
+.hover\:border-proj-25-primary-purple-600:hover {
+  --tw-border-opacity: 1;
+  border-color: hsl(243 100% 62% / var(--tw-border-opacity));
 }
 
 .hover\:bg-black:hover {
@@ -4206,6 +4325,16 @@ div.projects-list a:hover {
   background-color: hsl(16 100% 62% / var(--tw-bg-opacity));
 }
 
+.hover\:bg-proj-25-neutral-blue-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: hsl(218 100% 97% / var(--tw-bg-opacity));
+}
+
+.hover\:bg-proj-25-primary-blue-950-hover:hover {
+  --tw-bg-opacity: 1;
+  background-color: hsl(213 96% 28% / var(--tw-bg-opacity));
+}
+
 .hover\:bg-slate-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
@@ -4243,6 +4372,16 @@ div.projects-list a:hover {
 .hover\:text-proj-21-gray:hover {
   --tw-text-opacity: 1;
   color: hsl(0 0% 75% / var(--tw-text-opacity));
+}
+
+.hover\:text-proj-25-neutral-grey-700:hover {
+  --tw-text-opacity: 1;
+  color: hsl(231 11% 25% / var(--tw-text-opacity));
+}
+
+.hover\:text-proj-25-primary-blue-950:hover {
+  --tw-text-opacity: 1;
+  color: hsl(213 96% 18% / var(--tw-text-opacity));
 }
 
 .hover\:text-white:hover {
@@ -4320,6 +4459,21 @@ div.projects-list a:hover {
   outline-color: #475569;
 }
 
+.focus-visible\:ring-2:focus-visible {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus-visible\:ring-proj-25-primary-blue-950:focus-visible {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: hsl(213 96% 18% / var(--tw-ring-opacity));
+}
+
+.focus-visible\:ring-offset-2:focus-visible {
+  --tw-ring-offset-width: 2px;
+}
+
 .disabled\:cursor-not-allowed:disabled {
   cursor: not-allowed;
 }
@@ -4395,6 +4549,14 @@ div.projects-list a:hover {
     max-width: 32rem;
   }
 
+  .md\:max-w-sm {
+    max-width: 24rem;
+  }
+
+  .md\:max-w-xl {
+    max-width: 36rem;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -4460,6 +4622,11 @@ div.projects-list a:hover {
     margin-right: 0px;
   }
 
+  .lg\:mx-12 {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
   .lg\:mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -4482,6 +4649,10 @@ div.projects-list a:hover {
     margin-bottom: 0.75rem;
   }
 
+  .lg\:ml-12 {
+    margin-left: 3rem;
+  }
+
   .lg\:ml-20 {
     margin-left: 5rem;
   }
@@ -4490,8 +4661,16 @@ div.projects-list a:hover {
     margin-right: 0.5rem;
   }
 
+  .lg\:mr-3 {
+    margin-right: 0.75rem;
+  }
+
   .lg\:mr-4 {
     margin-right: 1rem;
+  }
+
+  .lg\:mt-0 {
+    margin-top: 0px;
   }
 
   .lg\:mt-10 {
@@ -4540,6 +4719,14 @@ div.projects-list a:hover {
 
   .lg\:h-20 {
     height: 5rem;
+  }
+
+  .lg\:h-40 {
+    height: 10rem;
+  }
+
+  .lg\:h-\[600px\] {
+    height: 600px;
   }
 
   .lg\:h-auto {
@@ -4606,12 +4793,20 @@ div.projects-list a:hover {
     width: 48%;
   }
 
+  .lg\:w-\[90\%\] {
+    width: 90%;
+  }
+
   .lg\:w-auto {
     width: auto;
   }
 
   .lg\:w-full {
     width: 100%;
+  }
+
+  .lg\:max-w-4xl {
+    max-width: 56rem;
   }
 
   .lg\:max-w-6xl {
@@ -4632,6 +4827,14 @@ div.projects-list a:hover {
 
   .lg\:max-w-xl {
     max-width: 36rem;
+  }
+
+  .lg\:max-w-xs {
+    max-width: 20rem;
+  }
+
+  .lg\:flex-1 {
+    flex: 1 1 0%;
   }
 
   .lg\:basis-1\/3 {
@@ -4706,6 +4909,10 @@ div.projects-list a:hover {
     justify-content: space-between;
   }
 
+  .lg\:gap-3 {
+    gap: 0.75rem;
+  }
+
   .lg\:gap-4 {
     gap: 1rem;
   }
@@ -4729,6 +4936,11 @@ div.projects-list a:hover {
 
   .lg\:border-none {
     border-style: none;
+  }
+
+  .lg\:bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   }
 
   .lg\:bg-\[url\(\'\.\.\/18-static-job-listings-vue\/public\/images\/bg-header-desktop\.svg\'\)\] {
@@ -4797,6 +5009,10 @@ div.projects-list a:hover {
 
   .lg\:pt-10 {
     padding-top: 2.5rem;
+  }
+
+  .lg\:pt-6 {
+    padding-top: 1.5rem;
   }
 
   .lg\:text-left {
