@@ -150,11 +150,13 @@ module.exports = {
         'proj-24-very-dark-gray': 'hsl(0, 0%, 17%)',
         'proj-24-dark-gray': 'hsl(0, 0%, 59%)',
         'proj-25-primary-blue-950': 'hsl(213, 96%, 18%)',
+        'proj-25-primary-blue-950-hover': 'hsl(213, 96%, 28%)',
         'proj-25-primary-purple-600': 'hsl(243, 100%, 62%)',
         'proj-25-primary-blue-300': 'hsl(228, 100%, 84%)',
         'proj-25-primary-blue-200': 'hsl(206, 94%, 87%)',
         'proj-25-primary-red-500': 'hsl(354, 84%, 57%)',
         'proj-25-neutral-grey-500': 'hsl(231, 11%, 63%)',
+        'proj-25-neutral-grey-700': 'hsl(231, 11%, 25%)',
         'proj-25-neutral-purple-200': 'hsl(229, 24%, 87%)',
         'proj-25-neutral-blue-100': 'hsl(218, 100%, 97%)',
         'proj-25-neutral-blue-50': 'hsl(231, 100%, 99%)'

@@ -1,11 +1,15 @@
 <template>
-  <span class="bg-red-500">testing</span>
+  <main class="main-container min-h-screen lg:flex lg:justify-center lg:items-center">
+    <MainFormModal />
+  </main>
 </template>
 
-<script>
-
+<script setup>
+import MainFormModal from './components/MainFormModal.vue';
 </script>
 
-<style>
-
+<style scoped>
+  .main-container {
+    background-color: hsl(218, 100%, 97%);
+  }
 </style>

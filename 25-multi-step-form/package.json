@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vueuse/core": "^13.9.0",
+    "change-case": "^5.4.4",
     "core-js": "^3.8.3",
     "pinia": "^3.0.3",
     "vue": "^3.2.13"
