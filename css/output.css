@@ -2626,11 +2626,6 @@ video {
   border-color: hsl(228 100% 84% / var(--tw-border-opacity));
 }
 
-.border-proj-25-primary-blue-950 {
-  --tw-border-opacity: 1;
-  border-color: hsl(213 96% 18% / var(--tw-border-opacity));
-}
-
 .border-proj-25-primary-purple-600 {
   --tw-border-opacity: 1;
   border-color: hsl(243 100% 62% / var(--tw-border-opacity));
@@ -4243,11 +4238,6 @@ div.projects-list a:hover {
   background-color: hsl(180 29% 50% / var(--tw-bg-opacity));
 }
 
-.focus-within\:bg-red-900:focus-within {
-  --tw-bg-opacity: 1;
-  background-color: rgb(127 29 29 / var(--tw-bg-opacity));
-}
-
 .focus-within\:bg-proj-25-neutral-blue-100:focus-within {
   --tw-bg-opacity: 1;
   background-color: hsl(218 100% 97% / var(--tw-bg-opacity));
@@ -4264,11 +4254,6 @@ div.projects-list a:hover {
 .hover\:border-proj-22-orange-hover:hover {
   --tw-border-opacity: 1;
   border-color: hsl(16 100% 62% / var(--tw-border-opacity));
-}
-
-.hover\:border-proj-25-primary-blue-950-hover:hover {
-  --tw-border-opacity: 1;
-  border-color: hsl(213 96% 28% / var(--tw-border-opacity));
 }
 
 .hover\:border-proj-25-primary-purple-600:hover {
@@ -4330,11 +4315,6 @@ div.projects-list a:hover {
   background-color: hsl(218 100% 97% / var(--tw-bg-opacity));
 }
 
-.hover\:bg-proj-25-primary-blue-950-hover:hover {
-  --tw-bg-opacity: 1;
-  background-color: hsl(213 96% 28% / var(--tw-bg-opacity));
-}
-
 .hover\:bg-slate-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
@@ -4377,11 +4357,6 @@ div.projects-list a:hover {
 .hover\:text-proj-25-neutral-grey-700:hover {
   --tw-text-opacity: 1;
   color: hsl(231 11% 25% / var(--tw-text-opacity));
-}
-
-.hover\:text-proj-25-primary-blue-950:hover {
-  --tw-text-opacity: 1;
-  color: hsl(213 96% 18% / var(--tw-text-opacity));
 }
 
 .hover\:text-white:hover {
@@ -4457,21 +4432,6 @@ div.projects-list a:hover {
 
 .focus-visible\:outline-slate-600:focus-visible {
   outline-color: #475569;
-}
-
-.focus-visible\:ring-2:focus-visible {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-
-.focus-visible\:ring-proj-25-primary-blue-950:focus-visible {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: hsl(213 96% 18% / var(--tw-ring-opacity));
-}
-
-.focus-visible\:ring-offset-2:focus-visible {
-  --tw-ring-offset-width: 2px;
 }
 
 .disabled\:cursor-not-allowed:disabled {
@@ -4747,6 +4707,10 @@ div.projects-list a:hover {
 
   .lg\:min-h-72 {
     min-height: 18rem;
+  }
+
+  .lg\:min-h-\[420px\] {
+    min-height: 420px;
   }
 
   .lg\:min-h-screen {

@@ -25,22 +25,13 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useMultiStepFormStore } from '../../stores/multiStepFormStore';
 
 const store = useMultiStepFormStore();
-const isYearly = ref(store.currentPricingType === 'yearly');
+const isYearly = computed(() => store.currentPricingType === 'yearly');
 
 const togglePricingType = () => {
-  isYearly.value = !isYearly.value;
   store.changePricingType();
 };
-
-watch(() => store.currentPricingType, (newPricingType) => {
-  isYearly.value = newPricingType === 'yearly';
-});
-
-onMounted(() => {
-  isYearly.value = store.currentPricingType === 'yearly';
-});
 </script>
