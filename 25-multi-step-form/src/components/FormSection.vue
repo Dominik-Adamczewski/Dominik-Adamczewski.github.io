@@ -1,11 +1,13 @@
 <template>
   <div class="flex flex-col h-full flex-grow justify-between lg:justify-center lg:flex-1 lg:pt-6 lg:mx-12">
-    <section class="bg-white w-full mx-auto lg:mx-0 p-4 rounded-md -mt-8 lg:mt-0 md:max-w-xl">
-      <StepOne v-if="store.currentStep === 1" />
-      <StepTwo v-if="store.currentStep === 2" />
-      <StepThree v-if="store.currentStep === 3" />
-      <StepFour v-if="store.currentStep === 4 && !store.isFormSubmitted" />
-      <ThankYouStep v-if="store.currentStep === 4 && store.isFormSubmitted" />
+    <section class="bg-white w-full mx-auto lg:mx-0 p-4 rounded-md -mt-8 lg:mt-0 md:max-w-xl lg:min-h-[420px]">
+      <Transition mode="out-in">
+        <StepOne v-if="store.currentStep === 1" />
+        <StepTwo v-else-if="store.currentStep === 2" />
+        <StepThree v-else-if="store.currentStep === 3" />
+        <StepFour v-else-if="store.currentStep === 4 && !store.isFormSubmitted" />
+        <ThankYouStep v-else-if="store.currentStep === 4 && store.isFormSubmitted" />
+      </Transition>
     </section>
     <section
       v-if="!(store.currentStep === 4 && store.isFormSubmitted)"
@@ -42,15 +44,23 @@ const store = useMultiStepFormStore();
 const handleGoingToTheNextStep = () => {
   if (store.currentStep === 1) {
     store.submitFirstStepOfTheForm();
-  } else if (store.currentStep === 2) {
-    store.goToTheNextStep();
-  } else if (store.currentStep === 3) {
-    store.goToTheNextStep();
-  } else if (store.currentStep === 4) {
+    return;
+  }
+  if (store.currentStep === 4) {
     store.submitTheForm();
   }
+  store.goToTheNextStep();
 };
 </script>
 
 <style scoped>
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
 </style>

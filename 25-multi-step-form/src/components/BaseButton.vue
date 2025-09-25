@@ -1,6 +1,7 @@
 <template>
   <button
-    :class="[baseClasses, buttonTypeClasses[props.type]]"
+    class="rounded-md h-10 cursor-pointer"
+    :class="buttonTypeClasses[props.type]"
   >
     {{ props.text }}
   </button>
@@ -24,15 +25,31 @@ const props = defineProps({
   }
 });
 
-const baseClasses = 'rounded-md h-10 cursor-pointer';
 const buttonTypeClasses = {
   submit: '',
-  primary: 'border border-proj-25-primary-blue-950 bg-proj-25-primary-blue-950 text-white hover:bg-proj-25-primary-blue-950-hover hover:border-proj-25-primary-blue-950-hover px-4 focus-visible:ring-2 focus-visible:ring-proj-25-primary-blue-950 focus-visible:ring-offset-2',
-  secondary: 'text-proj-25-grey-500 hover:text-proj-25-primary-blue-950'
+  primary: 'primary',
+  secondary: 'secondary'
 };
+
 </script>
 <style scoped>
-button:focus-visible {
-  outline: solid black;
-}
+  button:focus-visible {
+    outline: solid black;
+  }
+  button.primary {
+    border: 1px solid hsl(213, 96%, 18%);
+    background-color: hsl(213, 96%, 18%);
+    color: white;
+    padding: 0px 16px;
+  }
+  button.primary:hover {
+    border: 1px solid hsl(213, 96%, 28%);
+    background-color: hsl(213, 96%, 28%);
+  }
+  button.secondary {
+    color: hsl(231, 11%, 63%);
+  }
+  button.secondary:hover {
+    color: hsl(213, 96%, 18%);
+  }
 </style>

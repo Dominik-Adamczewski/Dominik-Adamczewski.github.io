@@ -23,19 +23,19 @@ import { defineProps } from 'vue';
 const props = defineProps({
   stepNumber: {
     type: Number,
-    default: () => null
+    default: 0
   },
   stepNumberLabel: {
     type: String,
-    default: () => null
+    default: null
   },
   stepText: {
     type: String,
-    default: () => null
+    default: null
   },
   isActive: {
     type: Boolean,
-    default: () => false
+    default: false
   }
 });
 </script>
