@@ -159,7 +159,20 @@ module.exports = {
         'proj-25-neutral-grey-700': 'hsl(231, 11%, 25%)',
         'proj-25-neutral-purple-200': 'hsl(229, 24%, 87%)',
         'proj-25-neutral-blue-100': 'hsl(218, 100%, 97%)',
-        'proj-25-neutral-blue-50': 'hsl(231, 100%, 99%)'
+        'proj-25-neutral-blue-50': 'hsl(231, 100%, 99%)',
+        'proj-26-primary-gold-500': 'hsl(39, 89%, 49%)',
+        'proj-26-primary-gold-600': 'hsl(28, 76%, 44%)',
+        'proj-26-primary-blue-500': 'hsl(230, 89%, 62%)',
+        'proj-26-primary-blue-700': 'hsl(229, 64%, 46%)',
+        'proj-26-primary-red-600': 'hsl(349, 71%, 52%)',
+        'proj-26-primary-red-800': 'hsl(347, 75%, 35%)',
+        'proj-26-primary-purple-600': 'hsl(261, 73%, 60%)',
+        'proj-26-primary-purple-700': 'hsl(261, 51%, 44%)',
+        'proj-26-primary-light-blue-400': 'hsl(189, 59%, 53%)',
+        'proj-26-primary-light-blue-500': 'hsl(194, 58%, 42%)',
+        'proj-26-neutral-navy-900': 'hsl(229, 25%, 31%)',
+        'proj-26-neutral-blue-700': 'hsl(229, 64%, 46%)',
+        'proj-26-neutral-gray-600': 'hsl(246, 11%, 37%)'
       }
     },
   },
