@@ -172,7 +172,9 @@ module.exports = {
         'proj-26-primary-light-blue-500': 'hsl(194, 58%, 42%)',
         'proj-26-neutral-navy-900': 'hsl(229, 25%, 31%)',
         'proj-26-neutral-blue-700': 'hsl(229, 64%, 46%)',
-        'proj-26-neutral-gray-600': 'hsl(246, 11%, 37%)'
+        'proj-26-neutral-gray-600': 'hsl(246, 11%, 37%)',
+        'proj-26-gradient-from': 'hsl(214, 47%, 23%)',
+        'proj-26-gradient-to': 'hsl(237, 48%, 15%)'
       }
     },
   },
