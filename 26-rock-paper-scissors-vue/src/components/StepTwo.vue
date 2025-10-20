@@ -9,7 +9,7 @@
       <p class="mt-3 text-white text-center">THE HOUSE PICKED</p>
     </div>
   </section>
-  <section class="flex items-center justify-center mt-28 text-white text-3xl">
+  <section class="flex items-center justify-center mt-20 text-white text-3xl">
     <p class="w-1/2 text-center" v-if="isEnemyThinking">
       Waiting for enemy's choice
       <span class="dots w-10"></span>
