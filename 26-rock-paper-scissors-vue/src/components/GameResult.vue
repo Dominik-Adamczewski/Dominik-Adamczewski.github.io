@@ -1,6 +1,6 @@
 <template>
   <section class="text-center mt-20">
-    <div class="text-white text-4xl lg:text-6xl font-semibold mb-6">
+    <div class="text-white text-4xl font-semibold mb-6">
       <span v-if="store.gameResult === 'userWon'">YOU WON!</span>
       <span v-else-if="store.gameResult === 'enemyWon'">YOU LOST!</span>
       <span v-else>DRAW :| Try again</span>
