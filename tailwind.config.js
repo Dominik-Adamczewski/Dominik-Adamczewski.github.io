@@ -174,7 +174,12 @@ module.exports = {
         'proj-26-neutral-blue-700': 'hsl(229, 64%, 46%)',
         'proj-26-neutral-gray-600': 'hsl(246, 11%, 37%)',
         'proj-26-gradient-from': 'hsl(214, 47%, 23%)',
-        'proj-26-gradient-to': 'hsl(237, 48%, 15%)'
+        'proj-26-gradient-to': 'hsl(237, 48%, 15%)',
+        'proj-27-blue-900-dark-mode': 'hsl(209, 23%, 22%)',
+        'proj-27-blue-950-dark-mode': 'hsl(207, 26%, 17%)',
+        'proj-27-grey-950-light-mode': 'hsl(200, 15%, 8%)',
+        'proj-27-grey-400-light-mode': 'hsl(0, 0%, 50%)',
+        'proj-27-grey-50-light-mode': 'hsl(0, 0%, 99%)',
       }
     },
   },
