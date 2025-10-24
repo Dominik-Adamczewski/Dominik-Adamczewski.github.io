@@ -1,5 +1,11 @@
 import { defineStore } from 'pinia';
 
+export const GameResult = {
+  USER_WON: 'userWon',
+  ENEMY_WON: 'enemyWon',
+  DRAW: 'draw'
+};
+
 export const useGameStore = defineStore('gameStore', {
   state: () => ({
     currentScore: 0,
@@ -40,7 +46,7 @@ export const useGameStore = defineStore('gameStore', {
       const enemyWeapon = this.enemyWeaponObj.type;
 
       if (userWeapon === enemyWeapon) {
-        this.gameResult = 'draw';
+        this.gameResult = GameResult.DRAW;
         return;
       }
 
@@ -50,11 +56,11 @@ export const useGameStore = defineStore('gameStore', {
         scissors: 'paper'
       };
 
-      const result = wins[userWeapon] === enemyWeapon ? 'userWon' : 'enemyWon';
+      const result = wins[userWeapon] === enemyWeapon ? GameResult.USER_WON : GameResult.ENEMY_WON;
 
       this.gameResult = result;
 
-      if (result === 'userWon') {
+      if (result === GameResult.USER_WON) {
         this.updatePlayerScore();
       }
     },

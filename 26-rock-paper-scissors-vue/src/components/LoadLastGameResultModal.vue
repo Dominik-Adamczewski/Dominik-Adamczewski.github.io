@@ -6,8 +6,8 @@
       <h2 class="text-xl text-center mb-4">We saved score from your last game</h2>
       <p class="mb-6">Would you like to continue with points from previous game, or start over?</p>
       <div class="flex flex-col lg:flex-row items-center justify-around">
-        <BaseButton class="w-full lg:w-auto mb-2" text="Start over" :no-background="false" @click="$emit('start-over')" />
-        <BaseButton class="w-full lg:w-auto" text="Continue last game" :no-background="false" @click="$emit('continue')" />
+        <BaseButton class="w-full lg:w-auto mb-2" text="Start over" :secondary="false" @click="$emit('start-over')" />
+        <BaseButton class="w-full lg:w-auto" text="Continue last game" :secondary="false" @click="$emit('continue')" />
       </div>
     </div>
   </section>

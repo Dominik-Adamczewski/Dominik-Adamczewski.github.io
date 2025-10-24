@@ -1,18 +1,27 @@
 <template>
   <section>
-    <StepOne v-if="store.currentStep === 1" />
-    <StepTwo v-if="store.currentStep === 2" />
-    <StepThree v-if="store.currentStep === 3" />
+    <component :is="currentStepComponent" />
   </section>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import StepOne from './StepOne.vue';
 import StepTwo from './StepTwo.vue';
 import StepThree from './StepThree.vue';
 import { useGameStore } from '../../stores/gameStore';
 
 const store = useGameStore();
+
+const stepComponents = {
+  1: StepOne,
+  2: StepTwo,
+  3: StepThree
+};
+
+const currentStepComponent = computed(() => {
+  return stepComponents[store.currentStep];
+});
 </script>
 
 <style scoped>
