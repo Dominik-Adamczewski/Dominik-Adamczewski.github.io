@@ -7,7 +7,7 @@
       <PlayBoard />
     </main>
     <footer class="text-center lg:text-right mt-32 lg:mt-12 justify-self-end grow flex justify-center items-center">
-      <BaseButton class="lg:mr-4 lg:mb-12" text="RULES" :no-background="true" @click="openRulesModal" />
+      <BaseButton class="lg:mr-4 lg:mb-12" text="RULES" :secondary="true" @click="openRulesModal" />
     </footer>
   </section>
   <RulesModal v-if="isRulesModalVisible" @close="closeRulesModal" />
