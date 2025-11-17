@@ -1079,12 +1079,23 @@ video {
   margin-top: 2rem;
 }
 
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
 
 .box-content {
   box-sizing: content-box;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .line-clamp-none {
@@ -1246,6 +1257,10 @@ video {
   height: 1.25rem;
 }
 
+.h-52 {
+  height: 13rem;
+}
+
 .h-6 {
   height: 1.5rem;
 }
@@ -1264,6 +1279,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-44 {
+  height: 11rem;
 }
 
 .max-h-\[600px\] {
@@ -1467,6 +1486,10 @@ video {
   max-width: 72rem;
 }
 
+.max-w-96 {
+  max-width: 24rem;
+}
+
 .max-w-\[50\%\] {
   max-width: 50%;
 }
@@ -1489,6 +1512,14 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
+}
+
+.max-w-xs {
+  max-width: 20rem;
+}
+
+.max-w-80 {
+  max-width: 20rem;
 }
 
 .flex-1 {
@@ -1745,6 +1776,10 @@ video {
   list-style-position: outside;
 }
 
+.list-none {
+  list-style-type: none;
+}
+
 .appearance-none {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -1874,6 +1909,10 @@ video {
 
 .grid-flow-col-dense {
   grid-auto-flow: column dense;
+}
+
+.auto-rows-fr {
+  grid-auto-rows: minmax(0, 1fr);
 }
 
 .grid-cols-1 {
@@ -2070,6 +2109,10 @@ video {
 
 .justify-items-stretch {
   justify-items: stretch;
+}
+
+.gap-10 {
+  gap: 2.5rem;
 }
 
 .gap-2 {
@@ -2472,6 +2515,11 @@ video {
   border-top-right-radius: 0.25rem;
 }
 
+.rounded-t-md {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+
 .rounded-t-xl {
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
@@ -2709,6 +2757,11 @@ video {
 .border-proj-26-primary-red-600 {
   --tw-border-opacity: 1;
   border-color: hsl(349 71% 52% / var(--tw-border-opacity));
+}
+
+.border-proj-27-blue-900-dark-mode {
+  --tw-border-opacity: 1;
+  border-color: hsl(209 23% 22% / var(--tw-border-opacity));
 }
 
 .border-slate-400 {
@@ -2978,6 +3031,11 @@ video {
 .bg-proj-27-grey-50-light-mode {
   --tw-bg-opacity: 1;
   background-color: hsl(0 0% 95% / var(--tw-bg-opacity));
+}
+
+.bg-slate-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
@@ -4442,6 +4500,11 @@ div.projects-list a:hover {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-proj-15-green-400:hover {
   background-color: hsla(169, 82%, 40%, 0.7);
 }
@@ -4496,6 +4559,11 @@ div.projects-list a:hover {
   background-color: hsl(229 25% 31% / var(--tw-bg-opacity));
 }
 
+.hover\:bg-slate-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-slate-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
@@ -4513,6 +4581,11 @@ div.projects-list a:hover {
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.hover\:text-gray-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .hover\:text-proj-18-dark-grayish-cyan:hover {
@@ -4649,8 +4722,25 @@ div.projects-list a:hover {
 }
 
 @media (min-width: 640px) {
+  .sm\:h-52 {
+    height: 13rem;
+  }
+
   .sm\:w-3\/5 {
     width: 60%;
+  }
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:gap-6 {
+    gap: 1.5rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .sm\:underline {
@@ -4736,6 +4826,10 @@ div.projects-list a:hover {
     max-width: 36rem;
   }
 
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -4748,8 +4842,21 @@ div.projects-list a:hover {
     justify-content: center;
   }
 
+  .md\:gap-10 {
+    gap: 2.5rem;
+  }
+
+  .md\:gap-8 {
+    gap: 2rem;
+  }
+
   .md\:border-r {
     border-right-width: 1px;
+  }
+
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .md\:pr-8 {
@@ -4884,6 +4991,10 @@ div.projects-list a:hover {
     margin-right: 0.5rem;
   }
 
+  .lg\:mr-20 {
+    margin-right: 5rem;
+  }
+
   .lg\:mr-3 {
     margin-right: 0.75rem;
   }
@@ -4962,6 +5073,10 @@ div.projects-list a:hover {
 
   .lg\:h-full {
     height: 100%;
+  }
+
+  .lg\:max-h-\[500px\] {
+    max-height: 500px;
   }
 
   .lg\:min-h-20 {
@@ -5049,6 +5164,10 @@ div.projects-list a:hover {
     width: 100%;
   }
 
+  .lg\:max-w-2xl {
+    max-width: 42rem;
+  }
+
   .lg\:max-w-3xl {
     max-width: 48rem;
   }
@@ -5069,8 +5188,16 @@ div.projects-list a:hover {
     max-width: 100%;
   }
 
+  .lg\:max-w-lg {
+    max-width: 32rem;
+  }
+
   .lg\:max-w-screen-md {
     max-width: 768px;
+  }
+
+  .lg\:max-w-sm {
+    max-width: 24rem;
   }
 
   .lg\:max-w-xl {
@@ -5083,6 +5210,10 @@ div.projects-list a:hover {
 
   .lg\:flex-1 {
     flex: 1 1 0%;
+  }
+
+  .lg\:flex-grow {
+    flex-grow: 1;
   }
 
   .lg\:basis-1\/3 {
@@ -5175,6 +5306,10 @@ div.projects-list a:hover {
     justify-content: space-between;
   }
 
+  .lg\:gap-20 {
+    gap: 5rem;
+  }
+
   .lg\:gap-3 {
     gap: 0.75rem;
   }
@@ -5185,6 +5320,10 @@ div.projects-list a:hover {
 
   .lg\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .lg\:gap-10 {
+    gap: 2.5rem;
   }
 
   .lg\:gap-x-6 {
@@ -5256,6 +5395,11 @@ div.projects-list a:hover {
     padding-right: 4rem;
   }
 
+  .lg\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
   .lg\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -5281,8 +5425,22 @@ div.projects-list a:hover {
     padding-bottom: 3rem;
   }
 
+  .lg\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .lg\:px-32 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+
   .lg\:pb-14 {
     padding-bottom: 3.5rem;
+  }
+
+  .lg\:pr-8 {
+    padding-right: 2rem;
   }
 
   .lg\:pt-10 {
@@ -5330,6 +5488,10 @@ div.projects-list a:hover {
 
   .xl\:basis-3\/4 {
     flex-basis: 75%;
+  }
+
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

@@ -179,7 +179,7 @@ module.exports = {
         'proj-27-blue-950-dark-mode': 'hsl(207, 26%, 17%)',
         'proj-27-grey-950-light-mode': 'hsl(200, 15%, 8%)',
         'proj-27-grey-400-light-mode': 'hsl(0, 0%, 50%)',
-        'proj-27-grey-50-light-mode': 'hsl(0, 0%, 99%)',
+        'proj-27-grey-50-light-mode': 'hsl(0, 0%, 95%)',
       }
     },
   },
