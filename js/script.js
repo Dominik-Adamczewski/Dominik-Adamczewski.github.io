@@ -25,6 +25,7 @@ const projects = [
     { projectName: '24-ip-tracker-app', projectUrl: 'https://24-ip-tracker-vue.surge.sh/' },
     { projectName: '25-multi-step-form', projectUrl: 'https://25-multi-step-form.surge.sh/' },
     { projectName: '26-rock-paper-scissors', projectUrl: 'https://26-rock-paper-scissors-vue.surge.sh/' },
+    { projectName: '27-rest-countries-api-vue', projectUrl: 'https://27-rest-countries-api-vue-dom.surge.sh/' },
 ];
 
 const projectsList = document.querySelector('div.projects-list');
