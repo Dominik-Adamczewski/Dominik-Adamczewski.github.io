@@ -6,7 +6,7 @@
         'text-black bg-white': !store.isDarkModeEnabled
       }"
     >
-      <i v-if="props.withArrow" class="fa-solid fa-arrow-left mr-2"></i>
+      <i v-if="props.withArrow" class="fa-solid fa-arrow-left mr-2" aria-hidden="true"></i>
       {{ props.text }}
     </button>
 </template>

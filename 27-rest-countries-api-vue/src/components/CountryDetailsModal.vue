@@ -1,6 +1,6 @@
 <template>
   <section
-    class="absolute top-20 left-0 w-full px-6 pb-10"
+    class="absolute top-20 left-0 w-full px-4 lg:px-20 pb-10"
     :class="{ 'bg-proj-27-grey-50-light-mode': !store.isDarkModeEnabled, 'bg-proj-27-blue-950-dark-mode': store.isDarkModeEnabled }"
   >
     <ButtonComponent text="Back" :with-arrow="true" @click="emit('countryDetailsClosed')" />
@@ -52,8 +52,10 @@
             <div class="mt-4 flex flex-wrap gap-2">
               <LabelComponent
                 v-for="(borderCode, index) in props.countryDetailsObj.borders"
+                class="cursor-pointer"
                 :key="index"
                 :text="store.getCountryNameFromAlphaCode(borderCode)"
+                @click="$emit('borderCountryLabelClicked',store.getCountryNameFromAlphaCode(borderCode))"
               />
             </div>
           </section>
@@ -72,7 +74,7 @@ import { useCountriesStore } from '../../stores/countriesStore';
 
 const store = useCountriesStore();
 
-const emit = defineEmits(['countryDetailsClosed']);
+const emit = defineEmits(['countryDetailsClosed', 'borderCountryLabelClicked']);
 
 const props = defineProps({
   countryDetailsObj: {

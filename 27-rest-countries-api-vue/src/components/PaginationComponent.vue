@@ -5,7 +5,7 @@
   >
     <li>
       <button
-        class="hover:underline hover:text-gray-500"
+        class="hover:underline hover:text-gray-500 p-4"
         type="button"
         @click="onClickFirstPage"
         :disabled="isInFirstPage"
@@ -16,7 +16,7 @@
 
     <li>
       <button
-        class="hover:underline hover:text-gray-500"
+        class="hover:underline hover:text-gray-500 p-4"
         type="button"
         @click="onClickPreviousPage"
         :disabled="isInFirstPage"
@@ -35,7 +35,7 @@
         type="button"
         @click="onClickPage(page.name)"
         :disabled="page.isDisabled"
-        class="rounded-full w-6 h-6"
+        class="rounded-full flex items-center justify-center w-6 h-6 p-4"
         :class="{ 'active': isPageActive(page.name) }"
       >
         {{ page.name }}
@@ -46,7 +46,7 @@
 
     <li>
       <button
-        class="hover:underline hover:text-gray-500"
+        class="hover:underline hover:text-gray-500 p-4"
         type="button"
         @click="onClickNextPage"
         :disabled="isInLastPage"
@@ -57,7 +57,7 @@
 
     <li>
       <button
-        class="hover:underline hover:text-gray-500"
+        class="hover:underline hover:text-gray-500 p-4"
         type="button"
         @click="onClickLastPage"
         :disabled="isInLastPage"
