@@ -12,8 +12,8 @@
     </nav>
     <section class="p-4 lg:px-20">
       <div class="lg:flex lg:justify-between lg:items-center lg:py-8">
-        <SearchCountryInput class="lg:flex-grow lg:max-w-lg" />
-        <RegionSelect class="lg:flex lg:flex-grow lg:max-w-sm lg:justify-end" />
+        <SearchCountryInput class="lg:flex-grow lg:max-w-lg h-20"/>
+        <RegionSelect class="lg:flex lg:flex-grow lg:max-w-sm lg:justify-end lg:h-20" />
       </div>
       <CountriesList :country-list-for-cards="store.filteredCountries" />
     </section>

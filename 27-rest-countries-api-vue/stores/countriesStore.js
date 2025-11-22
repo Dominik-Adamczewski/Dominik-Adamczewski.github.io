@@ -57,7 +57,6 @@ export const useCountriesStore = defineStore('countriesStore', {
   actions: {
     toggleDarkMode () {
       this.isDarkModeEnabled = !this.isDarkModeEnabled;
-      console.log(this.isDarkModeEnabled);
     },
     async fetchCountriesListData () {
       try {

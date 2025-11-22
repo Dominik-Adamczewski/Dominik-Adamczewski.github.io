@@ -3,8 +3,9 @@
     v-if="store.isCountryDetailsViewOpened"
     :country-details-obj="store.countryForDetailsView"
     @country-details-closed="handleCountryDetailsClose"
+    @borderCountryLabelClicked="handleBorderCountryClick"
   />
-  <div v-else class="w-full sm:px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 auto-rows-fr">
+  <div v-else class="w-full sm:px-6 md:px-8 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 auto-rows-fr">
     <CountryListCard
       v-for="(country, index) in paginatedCountries"
       :key="index"
@@ -42,19 +43,19 @@ const props = defineProps({
   }
 });
 
-const perPage = ref(30);
+const perPage = 30;
 const currentScrollPosition = ref(null);
 
 const totalPages = computed(() => {
   if (props.countryListForCards) {
-    return Math.ceil(props.countryListForCards.length / perPage.value);
+    return Math.ceil(props.countryListForCards.length / perPage);
   }
   return null;
 });
 
 const paginatedCountries = computed(() => {
-  const start = (store.currentPage - 1) * perPage.value;
-  const end = start + perPage.value;
+  const start = (store.currentPage - 1) * perPage;
+  const end = start + perPage;
   if (props.countryListForCards) {
     return props.countryListForCards.slice(start, end);
   }
@@ -76,6 +77,10 @@ const handleCountryDetailsClose = async () => {
   store.countryForDetailsView = null;
   await nextTick();
   window.scrollTo(0, currentScrollPosition.value);
+};
+
+const handleBorderCountryClick = (borderCountryName) => {
+  store.countryForDetailsView = store.getCountryForDetailsView(borderCountryName);
 };
 </script>
 

@@ -4,7 +4,9 @@
   >
     <i
       class="fa-solid mr-2"
-      :class="{ 'fa-moon text-black': !store.isDarkModeEnabled, 'fa-sun text-white': store.isDarkModeEnabled }">
+      :class="{ 'fa-moon text-black': !store.isDarkModeEnabled, 'fa-sun text-white': store.isDarkModeEnabled }"
+      aria-hidden="true"
+    >
     </i>
     <span :class="{ 'text-white': store.isDarkModeEnabled }">
       {{ store.isDarkModeEnabled ? 'Light mode' : 'Dark mode' }}
